@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
   `name` VARCHAR(255) NULL DEFAULT NULL,
   `surname` VARCHAR(255) NULL DEFAULT NULL,
   `nickname` VARCHAR(255) NOT NULL,
+  `login` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `user_role_id` INT NOT NULL,
   `music_avatar_id` INT NOT NULL,
@@ -81,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
   INDEX `fk_users_track1_idx` (`music_avatar_id` ASC) VISIBLE,
   INDEX `nick_name` (`nickname` ASC) VISIBLE,
   UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) VISIBLE,
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,
   CONSTRAINT `fk_users_user_role1`
     FOREIGN KEY (`user_role_id`)
     REFERENCES `meloman_db1`.`user_role` (`id`),

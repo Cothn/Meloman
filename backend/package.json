@@ -4,11 +4,13 @@
   "private": false,
   "dependencies": {
     "all": "0.0.0",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "^4.17.1",
     "express-session": "~1.17.0",
+    "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "log4js": "^6.2.0",
