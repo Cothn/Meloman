@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование пользователя</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+<h1>Редактирование пользователя</h1>
+<form action="/users/update" method="POST">
+    <input type="hidden" name="id" value="{{user.id}}" />
+    <label>Nickname</label><br>
+    <input name="nickname" value="{{user.nickname}}"  class="field" /><br><br>
+    <label>Login</label><br>
+    <input name="login" type="email" value="{{user.login}}"  class="field" /><br><br>
+    <label>Password</label><br>
+    <input name="password" type="password" value="{{user.password}}"  class="field" /><br><br>
+    <input type="submit" value="Отправить" />
+</form>
+<a href="/users">К списку пользователей</a>
+</body>
+<html>
