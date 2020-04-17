@@ -12,13 +12,6 @@ exports.createUser = function (request, response){
 exports.editUser = function (request, response){
     const id = request.params.id;
     response.render("edit.hbs");
-    //connection.query(User.GET_USER_BY_ID, [id], function(err, data) {
-    //    if(err) return console.log(err);
-        //response.render("edit.hbs", {
-       //     user: data[0]
-        //});
-
-    //e});
 };
 
 exports.getUserById = function (request, response){
@@ -29,7 +22,6 @@ exports.getUserById = function (request, response){
             return response.send({status : false, dbresp: err.toString()});
         };
         //logger.debug(  { users:  data[0]});
-        //response.render("users.hbs", { users:  data});
         response.send({status : true,  db_data:  data});
     });
 };
