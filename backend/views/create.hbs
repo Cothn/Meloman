@@ -6,15 +6,27 @@
 </head>
 <body>
     <h1>Добавление пользователя</h1>
-     <form action="/users/add" method="POST">
+     <form id="createForm" action="" method="POST">
         <label>nickname</label>
         <input name="nickname" /><br><br>
         <label>email</label>
         <input name="login" type="email" /><br><br>
         <label>password</label>
         <input name="password" type="password" /><br><br>
-        <input type="submit" value="Отправить" />
+        <input type="button" id="btn" value="Отправить" />
      </form>
      <a href="/users">К списку пользователей</a>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        $("#btn").click(
+                function(){
+                    sendAjaxForm('createForm', "/users/add", "/users");
+                    return false;
+                }
+        );
+    </script>
+    <script src="/static/sendAjaxForm.js"></script>
 </body>
+
 <html>

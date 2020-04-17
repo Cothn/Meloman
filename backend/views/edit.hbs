@@ -7,7 +7,8 @@
 </head>
 <body>
 <h1>Редактирование пользователя</h1>
-<form action="/users/update" method="POST">
+
+<form id="editForm">
     <input type="hidden" name="id" value="{{user.id}}" />
     <label>Nickname</label><br>
     <input name="nickname" value="{{user.nickname}}"  class="field" /><br><br>
@@ -15,8 +16,18 @@
     <input name="login" type="email" value="{{user.login}}"  class="field" /><br><br>
     <label>Password</label><br>
     <input name="password" type="password" value="{{user.password}}"  class="field" /><br><br>
-    <input type="submit" value="Отправить" />
+    <input type="button" id="btn" value="Отправить" />
 </form>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+    $("#btn").click(
+            function(){
+                sendAjaxForm('editForm', "/users/update", "/users");
+                return false;
+            }
+    );
+</script>
+<script src="/static/sendAjaxForm.js"></script>
 <a href="/users">К списку пользователей</a>
 </body>
 <html>

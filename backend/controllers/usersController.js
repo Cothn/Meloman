@@ -19,18 +19,28 @@ exports.editUser = function (request, response){
     });
 };
 
+exports.showUsers = function(request, response){
+
+    response.render("users.hbs");
+
+};
+
 exports.getUsers = function(request, response){
     //logger.debug( "mess1");
     connection.query(User.GET_ALL_USERS, function(err, data) {
-        if (err) return logger.error(err);
+        if(err) {
+            return response.send({status : false, dbresp: err.toString()});
+        };
         //logger.debug(  { users:  data});
-        response.render("users.hbs", { users:  data});
+        //response.render("users.hbs", { users:  data});
+        response.send({status : true,  db_data:  data});
     });
 
 };
 
 exports.updateUser = function(request, response) {
     if(!request.body) return response.sendStatus(400);
+
     const id = request.body.id;
     const name = request.body.name;
     const surname= request.body.surname;
@@ -40,22 +50,26 @@ exports.updateUser = function(request, response) {
     const role_id= 1;
     const music_avatar_id= request.body.music_avatar_id;
     //logger.debug( "mess3");
-    //logger.debug(   nickname);
+    //logger.debug(  id);
     connection.query(User.UPDATE_USER,
         [name, surname, nickname, login, password, role_id,  music_avatar_id,  id], function(err, data) {
-            if(err) return console.log(err);
+            if(err) {
+                return response.send({status : false, dbresp: err.toString()});
+            };
             //logger.debug( "mess4");
             //logger.debug(    data);
-            response.redirect("/users");
+            response.send({status : true});
         });
-
+    //response.send('true');
 };
 
 exports.deleteUser = function(request, response){
     const user_id= request.params.id;
     connection.query(User.DELETE_USER_BY_ID, [user_id], function(err, data) {
-        if(err) return console.log(err);
-        response.redirect("/users");
+        if(err) {
+            return response.send({status : false, dbresp: err.toString()});
+        };
+        response.send({status : true});
     });
 };
 
@@ -71,7 +85,10 @@ exports.addUser= function(request, response){
     const music_avatar_id= request.body.music_avatar_id;
     connection.query( User.ADD_USER
         , [name, surname, nickname, login, password, role_id, music_avatar_id], function(err, data) {
-            if(err) return console.log(err);
-            response.redirect("/users");
+            if(err) {
+                return response.send({status : false, dbresp: err.toString()});
+            };
+            //logger.debug(    data);
+            response.send({status : true,  insert_id:  data.insertId});
         });
 };
