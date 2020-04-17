@@ -5,17 +5,20 @@ var userRouter = express.Router();
 
 
 /* GET users listing. */
-userRouter.get('/', userController.getUsers);
+userRouter.get('/', userController.showUsers);
+
+userRouter.get('/get', userController.getUsers);
 
 //create View
-userRouter.use("/create", userController.createUser);
+userRouter.get("/create", userController.createUser);
 
 userRouter.post('/add', userController.addUser);
 
-userRouter.use("/edit/:id", userController.editUser);
+//edit View
+userRouter.get("/edit/:id", userController.editUser);
 
 userRouter.post('/update', userController.updateUser);
 
-userRouter.post('/delete/:id', userController.deleteUser);
+userRouter.get('/delete/:id', userController.deleteUser);
 
 module.exports = userRouter;

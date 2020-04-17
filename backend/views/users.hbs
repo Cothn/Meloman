@@ -4,23 +4,58 @@
     <title>Список пользователей</title>
     <meta charset="utf-8" />
 </head>
-<body>
+
+<body onload="getObjects();">
+
+<script>
+    function getObjects (){
+
+        $.get("/users/get",
+            function (data)
+            {
+                if (data.status)
+                {
+                    var tableRow = '';
+                    $.each(data.db_data, function (key, value) {
+                        tableRow += "<tr>";
+                        tableRow += "<td>"+value.id+"</td>";
+                        tableRow += "<td>"+value.nickname+"</td>";
+                        tableRow += "<td>"+value.login+"</td>";
+                        tableRow += "<td>"+value.password+"</td>";
+                        tableRow += "<td>"+'<a href="/users/edit/'+value.id+'">Edit</a>'+"</td>";
+                        tableRow += "<td>"+'<form action="" style="display:inline;">'
+                        tableRow +='<input type="button" onclick="deleteObj ('+value.id+')" value="Delete" /></form>'+"</td>";
+                        tableRow += "/<tr>";
+                    })
+                    $('#users_table').append(tableRow);
+                }
+                else{
+                    alert(data.dbresp);}
+            }
+        );
+    }
+
+</script>
+<script>
+    function deleteObj (id) {
+        $.get("/users/delete/"+id+"",
+            function (data)
+            {
+                if (data.status) {
+                    window.location.href = "/users";
+                }
+                else{
+                    alert(data.dbresp);}
+            });
+    }
+</script>
 <a href="/users/create">Добавить пользователя</a>
 <h1>Список пользователей</h1>
-<table>
+<table id ="users_table">
     <tr><th>Id</th><th>Nickname</th><th>login</th><th>password</th><th>edit</th><th>delete</th></tr>
-    {{#each users}}
-        <tr><td>{{this.id}}</td><td>{{this.nickname}}</td>
-            <td>{{this.login}}</td><td>{{this.password}}</td>
-            <td>
-                <a href="/users/edit/{{this.id}}">Edit</a>
-            </td>
-            <td>
-                <form action="/users/delete/{{this.id}}" method="POST" style="display:inline;">
-                    <input type="submit" value="Delete" />
-                </form>
-            </td><tr>
-    {{/each}}
 </table>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
 </body>
 <html>
