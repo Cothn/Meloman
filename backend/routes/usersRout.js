@@ -15,7 +15,10 @@ userRouter.get("/create", userController.createUser);
 userRouter.post('/add', userController.addUser);
 
 //edit View
+//edit View
 userRouter.get("/edit/:id", userController.editUser);
+
+userRouter.get("/get/:id", userController.getUserById);
 
 userRouter.post('/update', userController.updateUser);
 

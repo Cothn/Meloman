@@ -11,11 +11,26 @@ exports.createUser = function (request, response){
 
 exports.editUser = function (request, response){
     const id = request.params.id;
+    response.render("edit.hbs");
+    //connection.query(User.GET_USER_BY_ID, [id], function(err, data) {
+    //    if(err) return console.log(err);
+        //response.render("edit.hbs", {
+       //     user: data[0]
+        //});
+
+    //e});
+};
+
+exports.getUserById = function (request, response){
+    const id = request.params.id;
+    //logger.debug( id);
     connection.query(User.GET_USER_BY_ID, [id], function(err, data) {
-        if(err) return console.log(err);
-        response.render("edit.hbs", {
-            user: data[0]
-        });
+        if(err) {
+            return response.send({status : false, dbresp: err.toString()});
+        };
+        //logger.debug(  { users:  data[0]});
+        //response.render("users.hbs", { users:  data});
+        response.send({status : true,  db_data:  data});
     });
 };
 
@@ -49,7 +64,7 @@ exports.updateUser = function(request, response) {
     const password = request.body.password;
     const role_id= 1;
     const music_avatar_id= request.body.music_avatar_id;
-    //logger.debug( "mess3");
+    logger.debug( "mess3");
     //logger.debug(  id);
     connection.query(User.UPDATE_USER,
         [name, surname, nickname, login, password, role_id,  music_avatar_id,  id], function(err, data) {

@@ -37,7 +37,7 @@ app.use('/users', usersRouter);
 logger.info('Start');
 logger.debug('Start debug');
 
-app.use('/static', express.static(__dirname + '/views'));
+app.use('/static', express.static(__dirname + '/views/scripts'));
 app.use(cors);
 app.use(function (req, res, next) {
 //Enable CORS

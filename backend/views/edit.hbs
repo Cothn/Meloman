@@ -5,18 +5,21 @@
     <meta charset="utf-8" />
     <style>.field{width:180px;}</style>
 </head>
-<body>
+
+<body onload="getToUpdate();">
+<script src="/static/getUserToUpdate.js"></script>
+<script>
+    function getToUpdate(){
+        var id = window.location.toString().split('/')[5];
+        //alert(id);
+        getUserToUpdate("editForm", id);
+
+    }
+</script>
 <h1>Редактирование пользователя</h1>
 
 <form id="editForm">
-    <input type="hidden" name="id" value="{{user.id}}" />
-    <label>Nickname</label><br>
-    <input name="nickname" value="{{user.nickname}}"  class="field" /><br><br>
-    <label>Login</label><br>
-    <input name="login" type="email" value="{{user.login}}"  class="field" /><br><br>
-    <label>Password</label><br>
-    <input name="password" type="password" value="{{user.password}}"  class="field" /><br><br>
-    <input type="button" id="btn" value="Отправить" />
+    <input type="button" id="btn" value="Отправить" /><br>
 </form>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script>
