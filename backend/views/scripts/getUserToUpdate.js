@@ -1,6 +1,6 @@
 function getUserToUpdate (form, id){
 
-    $.get("/users/get/"+id+"",
+    $.get("/api/users/get/"+id+"",
         function (data)
         {
 

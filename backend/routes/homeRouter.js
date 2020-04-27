@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql2');
-const logger = require('../configs/logger4jsInit')
-const mySqlConfig = require("../configs/mysqlconfig");
 const homeController = require("../controllers/homeController.js");
 
 /* GET home page.
@@ -10,6 +7,10 @@ router.get('/', function(request, response, next) {
   response.render('index', { title: 'Express' });
 });
 */
-router.get('/', homeController.index);
+
+router.get('/home', homeController.index);
+router.get('/', function(req, res){
+    res.redirect("/view/users", 200);
+})
 
 module.exports = router;

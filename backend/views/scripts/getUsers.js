@@ -1,6 +1,6 @@
-function getObjects (table){
+function getUsers (table){
 
-    $.get("/users/get",
+    $.get("/api/users/get",
         function (data)
         {
             if (data.status)
@@ -12,9 +12,9 @@ function getObjects (table){
                     tableRow += "<td>"+value.nickname+"</td>";
                     tableRow += "<td>"+value.login+"</td>";
                     tableRow += "<td>"+value.password+"</td>";
-                    tableRow += "<td>"+'<a class="editLink" href="/users/edit/'+value.id+'">Edit</a>'+"</td>";
+                    tableRow += "<td>"+'<a class="editLink" href="/view/users/edit/'+value.id+'">Edit</a>'+"</td>";
                     tableRow += "<td>"+'<form action="" style="display:inline;">'
-                    tableRow +='<input type="button" onclick="deleteObj ('+"'/users', "+value.id+')" value="Delete" /></form>'+"</td>";
+                    tableRow +='<input type="button" onclick="deleteObj ('+"'users', "+value.id+')" value="Delete" /></form>'+"</td>";
                     tableRow += "/<tr>";
                 })
                 $('#'+table+'').append(tableRow);

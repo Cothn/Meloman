@@ -10,7 +10,7 @@
 <script src="/static/getUserToUpdate.js"></script>
 <script>
     function getToUpdate(){
-        var id = window.location.toString().split('/')[5];
+        var id = window.location.toString().split('/').reverse()[0];
         //alert(id);
         getUserToUpdate("editForm", id);
 
@@ -25,12 +25,12 @@
 <script>
     $("#btn").click(
             function(){
-                sendAjaxForm('editForm', "/users/update", "/users");
+                sendAjaxForm('editForm', "/api/users/update", "/view/users", "POST");
                 return false;
             }
     );
 </script>
 <script src="/static/sendAjaxForm.js"></script>
-<a href="/users">К списку пользователей</a>
+<a href="/view/users">К списку пользователей</a>
 </body>
 <html>

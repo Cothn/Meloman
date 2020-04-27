@@ -5,15 +5,6 @@ const mySqlConfig= require("../configs/mysqlconfig");
 
 let connection = mysql.createConnection(mySqlConfig.config);
 
-exports.createUser = function (request, response){
-    response.render("create.hbs");
-};
-
-exports.editUser = function (request, response){
-    const id = request.params.id;
-    response.render("edit.hbs");
-};
-
 exports.getUserById = function (request, response){
     const id = request.params.id;
     //logger.debug( id);
@@ -26,11 +17,6 @@ exports.getUserById = function (request, response){
     });
 };
 
-exports.showUsers = function(request, response){
-
-    response.render("users.hbs");
-
-};
 
 exports.getUsers = function(request, response){
     //logger.debug( "mess1");

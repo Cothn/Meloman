@@ -15,13 +15,13 @@
         <input name="password" type="password" /><br><br>
         <input type="button" id="btn" value="Отправить" />
      </form>
-     <a href="/users">К списку пользователей</a>
+     <a href="/view/users">К списку пользователей</a>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script>
         $("#btn").click(
                 function(){
-                    sendAjaxForm('createForm', "/users/add", "/users");
+                    sendAjaxForm('createForm', "/api/users/add", "/view/users", "POST");
                     return false;
                 }
         );

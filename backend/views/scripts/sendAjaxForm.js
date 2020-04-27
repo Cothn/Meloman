@@ -1,7 +1,7 @@
-function sendAjaxForm(form, url, redirect_url) {
+function sendAjaxForm(form, url, redirect_url, type) {
     $.ajax({
         url:     url, //url страницы
-        type:     "POST", //метод отправки
+        type:     type, //метод отправки
         dataType: "html", //формат данных
         data: $("#"+form).serialize(),  // Сеарилизуем объект
         success: function(response) { //Данные отправлены успешно

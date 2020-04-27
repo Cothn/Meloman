@@ -1,5 +1,5 @@
 function deleteObj (url, id) {
-    $.get(""+url+"/delete/"+id+"",
+    $.get("/api/"+url+"/delete/"+id+"",
         function (data)
         {
             if (data.status) {

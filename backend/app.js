@@ -12,7 +12,8 @@ const logger = require('./configs/logger4jsInit')
 
 //routers path
 var homeRouter = require('./routes/homeRouter');
-var usersRouter = require('./routes/usersRout');
+var apiRouter = require('./routes/api/apiRouter');
+var viewRouter = require('./routes/view/viewRouter');
 
 
 var app = express();
@@ -31,7 +32,8 @@ app.use(morgan('dev'));
 
 //routers
 app.use('/', homeRouter);
-app.use('/users', usersRouter);
+app.use('/view', viewRouter);
+app.use('/api', apiRouter);
 
 //Start
 logger.info('Start');
