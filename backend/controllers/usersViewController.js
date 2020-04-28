@@ -1,14 +1,14 @@
 
 exports.createUser = function (request, response){
-    response.render("create.hbs");
+    response.status(200).render("create.hbs");
 };
 
 exports.editUser = function (request, response){
-    response.render("edit.hbs");
+    response.status(200).render("edit.hbs");
 };
 
 exports.showUsers = function(request, response){
 
-    response.render("users.hbs");
+    response.status(200).render("users.hbs");
 
 };

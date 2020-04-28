@@ -13,7 +13,7 @@ exports.getUserById = function (request, response){
             return response.send({status : false, dbresp: err.toString()});
         };
         //logger.debug(  { users:  data[0]});
-        response.send({status : true,  db_data:  data});
+        response.status(200).send({status : true,  db_data:  data});
     });
 };
 
@@ -26,7 +26,7 @@ exports.getUsers = function(request, response){
         };
         //logger.debug(  { users:  data});
         //response.render("users.hbs", { users:  data});
-        response.send({status : true,  db_data:  data});
+        response.status(200).send({status : true,  db_data:  data});
     });
 
 };
@@ -51,9 +51,9 @@ exports.updateUser = function(request, response) {
             };
             //logger.debug( "mess4");
             //logger.debug(    data);
-            response.send({status : true});
+            response.status(200).send({status : true});
         });
-    //response.send('true');
+    //response.status(200).send('true');
 };
 
 exports.deleteUser = function(request, response){
@@ -62,7 +62,7 @@ exports.deleteUser = function(request, response){
         if(err) {
             return response.send({status : false, dbresp: err.toString()});
         };
-        response.send({status : true});
+        response.status(200).send({status : true});
     });
 };
 
@@ -82,6 +82,6 @@ exports.addUser= function(request, response){
                 return response.send({status : false, dbresp: err.toString()});
             };
             //logger.debug(    data);
-            response.send({status : true,  insert_id:  data.insertId});
+            response.status(200).send({status : true,  insert_id:  data.insertId});
         });
 };
