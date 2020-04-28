@@ -10,7 +10,7 @@ router.get('/', function(request, response, next) {
 
 router.get('/home', homeController.index);
 router.get('/', function(req, res){
-    res.redirect("/view/users", 200);
+    res.status(200).redirect("/view/users");
 })
 
 module.exports = router;

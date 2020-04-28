@@ -11,7 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema meloman_db1
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `meloman_db1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `meloman_db1`;
 USE `meloman_db1` ;
 
 -- -----------------------------------------------------
@@ -19,12 +19,11 @@ USE `meloman_db1` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`user_role` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+  UNIQUE INDEX `name_UNIQUE` (`title` ASC) )
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -32,12 +31,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`genres` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` INT NOT NULL,
+  `title` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+  UNIQUE INDEX `name_UNIQUE` (`title` ASC) )
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -45,24 +43,23 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`track` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
   `music_url` VARCHAR(255) NOT NULL,
-  `users_id` INT NOT NULL,
-  `genres_genre_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `genre_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_track_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_track_genres1_idx` (`genres_genre_id` ASC) VISIBLE,
-  UNIQUE INDEX `music_url_UNIQUE` (`music_url` ASC) VISIBLE,
-  INDEX `name` (`name` ASC) VISIBLE,
+  INDEX `fk_track_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_track_genres1_idx` (`genre_id` ASC) ,
+  UNIQUE INDEX `music_url_UNIQUE` (`music_url` ASC) ,
+  INDEX `name` (`title` ASC) ,
   CONSTRAINT `fk_track_genres1`
-    FOREIGN KEY (`genres_genre_id`)
+    FOREIGN KEY (`genre_id`)
     REFERENCES `meloman_db1`.`genres` (`id`),
   CONSTRAINT `fk_track_users1`
-    FOREIGN KEY (`users_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `meloman_db1`.`users` (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -75,16 +72,16 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
   `nickname` VARCHAR(255) NOT NULL,
   `login` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `user_role_id` INT NOT NULL,
-  `music_avatar_id` INT NOT NULL,
+  `role_id` INT NOT NULL DEFAULT 2,
+  `music_avatar_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_users_user_role1` (`user_role_id` ASC) VISIBLE,
-  INDEX `fk_users_track1_idx` (`music_avatar_id` ASC) VISIBLE,
-  INDEX `nick_name` (`nickname` ASC) VISIBLE,
-  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) VISIBLE,
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,
+  INDEX `fk_users_user_role1` (`role_id` ASC) ,
+  INDEX `fk_users_track1_idx` (`music_avatar_id` ASC) ,
+  INDEX `nick_name` (`nickname` ASC) ,
+  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) ,
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) ,
   CONSTRAINT `fk_users_user_role1`
-    FOREIGN KEY (`user_role_id`)
+    FOREIGN KEY (`role_id`)
     REFERENCES `meloman_db1`.`user_role` (`id`),
   CONSTRAINT `fk_users_track1`
     FOREIGN KEY (`music_avatar_id`)
@@ -92,8 +89,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -104,16 +100,15 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`playlist` (
   `title` VARCHAR(255) NOT NULL,
   `author_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_playlist_users2_idx` (`author_id` ASC) VISIBLE,
-  INDEX `title` (`title` ASC) VISIBLE,
+  INDEX `fk_playlist_users2_idx` (`author_id` ASC) ,
+  INDEX `title` (`title` ASC) ,
   CONSTRAINT `fk_playlist_users2`
     FOREIGN KEY (`author_id`)
     REFERENCES `meloman_db1`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -121,12 +116,12 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`posts` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `data` MEDIUMTEXT NULL DEFAULT NULL,
+  `text` MEDIUMTEXT NULL DEFAULT NULL,
   `author_id` INT NOT NULL,
   `playlist_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_posts_users1_idx` (`author_id` ASC) VISIBLE,
-  INDEX `fk_posts_playlist1_idx` (`playlist_id` ASC) INVISIBLE,
+  INDEX `fk_posts_users1_idx` (`author_id` ASC) ,
+  INDEX `fk_posts_playlist1_idx` (`playlist_id` ASC) ,
   CONSTRAINT `fk_posts_playlist1`
     FOREIGN KEY (`playlist_id`)
     REFERENCES `meloman_db1`.`playlist` (`id`),
@@ -134,8 +129,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`posts` (
     FOREIGN KEY (`author_id`)
     REFERENCES `meloman_db1`.`users` (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -144,39 +138,37 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`comments` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `text` MEDIUMTEXT NOT NULL,
-  `users_id` INT NOT NULL,
-  `posts_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `post_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comments_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_comments_posts1_idx` (`posts_id` ASC) VISIBLE,
+  INDEX `fk_comments_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_comments_posts1_idx` (`post_id` ASC) ,
   CONSTRAINT `fk_comments_posts1`
-    FOREIGN KEY (`posts_id`)
+    FOREIGN KEY (`post_id`)
     REFERENCES `meloman_db1`.`posts` (`id`),
   CONSTRAINT `fk_comments_users1`
-    FOREIGN KEY (`users_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `meloman_db1`.`users` (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
 -- Table `meloman_db1`.`likes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`likes` (
-  `users_id` INT NOT NULL,
-  `posts_id` INT NOT NULL,
-  PRIMARY KEY (`users_id`, `posts_id`),
-  INDEX `fk_likes_posts1_idx` (`posts_id` ASC) VISIBLE,
+  `user_id` INT NOT NULL,
+  `post_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `post_id`),
+  INDEX `fk_likes_posts1_idx` (`post_id` ASC) ,
   CONSTRAINT `fk_likes_posts1`
-    FOREIGN KEY (`posts_id`)
+    FOREIGN KEY (`post_id`)
     REFERENCES `meloman_db1`.`posts` (`id`),
   CONSTRAINT `fk_likes_users1`
-    FOREIGN KEY (`users_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `meloman_db1`.`users` (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -193,8 +185,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`playlist_track` (
     FOREIGN KEY (`playlist_id`)
     REFERENCES `meloman_db1`.`playlist` (`id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -202,23 +193,22 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`users_playlists` (
   `playlist_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`playlist_id`, `users_id`),
-  INDEX `fk_playlist_has_users_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_playlist_has_users_playlist1_idx` (`playlist_id` ASC) VISIBLE,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`playlist_id`, `user_id`),
+  INDEX `fk_playlist_has_users_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_playlist_has_users_playlist1_idx` (`playlist_id` ASC) ,
   CONSTRAINT `fk_playlist_has_users_playlist1`
     FOREIGN KEY (`playlist_id`)
     REFERENCES `meloman_db1`.`playlist` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_playlist_has_users_users1`
-    FOREIGN KEY (`users_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `meloman_db1`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

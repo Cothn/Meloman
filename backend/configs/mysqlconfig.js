@@ -2,7 +2,7 @@ config  = {
     host: "localhost",
     user: "Meloman",
     database: "meloman_db1",
-    password: "Meloman"
+    password: "Melomane"
 };
 
 module.exports.config = config;
