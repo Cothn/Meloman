@@ -13,6 +13,10 @@ exports.getUserById = function (request, response){
             return response.status(400).send({message: err.message});
         };
         //logger.debug(  { users:  data[0]});
+        if(data.length == 0)
+        {
+            return response.status(400).send({message: "user not found"});
+        }
         return response.status(200).send(data);
     });
 };
@@ -83,6 +87,6 @@ exports.addUser= function(request, response){
                 return response.status(400).send({message: err.message});
             };
             //logger.debug(    data);
-            return response.status(200).send({insert_id:  data.insertId});
+            return response.status(201).send({insert_id:  data.insertId});
         });
 };
