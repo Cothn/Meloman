@@ -13,15 +13,27 @@ const storage = multer.diskStorage(
             callback(null, Date.now()+"_"+crypto.randomBytes(20).toString('hex')+"."+ext);
         }
     });
+const fileFilter = (req, file, callback)=>{
+    if(file.mimetype === "audio/mpeg"){
+        callback(null, true);
+    }
+    else
+    {
+        callback(null, false);
+    }
+}
 
 exports.addTrack= function(request, response){
 
-    var upload = multer({storage: storage}).single('file_data');
+    var upload = multer({storage: storage, fileFilter: fileFilter}).single('file_data');
     upload(request, response, function (err) {
         if(err){
             return response.status(500).send({message: "Error uploading file"});
         }
-        //console.log(request.file);
+        if(request.file == null){
+            return response.status(400).send({message: "Invalid file"});
+        }
+        console.log(request.file);
         return response.status(200).send({file_path:request.file.path});
     });
 
