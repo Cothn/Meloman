@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const multer = require("multer");
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const cors = require('cors');
@@ -30,16 +31,20 @@ app.use(morgan('common', {
   stream: fs.createWriteStream(logPut+'/morgan.log', {flags: 'a'})}))
 app.use(morgan('dev'));
 
+
 //routers
 app.use('/', homeRouter);
 app.use('/view', viewRouter);
 app.use('/api', apiRouter);
 
+
 //Start
 logger.info('Start');
 logger.debug('Start debug');
+logger.debug(__dirname + '/static');
 
-app.use('/static', express.static(__dirname + '/views/scripts'));
+app.use('/static', express.static(__dirname + '/static'));
+
 app.use(cors);
 app.use(function (req, res, next) {
 //Enable CORS
@@ -49,6 +54,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
   next();
 });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

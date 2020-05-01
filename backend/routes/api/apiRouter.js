@@ -10,5 +10,9 @@ var usersRout = require('./usersRout');
 router.use('/user', usersRout);
 var trackRout = require('./trackRout');
 router.use('/track', trackRout);
+var musicRout = require('./musicRout');
+router.use('/music', musicRout);
+
+
 
 module.exports = router;
