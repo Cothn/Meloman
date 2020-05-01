@@ -8,5 +8,7 @@ router.get('/', function(request, response, next) {
 */
 var usersRout = require('./usersRout');
 router.use('/user', usersRout);
+var trackRout = require('./trackRout');
+router.use('/track', trackRout);
 
 module.exports = router;
