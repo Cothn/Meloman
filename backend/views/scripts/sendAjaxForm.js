@@ -2,21 +2,17 @@ function sendAjaxForm(form, url, redirect_url, type) {
     $.ajax({
         url:     url, //url страницы
         type:     type, //метод отправки
-        dataType: "html", //формат данных
+        //dataType: "json", //формат данных
         data: $("#"+form).serialize(),  // Сеарилизуем объект
-        success: function(response) { //Данные отправлены успешно
-            result = $.parseJSON(response);
-            //alert(result.status)
-            if (result.status){
-
-                window.location.href = redirect_url;
-            }
-            else{
-                alert(result.dbresp);}
+        success: function(data, status) { //Данные отправлены успешно
+            //result = data;
+            //alert(status);
+            window.location.href = redirect_url;
 
         },
-        error: function(response) { // Данные не отправлены
-            alert('Ошибка. Данные не отправлены.');
+        error: function(xhr) { // Данные не отправлены
+            alert($.parseJSON(xhr.responseText).message);
         }
+
     });
 }

@@ -7,6 +7,6 @@ router.get('/', function(request, response, next) {
 });
 */
 var usersRout = require('./usersRout');
-router.use('/users', usersRout);
+router.use('/user', usersRout);
 
 module.exports = router;

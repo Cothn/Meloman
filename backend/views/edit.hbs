@@ -25,12 +25,11 @@
 <script>
     $("#btn").click(
             function(){
-                sendAjaxForm('editForm', "/api/users/update", "/view/users", "POST");
-                return false;
+                sendAjaxForm('editForm', "/api/user", "/view/user", "PUT");
             }
     );
 </script>
 <script src="/static/sendAjaxForm.js"></script>
-<a href="/view/users">К списку пользователей</a>
+<a href="/view/user">К списку пользователей</a>
 </body>
 <html>
