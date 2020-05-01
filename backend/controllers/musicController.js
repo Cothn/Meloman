@@ -37,7 +37,7 @@ exports.addTrack= function(request, response){
         if(request.file == null){
             return response.status(400).send({message: "Invalid file"});
         }
-        console.log(request.file);
+        //console.log(request.file);
         return response.status(200).send({file_path:request.file.path});
     });
 
