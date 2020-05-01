@@ -1,11 +1,14 @@
 function deleteObj (url, id) {
-    $.get("/api/"+url+"/delete/"+id+"",
-        function (data)
-        {
-            if (data.status) {
-                window.location.href = url;
-            }
-            else{
-                alert(data.dbresp);}
-        });
+    $.ajax({
+        url:     "/api/"+url+"/"+id+"", //url страницы
+        type:     "DELETE", //метод отправки
+        success: function(data, status) { //Данные отправлены успешно
+            window.location.href = url;
+
+        },
+        error: function(xhr) { // Данные не отправлены
+            alert($.parseJSON(xhr.responseText).message);
+        }
+
+    });
 }

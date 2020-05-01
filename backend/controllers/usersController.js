@@ -10,10 +10,10 @@ exports.getUserById = function (request, response){
     //logger.debug( id);
     connection.query(User.GET_USER_BY_ID, [id], function(err, data) {
         if(err) {
-            return response.send({status : false, dbresp: err.toString()});
+            return response.status(400).send({message: err.message});
         };
         //logger.debug(  { users:  data[0]});
-        response.status(200).send({status : true,  db_data:  data});
+        return response.status(200).send(data);
     });
 };
 
@@ -22,11 +22,12 @@ exports.getUsers = function(request, response){
     //logger.debug( "mess1");
     connection.query(User.GET_ALL_USERS, function(err, data) {
         if(err) {
-            return response.send({status : false, dbresp: err.toString()});
+            return response.status(400).send({message: err.message});
         };
         //logger.debug(  { users:  data});
         //response.render("users.hbs", { users:  data});
-        response.status(200).send({status : true,  db_data:  data});
+        //return response.status(400).send({message: "mm"});
+        return response.status(200).send(data);
     });
 
 };
@@ -42,16 +43,16 @@ exports.updateUser = function(request, response) {
     const password = request.body.password;
     const role_id= 1;
     const music_avatar_id= request.body.music_avatar_id;
-    logger.debug( "mess3");
+    //logger.debug( "mess3");
     //logger.debug(  id);
     connection.query(User.UPDATE_USER,
         [name, surname, nickname, login, password, role_id,  music_avatar_id,  id], function(err, data) {
             if(err) {
-                return response.send({status : false, dbresp: err.toString()});
+                return response.status(400).send({ message: err.message});
             };
             //logger.debug( "mess4");
             //logger.debug(    data);
-            response.status(200).send({status : true});
+            return response.sendStatus(200);
         });
     //response.status(200).send('true');
 };
@@ -60,9 +61,9 @@ exports.deleteUser = function(request, response){
     const user_id= request.params.id;
     connection.query(User.DELETE_USER_BY_ID, [user_id], function(err, data) {
         if(err) {
-            return response.send({status : false, dbresp: err.toString()});
+            return response.send({message: err.message});
         };
-        response.status(200).send({status : true});
+        return response.sendStatus(200);
     });
 };
 
@@ -79,9 +80,9 @@ exports.addUser= function(request, response){
     connection.query( User.ADD_USER
         , [name, surname, nickname, login, password, role_id, music_avatar_id], function(err, data) {
             if(err) {
-                return response.send({status : false, dbresp: err.toString()});
+                return response.status(400).send({message: err.message});
             };
             //logger.debug(    data);
-            response.status(200).send({status : true,  insert_id:  data.insertId});
+            return response.status(200).send({insert_id:  data.insertId});
         });
 };
