@@ -10,7 +10,11 @@ const storage = multer.diskStorage(
         },
         filename: function (req, file, callback) {
             var ext = file.originalname.split('.').reverse()[0];
-            callback(null, Date.now()+"_"+crypto.randomBytes(20).toString('hex')+"."+ext);
+            var date = new Date();
+            var date_str = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+            var time_str = date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds()+"-"+date.getMilliseconds();
+
+            callback(null, date_str+"_"+time_str+"_"+crypto.randomBytes(20).toString('hex')+"."+ext);
         }
     });
 const fileFilter = (req, file, callback)=>{
