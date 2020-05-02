@@ -9,7 +9,6 @@ exports.editUser = function (request, response){
 
 exports.showUsers = function(request, response){
 
-    response.status(200).redirect("/users.html")
-    //render("users.hbs");
+    response.status(200).render("users.hbs");
 
 };
