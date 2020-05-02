@@ -5,7 +5,6 @@ const mySqlConfig= require("../configs/mysqlconfig");
 const bcrypt = require('bcrypt');
 
 
-
 exports.getUserById = function (request, response){
     const id = request.params.id;
     //logger.debug( id);
@@ -15,12 +14,44 @@ exports.getUserById = function (request, response){
             return response.status(400).send({message: err.message});
         };
         logger.debug("get_User_by_id:")
-        logger.debug(  { users:  data[0]});
+        logger.debug(  data[0]);
         if(data.length == 0)
         {
             return response.status(400).send({message: "user not found"});
         }
-        return response.status(200).send(data);
+        return response.status(200).send(data[0]);
+    });
+    connection.end();
+};
+
+exports.authenticateUser = function (request, response){
+    const email = request.body.email;
+    const password = request.body.password;
+    //logger.debug( id);
+    const connection = mysql.createConnection(mySqlConfig.config);
+    connection.query(User.GET_USER_BY_EMAIL, [email], function(err, data) {
+        if(err) {
+            return response.status(400).send({message: err.message});
+        };
+        logger.debug("get_User_by_email:")
+        logger.debug( data[0]);
+        if(data.length == 0)
+        {
+            return response.status(400).send(
+                {message: "email or password incorrect!"});
+        }
+        else
+        {
+            const passwordEntity = bcrypt.hashSync(password, data[0].salt);
+
+            if(passwordEntity != data[0].password)
+            {
+                return response.status(400).send({message: "email or password incorrect!"});
+            }
+            else{
+                return response.status(200).send({user_id:  data[0].id});
+            }
+        }
     });
     connection.end();
 };
@@ -33,9 +64,6 @@ exports.getUsers = function(request, response){
         if(err) {
             return response.status(400).send({message: err.message});
         };
-        //logger.debug(  { users:  data});
-        //response.render("users.hbs", { users:  data});
-        //return response.status(400).send({message: "mm"});
         return response.status(200).send(data);
     });
     connection.end();
@@ -81,6 +109,7 @@ exports.deleteUser = function(request, response){
     });
     connection.end();
 };
+
 
 
 exports.registerUser= function(request, response){

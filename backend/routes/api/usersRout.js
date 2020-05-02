@@ -7,6 +7,8 @@ userRouter.get('/', userController.getUsers);
 
 userRouter.post('/register', userController.registerUser);
 
+userRouter.post('/authenticate', userController.authenticateUser);
+
 userRouter.get("/:id", userController.getUserById);
 
 userRouter.put('/', userController.updateUser);
