@@ -26,6 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(session())
+
 //logger morgan
 app.use(morgan('common', {
   stream: fs.createWriteStream(logPut+'/morgan.log', {flags: 'a'})}))
