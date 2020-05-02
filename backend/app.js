@@ -41,7 +41,6 @@ app.use('/api', apiRouter);
 //Start
 logger.info('Start');
 logger.debug('Start debug');
-logger.debug(__dirname + '/static');
 
 app.use('/static', express.static(__dirname + '/static'));
 

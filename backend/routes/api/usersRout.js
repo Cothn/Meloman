@@ -5,7 +5,7 @@ var userRouter = express.Router();
 
 userRouter.get('/', userController.getUsers);
 
-userRouter.post('/register', userController.addUser);
+userRouter.post('/register', userController.registerUser);
 
 userRouter.get("/:id", userController.getUserById);
 

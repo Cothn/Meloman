@@ -2,28 +2,33 @@ const User = require("../models/user.js");
 const logger = require('../configs/logger4jsInit')
 const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
+const bcrypt = require('bcrypt');
 
-let connection = mysql.createConnection(mySqlConfig.config);
+
 
 exports.getUserById = function (request, response){
     const id = request.params.id;
     //logger.debug( id);
+    const connection = mysql.createConnection(mySqlConfig.config);
     connection.query(User.GET_USER_BY_ID, [id], function(err, data) {
         if(err) {
             return response.status(400).send({message: err.message});
         };
-        //logger.debug(  { users:  data[0]});
+        logger.debug("get_User_by_id:")
+        logger.debug(  { users:  data[0]});
         if(data.length == 0)
         {
             return response.status(400).send({message: "user not found"});
         }
         return response.status(200).send(data);
     });
+    connection.end();
 };
 
 
 exports.getUsers = function(request, response){
     //logger.debug( "mess1");
+    const connection = mysql.createConnection(mySqlConfig.config);
     connection.query(User.GET_ALL_USERS, function(err, data) {
         if(err) {
             return response.status(400).send({message: err.message});
@@ -33,24 +38,26 @@ exports.getUsers = function(request, response){
         //return response.status(400).send({message: "mm"});
         return response.status(200).send(data);
     });
-
+    connection.end();
 };
 
 exports.updateUser = function(request, response) {
-    if(!request.body) return response.sendStatus(400);
-
+    if(!request.body) return response.status(400).send(
+        { message: "null request body"});
+    if(!request.body.password) return response.status(400).send(
+        { message: "password must be not null"});
     const id = request.body.id;
     const name = request.body.name;
     const surname= request.body.surname;
     const nickname = request.body.nickname;
-    const login = request.body.login;
-    const password = request.body.password;
-    const role_id= 1;
+    const email = request.body.email;
+    const salt= bcrypt.genSaltSync(10);
+    const password = bcrypt.hashSync(request.body.password, salt);
     const music_avatar_id= request.body.music_avatar_id;
-    //logger.debug( "mess3");
-    //logger.debug(  id);
+
+    const connection = mysql.createConnection(mySqlConfig.config);
     connection.query(User.UPDATE_USER,
-        [name, surname, nickname, login, password, role_id,  music_avatar_id,  id], function(err, data) {
+        [name, surname, nickname, email, password, salt, music_avatar_id,  id], function(err, data) {
             if(err) {
                 return response.status(400).send({ message: err.message});
             };
@@ -58,35 +65,42 @@ exports.updateUser = function(request, response) {
             //logger.debug(    data);
             return response.sendStatus(200);
         });
+    connection.end();
     //response.status(200).send('true');
 };
 
 exports.deleteUser = function(request, response){
     const user_id= request.params.id;
+
+    const connection = mysql.createConnection(mySqlConfig.config);
     connection.query(User.DELETE_USER_BY_ID, [user_id], function(err, data) {
         if(err) {
-            return response.send({message: err.message});
+            return response.status(400).send({message: err.message});
         };
         return response.sendStatus(200);
     });
+    connection.end();
 };
 
 
-exports.addUser= function(request, response){
+exports.registerUser= function(request, response){
+
     if(!request.body) return response.sendStatus(400);
-    const name = request.body.name;
-    const surname= request.body.surname;
     const nickname = request.body.nickname;
-    const login = request.body.login;
-    const password = request.body.password;
-    const role_id= 1;
-    const music_avatar_id= request.body.music_avatar_id;
-    connection.query( User.ADD_USER
-        , [name, surname, nickname, login, password, role_id, music_avatar_id], function(err, data) {
+    const email = request.body.email;
+
+    const salt= bcrypt.genSaltSync(10);
+    const password = bcrypt.hashSync(request.body.password, salt);
+
+    const connection = mysql.createConnection(mySqlConfig.config);
+    connection.query( User.ADD_USER,
+        [nickname, email, password, salt], function(err, data) {
             if(err) {
                 return response.status(400).send({message: err.message});
             };
-            //logger.debug(    data);
             return response.status(201).send({insert_id:  data.insertId});
+
         });
+    connection.end();
+
 };
