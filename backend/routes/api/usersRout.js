@@ -6,14 +6,14 @@ const authHelper = require("../../helpers/authHelper")
 
 userRouter.get('/', authHelper.checkAuth, authHelper.checkAdmin, userController.getUsers);
 
-userRouter.post('/register', userController.registerUser);
+userRouter.post('/register',  userController.registerUser);
 
 userRouter.post('/authenticate', userController.authenticateUser);
 
-userRouter.get("/:id", userController.getUserById);
+userRouter.get("/me", authHelper.checkAuth, userController.getUserMe);
 
-userRouter.put('/', userController.updateUser);
+userRouter.put('/me', authHelper.checkAuth, userController.updateUser);
 
-userRouter.delete('/:id', userController.deleteUser);
+userRouter.delete('/:id', authHelper.checkAuth, authHelper.checkAdmin, userController.deleteUser);
 
 module.exports = userRouter;

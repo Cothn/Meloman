@@ -7,10 +7,12 @@ const PRIVATE_KEY = require("../configs/token_key").private_key;
 const expirationTime = 3600;
 var jwt = require('jsonwebtoken');
 
+exports.getUserMe = function (request, response){
+    var id = request.currentUser.user_id;
+    if((request.currentUser.role_id < 2) && (request.query.id)){
+        id = request.query.id;//  params.id;
+    }
 
-exports.getUserById = function (request, response){
-    const id = request.params.id;
-    //logger.debug( id);
     const connection = mysql.createConnection(mySqlConfig.config);
     connection.query(User.GET_USER_BY_ID, [id], function(err, data) {
         if(err) {
@@ -86,7 +88,11 @@ exports.updateUser = function(request, response) {
         { message: "null request body"});
     if(!request.body.password) return response.status(400).send(
         { message: "password must be not null"});
-    const id = request.body.id;
+
+    var id = request.currentUser.user_id;
+    if(request.currentUser.role_id < 2) {
+        id = request.params.id;
+    }
     const name = request.body.name;
     const surname= request.body.surname;
     const nickname = request.body.nickname;
