@@ -4,6 +4,7 @@ const multer = require("multer");
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const cors = require('cors');
+var jwt = require('jsonwebtoken');
 
 var path = require('path');
 var fs = require('fs');
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
 //logger morgan
 app.use(morgan('common', {
   stream: fs.createWriteStream(logPut+'/morgan.log', {flags: 'a'})}))
@@ -41,7 +43,6 @@ app.use('/api', apiRouter);
 //Start
 logger.info('Start');
 logger.debug('Start debug');
-logger.debug(__dirname + '/static');
 
 app.use('/static', express.static(__dirname + '/static'));
 

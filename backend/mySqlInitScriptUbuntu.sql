@@ -70,8 +70,9 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
   `name` VARCHAR(255) NULL DEFAULT NULL,
   `surname` VARCHAR(255) NULL DEFAULT NULL,
   `nickname` VARCHAR(255) NOT NULL,
-  `login` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
+  `salt` VARCHAR(255) NOT NULL,
   `role_id` INT NOT NULL DEFAULT 2,
   `music_avatar_id` INT NULL,
   PRIMARY KEY (`id`),
@@ -79,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
   INDEX `fk_users_track1_idx` (`music_avatar_id` ASC) ,
   INDEX `nick_name` (`nickname` ASC) ,
   UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) ,
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC) ,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
   CONSTRAINT `fk_users_user_role1`
     FOREIGN KEY (`role_id`)
     REFERENCES `meloman_db1`.`user_role` (`id`),
@@ -214,3 +215,8 @@ ENGINE = InnoDB
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO user_role (title) VALUES ("Admin");
+INSERT INTO user_role (title) VALUES ("User");
+INSERT INTO users ( nickname, email, password, salt, role_id) VALUES ("Admin","admin@meloman.mel", "$2b$10$o6yVM3QbTF13nERb.3.S/O4v4gwpJ6/jT3/nCxND2No381Z1m2/8C", "$2b$10$o6yVM3QbTF13nERb.3.S/O", "1");
+
