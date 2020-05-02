@@ -43,6 +43,7 @@ logger.info('Start');
 logger.debug('Start debug');
 
 app.use('/static', express.static(__dirname + '/static'));
+app.use('/', express.static(__dirname + '/static/views'));
 
 app.use(cors);
 app.use(function (req, res, next) {
