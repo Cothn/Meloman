@@ -11,8 +11,8 @@ function getUsers (table){
                 tableRow += "<tr>";
                 tableRow += "<td>"+value.id+"</td>";
                 tableRow += "<td>"+value.nickname+"</td>";
-                tableRow += "<td>"+value.login+"</td>";
-                tableRow += "<td>"+value.password+"</td>";
+                tableRow += "<td>"+value.email+"</td>";
+                tableRow += "<td>"+value.name+"</td>";
                 tableRow += "<td>"+'<a class="editLink" href="/view/user/edit/'+value.id+'">Edit</a>'+"</td>";
                 tableRow += "<td>"+'<form action="" style="display:inline;">'
                 tableRow +='<input type="button" onclick="deleteObj ('+"'user', "+value.id+')" value="Delete" /></form>'+"</td>";
