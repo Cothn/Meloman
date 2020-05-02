@@ -31,7 +31,7 @@ ENGINE = InnoDB
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`genres` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` INT NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`title` ASC) )
 ENGINE = InnoDB
