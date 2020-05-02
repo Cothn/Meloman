@@ -3,6 +3,9 @@ const logger = require('../configs/logger4jsInit')
 const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
 const bcrypt = require('bcrypt');
+const PRIVATE_KEY = require("../configs/token_key").private_key;
+const expirationTime = 3600;
+var jwt = require('jsonwebtoken');
 
 
 exports.getUserById = function (request, response){
@@ -25,6 +28,7 @@ exports.getUserById = function (request, response){
 };
 
 exports.authenticateUser = function (request, response){
+
     const email = request.body.email;
     const password = request.body.password;
     //logger.debug( id);
@@ -33,8 +37,7 @@ exports.authenticateUser = function (request, response){
         if(err) {
             return response.status(400).send({message: err.message});
         };
-        logger.debug("get_User_by_email:")
-        logger.debug( data[0]);
+
         if(data.length == 0)
         {
             return response.status(400).send(
@@ -49,7 +52,16 @@ exports.authenticateUser = function (request, response){
                 return response.status(400).send({message: "email or password incorrect!"});
             }
             else{
-                return response.status(200).send({user_id:  data[0].id});
+                logger.debug(data[0]);
+
+                const token = jwt.sign({
+                    user_id :  data[0].id,
+                    user_role: data[0].role_id }, PRIVATE_KEY,
+                    {
+                    algorithm: 'HS256',
+                    expiresIn: expirationTime
+                });
+                return response.status(200).send({token: token, exp: expirationTime});
             }
         }
     });

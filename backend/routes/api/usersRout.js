@@ -1,9 +1,10 @@
 var express = require('express');
 const userController = require("../../controllers/usersController.js");
 var userRouter = express.Router();
+const authHelper = require("../../helpers/authHelper")
 
 
-userRouter.get('/', userController.getUsers);
+userRouter.get('/', authHelper.checkAuth, authHelper.checkAdmin, userController.getUsers);
 
 userRouter.post('/register', userController.registerUser);
 

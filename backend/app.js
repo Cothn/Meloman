@@ -4,6 +4,7 @@ const multer = require("multer");
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const cors = require('cors');
+var jwt = require('jsonwebtoken');
 
 var path = require('path');
 var fs = require('fs');
@@ -26,7 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(session())
 
 //logger morgan
 app.use(morgan('common', {
