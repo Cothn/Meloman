@@ -12,7 +12,8 @@ var trackRout = require('./trackRout');
 router.use('/track', trackRout);
 var musicRout = require('./musicRout');
 router.use('/music', musicRout);
-
+var playlistRout = require('./playlistRout');
+router.use('/playlist', playlistRout);
 
 
 module.exports = router;
