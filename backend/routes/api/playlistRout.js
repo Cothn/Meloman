@@ -17,7 +17,7 @@ playlistRouter.put('/', authHelper.checkAuth, playlistController.updatePlayList)
 
 playlistRouter.delete('/:id', authHelper.checkAuth, playlistController.deletePlayList);
 
-//var favouriteRout = require('./user_playlistRout');
-//playlistRouter.use('/favourite', favouriteRout);
+var favouriteRout = require('./user_playlistRout');
+playlistRouter.use('/favourite', favouriteRout);
 
 module.exports = playlistRouter;

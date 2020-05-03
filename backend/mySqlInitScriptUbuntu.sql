@@ -200,14 +200,12 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users_playlists` (
   INDEX `fk_playlist_has_users_playlist1_idx` (`playlist_id` ASC) ,
   CONSTRAINT `fk_playlist_has_users_playlist1`
     FOREIGN KEY (`playlist_id`)
-    REFERENCES `meloman_db1`.`playlist` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `meloman_db1`.`playlist` (`id`),
   CONSTRAINT `fk_playlist_has_users_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `meloman_db1`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 ;
 
