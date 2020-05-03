@@ -179,8 +179,8 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`playlist_track` (
   `playlist_id` INT NOT NULL,
   `track_id` INT NOT NULL,
   PRIMARY KEY (`playlist_id`, `track_id`),
-  CONSTRAINT `playlist_song_ibfk_2`
-    FOREIGN KEY (`playlist_id`)
+  CONSTRAINT `playlist_track_ibfk_2`
+    FOREIGN KEY (`track_id`)
     REFERENCES `meloman_db1`.`track` (`id`),
   CONSTRAINT `playlist_track_ibfk_1`
     FOREIGN KEY (`playlist_id`)
