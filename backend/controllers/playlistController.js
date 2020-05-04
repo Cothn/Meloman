@@ -158,7 +158,13 @@ exports.deletePlayList = function(request, response){
 
 exports.addPlayList= function(request, response){
     const title = request.body.title;
-    const author_id = request.currentUser.user_id;
+    var author_id = request.currentUser.user_id;
+    if((request.currentUser.role_id < 2))
+    {
+        if(request.query.user_id) {
+            author_id = request.query.author_id;
+        }
+    }
     if (!request.body.tracks) {
         return response.status(400).send({message: "field tracks must be not null"});
     }
@@ -208,6 +214,10 @@ exports.addTrack= function(request, response){
             return response.status(400).send({message: err.message});
         };
 
+        if(data.length == 0)
+        {
+            return response.status(400).send({ message: "playlist not found"});
+        }
         var sqlParams = [];
         const playlist_id = data[0].id;
         request.body.tracks.forEach(track_id => sqlParams = sqlParams.concat([[playlist_id, track_id]]));
