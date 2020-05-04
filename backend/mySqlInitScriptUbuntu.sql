@@ -138,10 +138,10 @@ ENGINE = InnoDB
 CREATE TABLE IF NOT EXISTS `meloman_db1`.`comments` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `text` MEDIUMTEXT NOT NULL,
-  `user_id` INT NOT NULL,
+  `author_id` INT NOT NULL,
   `post_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comments_users1_idx` (`user_id` ASC) ,
+  INDEX `fk_comments_users1_idx` (`author_id` ASC) ,
   INDEX `fk_comments_posts1_idx` (`post_id` ASC) ,
   CONSTRAINT `fk_comments_posts1`
     FOREIGN KEY (`post_id`)
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`comments` (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_comments_users1`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`author_id`)
     REFERENCES `meloman_db1`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)

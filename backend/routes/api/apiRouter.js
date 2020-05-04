@@ -16,5 +16,7 @@ var playlistRout = require('./playlistRout');
 router.use('/playlist', playlistRout);
 var postRout = require('./postRout');
 router.use('/post', postRout);
+var postRout = require('./commentRout');
+router.use('/comment', postRout);
 
 module.exports = router;
