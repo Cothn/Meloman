@@ -25,6 +25,6 @@ exports.checkAdmin = function(req, res, next) {
     }
     else
     {
-        return res.redirect('/view/user/authenticate');
+        return res.status(400).send({ message: 'Access denied.' });
     }
 }

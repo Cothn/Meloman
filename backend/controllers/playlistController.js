@@ -35,7 +35,7 @@ exports.getPlayListsByQuery = function (request, response){
         }
         if (sqlRequest.substr(sqlRequest.length-3, 3) == 'AND')
         {
-            sqlRequest.length -= 3;
+            sqlRequest = sqlRequest.slice(0, -3);
         }
         if (sqlRequest != ''){
             sqlRequest = ' WHERE' + sqlRequest;
