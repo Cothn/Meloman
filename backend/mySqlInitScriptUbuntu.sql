@@ -3,11 +3,6 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema meloman_db1
--- -----------------------------------------------------
-
 -- -----------------------------------------------------
 -- Schema meloman_db1
 -- -----------------------------------------------------
@@ -57,7 +52,9 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`track` (
     REFERENCES `meloman_db1`.`genres` (`id`),
   CONSTRAINT `fk_track_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `meloman_db1`.`users` (`id`))
+    REFERENCES `meloman_db1`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 ;
 
@@ -86,9 +83,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
     REFERENCES `meloman_db1`.`user_role` (`id`),
   CONSTRAINT `fk_users_track1`
     FOREIGN KEY (`music_avatar_id`)
-    REFERENCES `meloman_db1`.`track` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `meloman_db1`.`track` (`id`))
 ENGINE = InnoDB
 ;
 
@@ -125,10 +120,14 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`posts` (
   INDEX `fk_posts_playlist1_idx` (`playlist_id` ASC) ,
   CONSTRAINT `fk_posts_playlist1`
     FOREIGN KEY (`playlist_id`)
-    REFERENCES `meloman_db1`.`playlist` (`id`),
+    REFERENCES `meloman_db1`.`playlist` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_posts_users1`
     FOREIGN KEY (`author_id`)
-    REFERENCES `meloman_db1`.`users` (`id`))
+    REFERENCES `meloman_db1`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 ;
 
@@ -146,10 +145,14 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`comments` (
   INDEX `fk_comments_posts1_idx` (`post_id` ASC) ,
   CONSTRAINT `fk_comments_posts1`
     FOREIGN KEY (`post_id`)
-    REFERENCES `meloman_db1`.`posts` (`id`),
+    REFERENCES `meloman_db1`.`posts` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_comments_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `meloman_db1`.`users` (`id`))
+    REFERENCES `meloman_db1`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 ;
 
@@ -164,10 +167,14 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`likes` (
   INDEX `fk_likes_posts1_idx` (`post_id` ASC) ,
   CONSTRAINT `fk_likes_posts1`
     FOREIGN KEY (`post_id`)
-    REFERENCES `meloman_db1`.`posts` (`id`),
+    REFERENCES `meloman_db1`.`posts` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_likes_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `meloman_db1`.`users` (`id`))
+    REFERENCES `meloman_db1`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 ;
 
@@ -184,7 +191,9 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`playlist_track` (
     REFERENCES `meloman_db1`.`track` (`id`),
   CONSTRAINT `playlist_track_ibfk_1`
     FOREIGN KEY (`playlist_id`)
-    REFERENCES `meloman_db1`.`playlist` (`id`))
+    REFERENCES `meloman_db1`.`playlist` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 ;
 
@@ -211,7 +220,7 @@ ENGINE = InnoDB
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;users
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO user_role (title) VALUES ("Admin");
