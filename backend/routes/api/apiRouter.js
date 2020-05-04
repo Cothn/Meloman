@@ -14,6 +14,7 @@ var musicRout = require('./musicRout');
 router.use('/music', musicRout);
 var playlistRout = require('./playlistRout');
 router.use('/playlist', playlistRout);
-
+var postRout = require('./postRout');
+router.use('/post', postRout);
 
 module.exports = router;
