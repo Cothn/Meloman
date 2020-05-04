@@ -70,17 +70,56 @@ exports.authenticateUser = function (request, response){
     connection.end();
 };
 
+exports.getUsersByQuery = function (request, response){
+    var id= request.query.user_id
 
-exports.getUsers = function(request, response){
-    //logger.debug( "mess1");
+    const nickname = request.query.nickname;
+    const name = request.query.name;
+    const surname = request.query.surname;
+
     const connection = mysql.createConnection(mySqlConfig.config);
-    connection.query(User.GET_ALL_USERS, function(err, data) {
-        if(err) {
-            return response.status(400).send({message: err.message});
-        };
-        return response.status(200).send(data);
-    });
-    connection.end();
+
+    if (id){
+        logger.debug(User.GET_ALL_USERS+' WHERE id='+id);
+        connection.query(User.GET_ALL_USERS+' WHERE id='+id, function (err, data) {
+            if(err) {
+                return response.status(400).send({message: err.message});
+            };
+            return response.status(200).send(data);
+        });
+        connection.end();
+    }
+    else {
+        var sqlRequest = '';
+        if (nickname) {
+            sqlRequest += ' nickname LIKE \'%'+nickname+'%\'';
+            sqlRequest += ' AND';
+        }
+        if (name) {
+
+            sqlRequest += ' name LIKE \'%'+name+'%\'';
+            sqlRequest += ' AND';
+        }
+        if (surname) {
+            sqlRequest += ' surname LIKE \'%'+surname+'%\'';
+        }
+        if (sqlRequest.substr(sqlRequest.length-3, 3) == 'AND')
+        {
+            sqlRequest = sqlRequest.slice(0, -3);
+        }
+        if (sqlRequest != ''){
+            sqlRequest = ' WHERE' + sqlRequest;
+        }
+        logger.debug(User.GET_ALL_USERS+sqlRequest);
+        connection.query(User.GET_ALL_USERS+sqlRequest, function (err, data) {
+            if(err) {
+                return response.status(400).send({message: err.message});
+            };
+            return response.status(200).send(data);
+        });
+        connection.end();
+    }
+
 };
 
 exports.updateUser = function(request, response) {
@@ -91,7 +130,9 @@ exports.updateUser = function(request, response) {
 
     var id = request.currentUser.user_id;
     if(request.currentUser.role_id < 2) {
-        id = request.params.id;
+        if(request.body.id) {
+            id = request.body.id;
+        }
     }
     const name = request.body.name;
     const surname= request.body.surname;
@@ -107,6 +148,10 @@ exports.updateUser = function(request, response) {
             if(err) {
                 return response.status(400).send({ message: err.message});
             };
+            if(data.affectedRows == 0)
+            {
+                return response.status(400).send({ message: "user not found"});
+            }
             //logger.debug( "mess4");
             //logger.debug(    data);
             return response.sendStatus(200);
@@ -123,6 +168,10 @@ exports.deleteUser = function(request, response){
         if(err) {
             return response.status(400).send({message: err.message});
         };
+        if(data.affectedRows == 0)
+        {
+            return response.status(400).send({ message: "user not found"});
+        }
         return response.sendStatus(200);
     });
     connection.end();
