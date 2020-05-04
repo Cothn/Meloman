@@ -1,5 +1,5 @@
 const User = require("../models/user.js");
-const logger = require('../configs/logger4jsInit')
+const logger = require('../configs/logger4jsInit');
 const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
 const bcrypt = require('bcrypt');

@@ -21,7 +21,7 @@ var viewRouter = require('./routes/view/viewRouter');
 var app = express();
 
 //Set view engine
-app.set("view engine", "hbs");
+//app.set("view engine", "hbs");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,7 +44,7 @@ app.use('/api', apiRouter);
 logger.info('Start');
 logger.debug('Start debug');
 
-app.use('/static', express.static(__dirname + '/static'));
+app.use( express.static(__dirname + '/static'));
 
 app.use(cors);
 app.use(function (req, res, next) {
@@ -70,7 +70,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err.message);
 });
 
 
