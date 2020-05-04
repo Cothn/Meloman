@@ -226,4 +226,5 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 INSERT INTO user_role (title) VALUES ("Admin");
 INSERT INTO user_role (title) VALUES ("User");
 INSERT INTO users ( nickname, email, password, salt, role_id) VALUES ("Admin","admin@meloman.mel", "$2b$10$o6yVM3QbTF13nERb.3.S/O4v4gwpJ6/jT3/nCxND2No381Z1m2/8C", "$2b$10$o6yVM3QbTF13nERb.3.S/O", "1");
-
+INSERT INTO genres (title) VALUES ("Rock");
+INSERT INTO genres (title) VALUES ("Pop");
