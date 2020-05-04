@@ -21,16 +21,13 @@
 		var userEmail = $.trim($('#email').val());
 		var userPassword = $.trim($('#password').val());
 	
- 		var user = {"nickname": userNickname,"email": userEmail,"password": userPassword}
 		var raw = `{\"nickname\": \"${userNickname}\",\"email\": \"${userEmail}\",\"password\": \"${userPassword}\"}`
-
 
 		if (!check) {
 			alert("Wrong input")
 			return check
  		}
  		
-	
         var requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
@@ -43,7 +40,6 @@
                 var result = await response.json();
                 if (response.ok)
                 {
-                    alert(result.insert_id);
                     window.location.href = '/view/user';
                 }
                 else

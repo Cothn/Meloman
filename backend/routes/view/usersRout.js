@@ -7,7 +7,7 @@ var userRouter = express.Router();
 /* GET users listing. *///1
 userRouter.get('/', userController.showUsers);
 
-userRouter.get('/authenticate', userController.createUser);
+userRouter.get('/authenticate', userController.authenticateUser);
 
 //create View!
 userRouter.get("/create", userController.createUser);
