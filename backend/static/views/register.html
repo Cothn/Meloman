@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/views/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/views/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/views/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/views/css/main.css">
+<!--===============================================================================================-->
+	<style>
+		body {
+			background: url(/views/images/background/main_background.jpeg) repeat-y;
+		}
+		.limiter, .container-login100 {
+			background-image: none;
+			background-color: #fff;
+		}
+		.limiter {
+			margin-top: 5%;
+		}
+		.main-logo {
+		    display: block;
+		    margin-left: auto;
+		    margin-right: auto;
+		    width: 80%;
+			padding-top: 5%;
+			padding-bottom: 5%;
+		}
+	</style>
+
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<img class="main-logo" src="/views/images/logo/music_people_logo_cut.png">
+			<div class="wrap-login100 p-t-10 p-b-90">
+				<form class="login100-form validate-form flex-sb flex-w" method="POST">
+					<span class="login100-form-title p-b-51">
+						Register
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+						<input class="input100" type="text" id="username" name="username" placeholder="Username">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Email is required">
+						<input class="input100" type="text" id="email" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+					
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<input class="input100" type="password" id="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="flex-sb-m w-full p-t-3 p-b-24">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Forgot?
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn m-t-17">
+						<button id="register-button" class="login100-form-btn">
+							Register
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!-- 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script>
+        $("#register-button").click(
+
+				var userNickname = $.trim($('#username').val());
+				var userEmail = $.trim($('#email').val());
+				var userPassword = $.trim($('#pass').val());
+				
+				var raw = "{"nickname": userNickname,"email": userEmail,"password": userPassword}";
+
+				var requestOptions = {
+				  method: 'POST',
+				  body: raw,
+				  redirect: '/view/user'
+				};
+
+				fetch("http://localhost:3000/api/user/register", requestOptions)
+				  .then(response => response.text())
+				  .then(result => console.log(result))
+				  .catch(error => console.log('error', error));
+
+        );
+    </script> -->
+	
+	
+<!--===============================================================================================-->
+	<script src="/views/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/vendor/bootstrap/js/popper.js"></script>
+	<script src="/views/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/views/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/js/register_main.js"></script>
+
+</body>
+</html>

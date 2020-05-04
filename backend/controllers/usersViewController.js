@@ -4,7 +4,7 @@ const root_path=path.join(__dirname, '../static/views');
 
 exports.createUser = function (request, response){
     //logger.debug(path.join(__dirname, '../static/views', 'create.html'));
-    response.status(200).sendFile( 'create.html', {root: root_path});
+    response.status(200).sendFile( 'register.html', {root: root_path});
 };
 
 exports.editUser = function (request, response){
