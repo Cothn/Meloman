@@ -10,12 +10,26 @@
 			"item": [
 				{
 					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "62e5f05b-7a5c-472b-b2f7-f4a41ba45cbf",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"nickname\": \"jf2cvc\",\n        \"email\": \"sdsdg2c5f\",\n        \"password\": \"admin\"\n    }",
+							"raw": "    {\n        \"nickname\": \"user\",\n        \"email\": \"user@meloman.mel\",\n        \"password\": \"user\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +60,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODU5OTEwNywiZXhwIjoxNTg4NjAyNzA3fQ.kj88-QzKG-luq90032kQnuvUDoANpSdBut140XVTtVo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -60,7 +74,51 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n    \t\"id\": 62,\n        \"name\": \"Admin\",\n        \"surname\": \"0\",\n        \"nickname\": \"Admin\",\n        \"email\": \"admin@meloman.mel\",\n        \"password\": \"admin\",\n        \"music_avatar_id\": null\n    }",
+							"raw": "    {\n    \t\"id\": 1,\n        \"name\": \"Admin\",\n        \"surname\": \"0\",\n        \"nickname\": \"Admin\",\n        \"email\": \"admin@meloman.mel\",\n        \"password\": \"admin\",\n        \"music_avatar_id\": null\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODI3NDYsImV4cCI6MTU4ODY4NjM0Nn0.XDjrRsSu4Vb3znJ3dTdARQBWbh_uu7Jf7uJFelH9h2M",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"name\": \"Admin1\",\n        \"surname\": \"0\",\n        \"nickname\": \"User\",\n        \"email\": \"user@meloman.mel\",\n        \"password\": \"user\",\n        \"music_avatar_id\": 12\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,7 +151,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODU5NDgzNiwiZXhwIjoxNTg4NTk4NDM2fQ.-XQkvbhxZr3faBKvodp6xjBLDCgVD8-a-yR85ugsw00",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
 									"type": "string"
 								},
 								{
@@ -122,7 +180,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/user?nickname=&name=&surname=0",
+							"raw": "http://localhost:3000/api/user?name=",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -135,12 +193,13 @@
 							"query": [
 								{
 									"key": "user_id",
-									"value": "",
+									"value": "12",
 									"disabled": true
 								},
 								{
 									"key": "nickname",
-									"value": ""
+									"value": "u",
+									"disabled": true
 								},
 								{
 									"key": "name",
@@ -148,7 +207,8 @@
 								},
 								{
 									"key": "surname",
-									"value": "0"
+									"value": "0",
+									"disabled": true
 								}
 							]
 						}
@@ -156,7 +216,7 @@
 					"response": []
 				},
 				{
-					"name": "GetById",
+					"name": "GetMeId",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -166,7 +226,61 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozMywidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg1OTYwMjIsImV4cCI6MTU4ODU5OTYyMn0.jEFXz9Zne9Uun2ltUq6itOytfImzPET4b1vFcrT8m1E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/me?id=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"me"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMeAsUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODI3NDYsImV4cCI6MTU4ODY4NjM0Nn0.XDjrRsSu4Vb3znJ3dTdARQBWbh_uu7Jf7uJFelH9h2M",
 									"type": "string"
 								},
 								{
@@ -210,55 +324,21 @@
 					"response": []
 				},
 				{
-					"name": "GetById Copy",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODQzMTQyNCwiZXhwIjoxNTg4NDM1MDI0fQ.rqxG_KsfT6bN8eDGCRjJ8xNK--xz7w_0R8jkNLMaG2I",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/user/me",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"user",
-								"me"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4d95ba2-8f89-4b17-91f9-f729b3c61bee",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -325,7 +405,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODU5OTEwNywiZXhwIjoxNTg4NjAyNzA3fQ.kj88-QzKG-luq90032kQnuvUDoANpSdBut140XVTtVo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
 									"type": "string"
 								},
 								{
@@ -347,7 +427,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/user/59",
+							"raw": "http://localhost:3000/api/user/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -356,7 +436,52 @@
 							"path": [
 								"api",
 								"user",
-								"59"
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAsUSer",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODI3NDYsImV4cCI6MTU4ODY4NjM0Nn0.XDjrRsSu4Vb3znJ3dTdARQBWbh_uu7Jf7uJFelH9h2M",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"12"
 							]
 						}
 					},
@@ -398,6 +523,81 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Music",
+			"item": [
+				{
+					"name": "getMusic",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/music/2020-5-5_13-7-20-911_9d4b03489c37b15620fb704bf59266a6d65e14d9.mp3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"music",
+								"2020-5-5_13-7-20-911_9d4b03489c37b15620fb704bf59266a6d65e14d9.mp3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addMusic",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file_data",
+									"type": "file",
+									"src": "/E:/Seva/Music/КиШ/K.i.Sh.1996-2012.Discografiya.MP3.320/Альбомы/1999 - Акустический альбом (2000, Nox Music)/04. Прыгну со скалы.mp3"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/music",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"music"
+							]
+						},
+						"description": "rtu"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Track",
 			"item": [
 				{
@@ -408,7 +608,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -422,7 +622,95 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"title\": \"asda\",\n        \"genre_id\": 2,\n        \"music_url\": \"sdxdxdvxzbx\"\n    }",
+							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"asdasd\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/track",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"track"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"/music/2020-5-5_12-57-58-886_0aa258b17edff0564427b137asd2de9f4a901af495e.mp3\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/track",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"track"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateASUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 12,\n    \"title\": \"asda1\",\n    \"genre_id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -452,7 +740,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODQ0ODYzNCwiZXhwIjoxNTg4NDUyMjM0fQ.zNaeQO2iXClG4GN-yNUbPp9-uLMTMAJwLpbDdnhypn4",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -466,7 +754,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n    \t\"id\": 5,\n        \"title\": \"asda\",\n        \"genre_id\": 1,\n        \"music_url\": \"sdvsx\"\n    }",
+							"raw": "{\n    \"id\": 10,\n    \"title\": \"asda1\",\n    \"genre_id\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -495,19 +783,7 @@
 					},
 					"request": {
 						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUxODA0OSwiZXhwIjoxNTg4NTIxNjQ5fQ.-HKEd4PfHUUmBPzgsGvWx3dehJaWgo6S3MukQVads3Y",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -542,11 +818,62 @@
 					},
 					"request": {
 						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/track?user_id=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"track"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "as",
+									"disabled": true
+								},
+								{
+									"key": "genre_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdMy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozMywidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg0NDYwMDcsImV4cCI6MTU4ODQ0OTYwN30.h9hA2gKQXgh34ORQL3qZY9yUmNO_NZ7JO2UTeuVd88o",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -568,7 +895,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/track?title=as&genre_id=1&user_id=1",
+							"raw": "http://localhost:3000/api/track/my",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -576,20 +903,19 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"track"
+								"track",
+								"my"
 							],
 							"query": [
 								{
 									"key": "title",
-									"value": "as"
+									"value": "as",
+									"disabled": true
 								},
 								{
 									"key": "genre_id",
-									"value": "1"
-								},
-								{
-									"key": "user_id",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -597,14 +923,14 @@
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "DeleteAsUser",
 					"request": {
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUyNDAzMSwiZXhwIjoxNTg4NTI3NjMxfQ.riP_HYloxzOq6KqW5iX3UvPHpexPEgsXc0XhxbgpYMg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
 									"type": "string"
 								},
 								{
@@ -626,7 +952,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/track/2",
+							"raw": "http://localhost:3000/api/track/20",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -635,7 +961,917 @@
 							"path": [
 								"api",
 								"track",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/track/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"track",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Playlist",
+			"item": [
+				{
+					"name": "favourite",
+					"item": [
+						{
+							"name": "GetFavourite",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/playlist/favourite?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"playlist",
+										"favourite"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetFavouriteUser",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/playlist/favourite/my",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"playlist",
+										"favourite",
+										"my"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddFavourite",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"playlist_id\": 4\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/playlist/favourite?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"playlist",
+										"favourite"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AddFavouriteASUser",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"playlist_id\": 2\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/playlist/favourite?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"playlist",
+										"favourite"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteFavouriteASUser",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODI1MDEsImV4cCI6MTU4ODY4NjEwMX0.QAe9GxF_lSe2S8x0cRNabjPpeAXD7aW74UZg6TEp1ZE",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/playlist/favourite/2?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"playlist",
+										"favourite",
+										"2"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteFavourite",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/playlist/favourite/3?user_id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"playlist",
+										"favourite",
+										"3"
+									],
+									"query": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetFavouriteAdmin",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/playlist/favourite/my",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"playlist",
+										"favourite",
+										"my"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Jamp\",\n        \"tracks\":[11, 14]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist"
+							],
+							"query": [
+								{
+									"key": "author_id",
+									"value": "12",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAsUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Jamp\",\n        \"tracks\":[11, 14]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist"
+							],
+							"query": [
+								{
+									"key": "author_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddTreck",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"tracks\":[11]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist/tracks/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist",
+								"tracks",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 2,\n        \"title\": \"asda\",\n        \"tracks\":[12]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 4,\n        \"title\": \"asda\",\n        \"tracks\":[12]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist/my",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist",
+								"my"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTracks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist/tracks/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist",
+								"tracks",
 								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByQuery",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist"
+							],
+							"query": [
+								{
+									"key": "author_id",
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "a",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMyUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist/my",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist",
+								"my"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/playlist/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"playlist",
+								"5"
 							]
 						}
 					},
@@ -655,7 +1891,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -677,7 +1913,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/post?author_id=1",
+							"raw": "http://localhost:3000/api/post",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -690,7 +1926,8 @@
 							"query": [
 								{
 									"key": "author_id",
-									"value": "1"
+									"value": "12",
+									"disabled": true
 								}
 							]
 						}
@@ -705,7 +1942,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOjIsImlhdCI6MTU4ODYxNzk0OCwiZXhwIjoxNTg4NjIxNTQ4fQ.JJXzV-_WEKBvOC1dFF7kqJO-1bjW7NlEzPQvZE7qtEI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -719,7 +1956,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n    \t\"id\": 8,\n        \"text\": \"afsda\",\n        \"playlist_id\": 2\n    }",
+							"raw": "    {\n    \t\"id\": 1,\n        \"text\": \"afsda\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -752,7 +1989,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -795,21 +2032,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -861,7 +2083,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzQ3MzEsImV4cCI6MTU4ODY3ODMzMX0.XMoMDV5H6H6bH-TRXRezRntt80eGAZDpHfU0kqb8TA8",
 									"type": "string"
 								},
 								{
@@ -883,7 +2105,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/post/1",
+							"raw": "http://localhost:3000/api/post/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -892,71 +2114,24 @@
 							"path": [
 								"api",
 								"post",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Playlist",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\n        \"title\": \"asda\",\n        \"tracks\":[2, 8, 4]\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/playlist",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"playlist"
+								"8"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "AddTreck",
+					"name": "GetMyUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzQ3MzEsImV4cCI6MTU4ODY3ODMzMX0.XMoMDV5H6H6bH-TRXRezRntt80eGAZDpHfU0kqb8TA8",
 									"type": "string"
 								},
 								{
@@ -966,11 +2141,11 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"tracks\":[6]\n    }",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -978,7 +2153,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/playlist/tracks/4",
+							"raw": "http://localhost:3000/api/post/my",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -986,23 +2161,22 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"playlist",
-								"tracks",
-								"4"
+								"post",
+								"my"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "AddFavourite",
+					"name": "CreateAsUser",
 					"request": {
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUzMzc2NiwiZXhwIjoxNTg4NTM3MzY2fQ.edDOOhkM5S1Jo78kbhtGEMpS87U0Y0gIs39L0q7kv0k",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzQ3MzEsImV4cCI6MTU4ODY3ODMzMX0.XMoMDV5H6H6bH-TRXRezRntt80eGAZDpHfU0kqb8TA8",
 									"type": "string"
 								},
 								{
@@ -1016,7 +2190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"playlist_id\": 1\n    }",
+							"raw": "    {\n        \"text\": \"asda\",\n        \"playlist_id\": 2\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1024,7 +2198,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/playlist/favourite?user_id=7",
+							"raw": "http://localhost:3000/api/post?author_id=7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1032,12 +2206,11 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"playlist",
-								"favourite"
+								"post"
 							],
 							"query": [
 								{
-									"key": "user_id",
+									"key": "author_id",
 									"value": "7"
 								}
 							]
@@ -1046,14 +2219,59 @@
 					"response": []
 				},
 				{
-					"name": "Update",
+					"name": "DeleteASAdmin",
 					"request": {
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUyNDAzMSwiZXhwIjoxNTg4NTI3NjMxfQ.riP_HYloxzOq6KqW5iX3UvPHpexPEgsXc0XhxbgpYMg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAsUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzQ3MzEsImV4cCI6MTU4ODY3ODMzMX0.XMoMDV5H6H6bH-TRXRezRntt80eGAZDpHfU0kqb8TA8",
 									"type": "string"
 								},
 								{
@@ -1067,7 +2285,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n    \t\"id\": 25,\n        \"title\": \"asda\",\n        \"tracks\":[2,  15]\n    }",
+							"raw": "    {\n    \t\"id\": 5,\n        \"text\": \"afda\",\n        \"playlist_id\": 2\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1075,7 +2293,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/playlist",
+							"raw": "http://localhost:3000/api/post",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1083,303 +2301,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"playlist"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetAll",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/playlist",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"playlist"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetTracks",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/playlist/tracks/25",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"playlist",
-								"tracks",
-								"25"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetByQuery",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUyNDAzMSwiZXhwIjoxNTg4NTI3NjMxfQ.riP_HYloxzOq6KqW5iX3UvPHpexPEgsXc0XhxbgpYMg",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/playlist?title=asa",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"playlist"
-							],
-							"query": [
-								{
-									"key": "author_id",
-									"value": "2",
-									"disabled": true
-								},
-								{
-									"key": "user_id",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "title",
-									"value": "asa"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetFavourite",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUzMzc2NiwiZXhwIjoxNTg4NTM3MzY2fQ.edDOOhkM5S1Jo78kbhtGEMpS87U0Y0gIs39L0q7kv0k",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/playlist/favourite?user_id=7",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"playlist",
-								"favourite"
-							],
-							"query": [
-								{
-									"key": "user_id",
-									"value": "7"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUyNDAzMSwiZXhwIjoxNTg4NTI3NjMxfQ.riP_HYloxzOq6KqW5iX3UvPHpexPEgsXc0XhxbgpYMg",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/playlist/26",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"playlist",
-								"26"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DeleteFavourite",
-					"request": {
-						"auth": {
-							"type": "oauth2",
-							"oauth2": [
-								{
-									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODUzMzc2NiwiZXhwIjoxNTg4NTM3MzY2fQ.edDOOhkM5S1Jo78kbhtGEMpS87U0Y0gIs39L0q7kv0k",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/playlist/favourite/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"playlist",
-								"favourite",
-								"5"
-							],
-							"query": [
-								{
-									"key": "user_id",
-									"value": "7",
-									"disabled": true
-								}
+								"post"
 							]
 						}
 					},
@@ -1392,14 +2314,14 @@
 			"name": "Comment",
 			"item": [
 				{
-					"name": "Create",
+					"name": "CreateUser",
 					"request": {
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYyMDIwOSwiZXhwIjoxNTg4NjIzODA5fQ.z1lwbodjg0GuMvDVT4vDh710NawsqWOnHIptdv1kLOI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzQ3MzEsImV4cCI6MTU4ODY3ODMzMX0.XMoMDV5H6H6bH-TRXRezRntt80eGAZDpHfU0kqb8TA8",
 									"type": "string"
 								},
 								{
@@ -1413,7 +2335,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"text\": \"asda\",\n        \"post_id\": 8\n    }",
+							"raw": "    {\n        \"text\": \"asda\",\n        \"post_id\": 11\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1421,7 +2343,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comment?author_id=2",
+							"raw": "http://localhost:3000/api/comment?author_id=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1434,7 +2356,58 @@
 							"query": [
 								{
 									"key": "author_id",
-									"value": "2"
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"text\": \"asda\",\n        \"post_id\": 11\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "author_id",
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -1449,7 +2422,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOjIsImlhdCI6MTU4ODYyMDUwNywiZXhwIjoxNTg4NjI0MTA3fQ.vROR0D7SfYKJz4hd9eFn1kBjGRT0PWBLqmBMg69RW9c",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -1463,7 +2436,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n    \t\"id\": 9,\n        \"text\": \"afsda1\"\n    }",
+							"raw": "    {\n    \t\"id\": 8,\n        \"text\": \"afsda1\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1544,7 +2517,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
+									"value": "",
 									"type": "string"
 								},
 								{
@@ -1566,7 +2539,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comment?post_id=7",
+							"raw": "http://localhost:3000/api/comment?post_id=11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1584,12 +2557,76 @@
 								},
 								{
 									"key": "author_id",
-									"value": "2",
+									"value": "12",
 									"disabled": true
 								},
 								{
 									"key": "post_id",
-									"value": "7"
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByIdMy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/comment/my?post_id=11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment",
+								"my"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "as",
+									"disabled": true
+								},
+								{
+									"key": "author_id",
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "post_id",
+									"value": "11"
 								}
 							]
 						}
@@ -1640,6 +2677,50 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UpdateAsUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2Nzg2MjMsImV4cCI6MTU4ODY4MjIyM30.ea-sQYVbtHND2OV6epYORyGc35reYeR0riElsf0V8bY",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 2,\n        \"text\": \"afsda1\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -1648,14 +2729,65 @@
 			"name": "Like",
 			"item": [
 				{
-					"name": "Create",
+					"name": "DeleteAsUser",
 					"request": {
 						"auth": {
 							"type": "oauth2",
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYyMDIwOSwiZXhwIjoxNTg4NjIzODA5fQ.z1lwbodjg0GuMvDVT4vDh710NawsqWOnHIptdv1kLOI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzkzNzksImV4cCI6MTU4ODY4Mjk3OX0.ZK4RmkvMNg9_qu3VRYaV4e74V0lcyqqm7H5L_WMjYTY",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/like_in_post/10?user_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"like_in_post",
+								"10"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateASUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzkzNzksImV4cCI6MTU4ODY4Mjk3OX0.ZK4RmkvMNg9_qu3VRYaV4e74V0lcyqqm7H5L_WMjYTY",
 									"type": "string"
 								},
 								{
@@ -1669,7 +2801,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"post_id\": 8\n    }",
+							"raw": "    {\n        \"post_id\": 10\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1698,6 +2830,57 @@
 					"response": []
 				},
 				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"post_id\": 10\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/like_in_post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"like_in_post"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "12",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetAll",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -1708,7 +2891,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYyMDIwOSwiZXhwIjoxNTg4NjIzODA5fQ.z1lwbodjg0GuMvDVT4vDh710NawsqWOnHIptdv1kLOI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -1730,7 +2913,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/like_in_post/7/my",
+							"raw": "http://localhost:3000/api/like_in_post/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1739,8 +2922,7 @@
 							"path": [
 								"api",
 								"like_in_post",
-								"7",
-								"my"
+								"10"
 							]
 						}
 					},
@@ -1757,7 +2939,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYxNTgxMywiZXhwIjoxNTg4NjE5NDEzfQ.0Y7fjMjlYOdnfQYuQVLoYBNsf06s2kzCIkcG_n_Q58E",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzkzNzksImV4cCI6MTU4ODY4Mjk3OX0.ZK4RmkvMNg9_qu3VRYaV4e74V0lcyqqm7H5L_WMjYTY",
 									"type": "string"
 								},
 								{
@@ -1779,7 +2961,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/like_in_post/7",
+							"raw": "http://localhost:3000/api/like_in_post/10/my",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1788,7 +2970,8 @@
 							"path": [
 								"api",
 								"like_in_post",
-								"7"
+								"10",
+								"my"
 							],
 							"query": [
 								{
@@ -1814,7 +2997,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYyMDIwOSwiZXhwIjoxNTg4NjIzODA5fQ.z1lwbodjg0GuMvDVT4vDh710NawsqWOnHIptdv1kLOI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
 									"type": "string"
 								},
 								{
@@ -1836,7 +3019,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/like_in_post/7",
+							"raw": "http://localhost:3000/api/like_in_post/4?user_id=12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1845,7 +3028,13 @@
 							"path": [
 								"api",
 								"like_in_post",
-								"7"
+								"4"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "12"
+								}
 							]
 						}
 					},
@@ -1853,73 +3042,6 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "getImage Copy",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/static/music/2020-5-1_22-0-18-988_b4c4ae3ce077d57501b4ddaaabf73564b6f2d824.mp3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"static",
-						"music",
-						"2020-5-1_22-0-18-988_b4c4ae3ce077d57501b4ddaaabf73564b6f2d824.mp3"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "truurtu Copy",
-			"request": {
-				"auth": {
-					"type": "oauth2",
-					"oauth2": [
-						{
-							"key": "accessToken",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozMywidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg0NDYwMDcsImV4cCI6MTU4ODQ0OTYwN30.h9hA2gKQXgh34ORQL3qZY9yUmNO_NZ7JO2UTeuVd88o",
-							"type": "string"
-						},
-						{
-							"key": "addTokenTo",
-							"value": "header",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file_data",
-							"type": "file",
-							"src": "/home/cothn/Загрузки/open-kids_-_lmnp-ft-badaboom.mp3"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/music",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"music"
-					]
-				},
-				"description": "rtu"
-			},
-			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

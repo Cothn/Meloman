@@ -59,7 +59,7 @@ exports.deletePlayList = function(request, response){
         };
         if(data.affectedRows == 0)
         {
-            return response.status(400).send({ message: " playlist not found"});
+            return response.status(400).send({message: "playlists not found at user favourite"});
         }
         logger.debug(data);
         return response.sendStatus(200);

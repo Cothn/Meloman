@@ -161,7 +161,7 @@ exports.addPlayList= function(request, response){
     var author_id = request.currentUser.user_id;
     if((request.currentUser.role_id < 2))
     {
-        if(request.query.user_id) {
+        if(request.query.author_id) {
             author_id = request.query.author_id;
         }
     }

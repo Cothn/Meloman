@@ -32,13 +32,14 @@ exports.addTrack= function(request, response){
     var upload = multer({storage: storage, fileFilter: fileFilter}).single('file_data');
     upload(request, response, function (err) {
         if(err){
-            return response.status(500).send({message: "Error uploading file"});
+            return response.status(400).send({message: "Error uploading file:"+err.message});
         }
         if(request.file == null){
             return response.status(400).send({message: "Invalid file"});
         }
         //console.log(request.file);
-        return response.status(200).send({file_path:request.file.path});
+
+        return response.status(200).send({file_path: "/music/" + request.file.filename});
     });
 
 };
