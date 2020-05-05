@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V10</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/views/registration_and_authentication/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main.css">
+<!--===============================================================================================-->
+	<style>
+		body {
+			background: url(/views/registration_and_authentication/images/background/main_background.jpeg) repeat-y;
+		}
+		.limiter, .container-login100 {
+			background-image: none;
+			background-color: #fff;
+		}
+		.limiter {
+			margin-top: 5%;
+		}
+		.main-logo {
+		    display: block;
+		    margin-left: auto;
+		    margin-right: auto;
+		    width: 80%;
+			padding-top: 5%;
+			padding-bottom: 5%;
+		}
+	</style>
+
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<img class="main-logo" src="/views/registration_and_authentication/images/logo/music_people_logo_cut.png">
+			<div class="wrap-login100 p-t-10 p-b-90">
+				<form class="login100-form validate-form flex-sb flex-w" method="POST">
+					<span class="login100-form-title p-b-51">
+						Register
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Email is required">
+						<input class="input100" type="text" id="email" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<input class="input100" type="password" id="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="container-login100-form-btn m-t-17">
+						<button id="register-button" class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/bootstrap/js/popper.js"></script>
+	<script src="/views/registration_and_authentication/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/views/registration_and_authentication/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/js/sign_in_main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование пользователя</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+
+<body onload="getToUpdate();">
+<script src="/scripts/getUserToUpdate.js"></script>
+<script>
+    function getToUpdate(){
+        var id = window.location.toString().split('/').reverse()[0];
+        //alert(id);
+        getUserToUpdate("editForm", id);
+
+    }
+</script>
+<h1>Редактирование пользователя</h1>
+
+<form id="editForm">
+    <input type="button" id="btn" value="Отправить" /><br>
+</form>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+    $("#btn").click(
+            function(){
+                sendAjaxForm('editForm', "/api/user", "/view/user", "PUT");
+            }
+    );
+</script>
+<script src="/scripts/sendAjaxForm.js"></script>
+<a href="/view/user">К списку пользователей</a>
+</body>
+<html>
