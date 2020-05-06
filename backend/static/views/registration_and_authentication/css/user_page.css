@@ -1,0 +1,104 @@
+.header-username-block {
+	text-align: center;
+	padding-right: 3%;
+	color: #117AE7;
+}
+
+.header-username {
+	font-size: 1vw;
+	color: #117AE7;
+}
+
+.header-sign_out-block {
+	padding-right: 2%;
+}
+
+
+
+
+.body-user-block {
+	min-height: 10vw;
+	padding-top: 6%;
+	padding-bottom: 3%;
+	background-color: #E8E8E8;
+}
+
+.body-user-info-block {
+	min-height: 5vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;	
+	align-items: center;
+}
+
+.body-user-about-block {
+	padding-left: 3%;
+	color: green;
+}
+
+.body-user-about-username {
+	font-size: 3vw;
+}
+
+.body-user-edit-btn {
+	width: 1.7vw;
+	height: 1.7vw;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+.body-user-about-name-surname {
+	font-size: 2vw;
+}
+
+.body-user-main-track-block {
+	padding-right: 1%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;	
+	align-items: center;
+}
+
+.body-user-main-track-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: center;	
+}
+
+.body-user-main-track-info p {
+	font-size: 0.8vw;
+}
+
+.body-user-main-track {
+	width: 20vw;
+	height: 2vw;
+}
+
+
+.body-user-quick-buttons-block {
+	padding-top: 1%;
+}
+
+.body-user-quick-btn {
+	min-width: 10vw;
+	min-height: 2.5vw;
+}
+
+.body-user-quick-btn:nth-child(2n) {
+  background-color: #8A0CE7;
+}
+
+.body-user-quick-btn:nth-child(2n):hover {
+  background-color: #403866;
+}
+
+.body-user-quick-btn:nth-child(2n+1) {
+  color: black;
+  background-color: #E7BC0C;
+}
+
+.body-user-quick-btn:nth-child(2n+1):hover {
+  background-color: #2AE70C;
+}
+
