@@ -26,6 +26,8 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/guest_page.css">
+	<link rel="stylesheet" type="text/css" href="css/main_page.css">	
+	<link rel="stylesheet" type="text/css" href="css/user_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -51,6 +53,7 @@
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
+			
 				<div class="header-subpart header-main-logo-img" style="flex-grow:2;">
 					<a class="header-main-logo-link">
 						<img class="main-logo" src="images/logo/music_people_logo_cut.png">
@@ -75,14 +78,19 @@
 				<div class="vl-header" style="flex-grow:1;"></div>
 				
 				<div class="header-subpart" style="flex-grow:2;">
-					<button class="login100-form-btn header-button">
-						Register
-					</button>
+				
+					<div class="header-username-block" style="flex-grow:2;">
+						<a class="header-username">COVID-19</a>
+					</div>
 					
-					<button class="login100-form-btn header-button">
-						Sign in
-					</button>
+					<div class="header-sign_out-block" style="flex-grow:2;">
+						<button class="login100-form-btn header-button">
+							Sign out
+						</button>
+					</div>
+					
 				</div>
+				
 			</div>
 			
 			<hr class="hr-header">
@@ -346,8 +354,47 @@
 			<hr class="hr-body">
 			
 			<div class="body-post-buttons-block">
-                <p>You need to register or sign in to enable hot buttons: like, favorites, comment.</p>
-            </div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-like-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-likes-amount-block">
+					<i>14628</i>
+				</div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-favorites-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-comment-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-write-comment-block">
+					<div class="body-post-write-comment-text-block">
+						<textarea class="body-post-write-comment-text">Just want to comment it!
+Поле ввода имени пользователя.
+Поле ввода пароля пользователя (использовать сокрытие набираемых пользователем символов).
+Checkbox, используемый для сохранения логина и пароля пользователя в кэше в случае состояния true (пользователь поставил галочку).
+Ссылочный текст, при нажатии на который произойдёт переход на страницу восстановления пароля.
+Кнопка авторизации (проверка введёных пользователем данных с тремя исходами: допущена ошибка в одном из полей ввода (пустые или недопустимые символы), такого пользователя не существует и авторизация прошла успешно (после чего происходит переход на стартовую страницу авторизованного пользователя).
+						</textarea>
+					</div>
+					<div class="body-post-write-comment-btn-block">
+						<button class="login100-form-btn write-comment-button">
+							Comment
+						</button>
+					</div>
+				</div>				
+			</div>
 			
 			<hr class="hr-body">			
 			
@@ -379,7 +426,7 @@
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</p> -->
 	</div>
-
+	
 	<div class="limiter body-main">
 		<div class="body-post-block">
 		
@@ -636,8 +683,47 @@
 			<hr class="hr-body">
 			
 			<div class="body-post-buttons-block">
-                <p>You need to register or sign in to enable hot buttons: like, favorites, comment.</p>
-            </div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-like-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-likes-amount-block">
+					<i>14628</i>
+				</div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-favorites-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-comment-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-write-comment-block">
+					<div class="body-post-write-comment-text-block">
+						<textarea class="body-post-write-comment-text">Just want to comment it!
+Поле ввода имени пользователя.
+Поле ввода пароля пользователя (использовать сокрытие набираемых пользователем символов).
+Checkbox, используемый для сохранения логина и пароля пользователя в кэше в случае состояния true (пользователь поставил галочку).
+Ссылочный текст, при нажатии на который произойдёт переход на страницу восстановления пароля.
+Кнопка авторизации (проверка введёных пользователем данных с тремя исходами: допущена ошибка в одном из полей ввода (пустые или недопустимые символы), такого пользователя не существует и авторизация прошла успешно (после чего происходит переход на стартовую страницу авторизованного пользователя).
+						</textarea>
+					</div>
+					<div class="body-post-write-comment-btn-block">
+						<button class="login100-form-btn write-comment-button">
+							Comment
+						</button>
+					</div>
+				</div>				
+			</div>
 			
 			<hr class="hr-body">			
 			
