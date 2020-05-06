@@ -45,6 +45,7 @@
 
 <audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio"></audio>
 <input type="file" id="file">
+<div id="canvas1"> </div>
 <script>
 
     document.getElementById('file').addEventListener('change', function (e) {
@@ -61,12 +62,33 @@
     document.getElementById('audio').addEventListener('playing', function() {
         context.resume().then(() => {
             console.log('Playback resumed successfully');
-            draw();
         });
     });
+
+
     var analyser = context.createAnalyser();
 
-    analyser.fftSize = 512;
+    //connect equalizer
+    var equalizerInput = equalizer({
+
+        context: context,
+        next_node: analyser,
+
+        container: '.selectors'
+    });
+
+
+    var audio = document.getElementById('audio');
+    if (!audio) {
+        throw new TypeError(' there\'s no element that match selector' +
+            audio);
+    }
+
+    var source = context.createMediaElementSource(audio);
+    source.connect(equalizerInput);
+    analyser.connect(context.destination);
+
+    analyser.fftSize = 1024;
     var bufferLength = analyser.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
 
@@ -75,35 +97,12 @@
 
     canva.width = window.innerWidth/2;
     canva.height = window.innerHeight/3;
-    document.body.appendChild(canva);
+    document.getElementById('canvas1').appendChild(canva);
 
     canvas_ctx.clearRect(0, 0, canva.width, canva.height);
+    function drawGistograms(){
 
-
-
-    var equalizerInput = equalizer({
-        //audio: '.audio',
-        context: context,
-        next_node: analyser,
-        //next_node: context.destination,
-        //inputs: '.eq-input',
-        container: '.selectors'
-    });
-
-    var audio = document.getElementById('audio');
-    if (!audio) {
-        throw new TypeError('equalizer there\'s no element that match selector' +
-            audio);
-    }
-
-    var source = context.createMediaElementSource(audio);
-    source.connect(equalizerInput);
-
-
-    analyser.connect(context.destination);
-
-    function draw(){
-        drawVisual = requestAnimationFrame(draw);
+        requestAnimationFrame(drawGistograms);
         analyser.getByteFrequencyData(dataArray);
         canvas_ctx.fillStyle = 'rgb(0,0,0)';
         canvas_ctx.fillRect(0,0, canva.width, canva.height);
@@ -114,13 +113,13 @@
         for( var i=0; i< bufferLength; i++){
             barHeight = dataArray[i]/2;
             canvas_ctx.fillStyle = 'rgb(' + (barHeight+100)+',50,50)';
-            canvas_ctx.fillRect(x, canva.height - barHeight/2, barWidth, barHeight);
+            canvas_ctx.fillRect(x, canva.height - barHeight, barWidth, barHeight);
             x += barWidth +1;
         }
 
     }
-draw();
 
+    drawGistograms();
 
 </script>
 
