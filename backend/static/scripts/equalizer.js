@@ -1,13 +1,13 @@
 (function () {
 
     var context = null,
-        audio = null,
+        //audio = null,
         frequencies = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000],
         filters = [],
 
         $ = document.querySelector.bind(document),
-        createContext = function () {
-            context = new (window.AudioContext || window.webkitAudioContext)();
+        createContext = function (param) {
+            context = param.context;
         },
         /**
          * creates number input elements
@@ -39,7 +39,7 @@
             if (!param) {
                 throw new TypeError('error equalizer must have audio and input container params');
             }
-
+/*
             if (param.audio instanceof HTMLMediaElement) {
                 audio = param.audio;
             } else if (typeof param.audio === 'string') {
@@ -53,7 +53,7 @@
                 throw new TypeError('equalizer parameter "audio" must be string or an audio element');
             }
 
-
+*/
             return true;
         },
 
@@ -92,7 +92,7 @@
             filter.type = 'peaking';
             filter.frequency.value = frequency;
             filter.gain.value = 0;
-            filter.Q.value = 1;
+            filter.Q.value = 0.9;
             return filter;
         },
 
@@ -117,11 +117,12 @@
         /**
          * connect Equalizer
          */
-        bindEqualizer = function () {
-            var source = context.createMediaElementSource(audio);
+        bindEqualizer = function (nextNode) {
+            //var source = context.createMediaElementSource(audio);
 
-            source.connect(filters[0]);
-            filters[9].connect(context.destination);
+            //source.connect(filters[0]);
+            filters[filters.length-1].connect(nextNode);
+            return filters[0];
 
         },
 
@@ -131,19 +132,15 @@
         equalizer = function (param) {
 
             if (validateParam(param)){
-                createContext();
+                createContext(param);
                 var container = $(param.container);
                 var label_container = $(param.container+'_label');
                 var inputs = createInputs('eq-input', container, label_container);
                 createFilters();
                 initInputsData(inputs);
                 initEvents(inputs);
-                bindEqualizer();
-                document.querySelector(param.audio).addEventListener('playing', function() {
-                    context.resume().then(() => {
-                        console.log('Playback resumed successfully');
-                    });
-                });
+                return bindEqualizer(param.next_node);
+                //return context;
             }
         };
 
