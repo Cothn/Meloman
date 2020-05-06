@@ -7,29 +7,42 @@
 
     <style id="jsbin-css">
         audio,
-        .selectors {
+        .selectorsWithLabel {
             display: inline-block;
         }
         input[type="range"] {
             transform: rotate(-90deg);
             position: relative;
             display: inline-block;
-            width: 100px;
-            margin: 100px -70px 0 0;
+            width: 90px;
+            margin: 100px -27px 0 -15px;
         }
 
         input[type="file"] {
             display: block;
             width: 300px;
         }
+        .eq-input_label {
+            width: 40px;
+            display: inline-block;
+            margin: 15px 7px 0 0;
+        }
+        .selectors_label {
+
+            margin:0 0 0 20px;
+        }
+
+
     </style>
 </head>
 <body >
 
 <audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio"></audio>
 
-<div class="selectors"></div>
-
+<div class="selectorsWithLabel">
+    <div class="selectors"></div><br>
+    <div class="selectors_label"></div>
+</div>
 <input type="file" id="file">
 <script>
     document.getElementById('file').addEventListener('change', function (e) {

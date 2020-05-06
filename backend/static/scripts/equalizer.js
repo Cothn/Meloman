@@ -2,7 +2,7 @@
 
     var context = null,
         audio = null,
-
+        frequencies = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000],
         filters = [],
 
         $ = document.querySelector.bind(document),
@@ -12,17 +12,22 @@
         /**
          * creates number input elements
          */
-        createInputs = function (className, container, number) {
+        createInputs = function (className, container, label_container) {
             var inputs = [],
                 node,
-                i;
-
-            for (i = 0; i < number; i++) {
+            label;
+            frequencies.forEach(value => {
                 node = document.createElement('input');
                 node.className = className;
                 container.appendChild(node);
                 inputs.push(node);
-            }
+                label =document.createElement('p');
+                label.className = className+'_label';
+                node = document.createTextNode(value.toString());
+                label.appendChild(node);
+                label_container.appendChild(label);
+            });
+
 
             return inputs;
         },
@@ -95,7 +100,7 @@
          * create filter for each frequency
          */
         createFilters = function () {
-            var frequencies = [60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000];
+
 
             // create filters
             filters = frequencies.map(function (frequency) {
@@ -128,7 +133,8 @@
             if (validateParam(param)){
                 createContext();
                 var container = $(param.container);
-                var inputs = createInputs('eq-input', container, 10);
+                var label_container = $(param.container+'_label');
+                var inputs = createInputs('eq-input', container, label_container);
                 createFilters();
                 initInputsData(inputs);
                 initEvents(inputs);
