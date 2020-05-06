@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Эквалайзер</title>
+
+    <style id="jsbin-css">
+        audio,
+        .selectorsWithLabel {
+
+        }
+        input[type="range"] {
+            transform: rotate(-90deg);
+            position: relative;
+
+            width: 90px;
+            margin: 70px -27px 0 -15px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 300px;
+        }
+        .eq-input_label {
+            width: 40px;
+            display: inline-block;
+            margin: 15px 7px 0 0;
+        }
+        .selectors_label {
+
+            margin:0 0 50px 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div class="selectorsWithLabel">
+    <div class="selectors"></div><br>
+    <div class="selectors_label"></div>
+</div>
+
+<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio"></audio>
+<input type="file" id="file">
+<script>
+    document.getElementById('file').addEventListener('change', function (e) {
+        var url = URL.createObjectURL(e.target.files[0]);
+
+        document.getElementById('audio').src = url;
+    }, false);
+
+</script>
+<script type="text/javascript" src="/scripts/equalizer.js"></script>
+<script>
+        equalizer({
+        audio: '.audio',
+        //inputs: '.eq-input',
+        container: '.selectors'
+    });
+</script>
+
+</body>
+</html>
