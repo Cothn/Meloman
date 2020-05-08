@@ -43,7 +43,18 @@
     <div class="selectors_label"></div>
 </div>
 
-<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio"></audio>
+<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls class="audio" id="audio"></audio>
+<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio2"></audio>
+
+<div class="record">
+    <p>установите точку на проигрывателе в начало записи</p>
+    <button id="startRecord">StartRecord</button>
+    <button id="pauseRecord">PauseRecord</button>
+    <button id="resumeRecord">ResumeRecord</button>
+    <button id="stopRecord">StopRecord</button>
+    <button id="saveBtn">Сохранить фрагмент</button>
+</div>
+<!-- -->
 <input type="file" id="file">
 <div id="canvas1"> </div>
 <script>
@@ -59,7 +70,8 @@
 <script>
 
     var context = new (window.AudioContext || window.webkitAudioContext)();
-    document.getElementById('audio').addEventListener('playing', function() {
+    document.getElementById('audio').addEventListener('play', function() {
+        //document.getElementById('audio1').play();
         context.resume().then(() => {
             console.log('Playback resumed successfully');
         });
@@ -67,7 +79,6 @@
 
 
     var analyser = context.createAnalyser();
-
     //connect equalizer
     var equalizerInput = equalizer({
 
@@ -77,7 +88,6 @@
         container: '.selectors'
     });
 
-
     var audio = document.getElementById('audio');
     if (!audio) {
         throw new TypeError(' there\'s no element that match selector' +
@@ -85,6 +95,22 @@
     }
 
     var source = context.createMediaElementSource(audio);
+/*
+    var delayNode = context.createDelay();
+    delayNode.delayTime.value = 0.3;
+
+    var gainNode = context.createGain();
+    gainNode.gain.value = 0.6;
+
+    source.connect(gainNode);
+    gainNode.connect(delayNode);
+    delayNode.connect(gainNode);
+    gainNode.connect(equalizerInput);
+*/
+
+    //var source1 = context.createMediaElementSource(document.getElementById('audio1'));
+    // source1.connect(equalizerInput);
+
     source.connect(equalizerInput);
     analyser.connect(context.destination);
 
@@ -120,6 +146,72 @@
     }
 
     drawGistograms();
+
+</script>
+<script>
+
+    var chunks = [];
+    var dest = context.createMediaStreamDestination();
+    var mediaRecorder = new MediaRecorder(dest.stream);
+    mediaRecorder.ondataavailable = function(evt) {
+        // push each chunk (blobs) in an array
+        chunks.push(evt.data);
+    };
+
+    document.getElementById('startRecord').addEventListener('click', function (e) {
+        mediaRecorder.start();
+        chunks = [];
+        audio.play();
+        source.connect(dest);
+    });
+
+    document.getElementById('stopRecord').addEventListener('click', function (e) {
+        mediaRecorder.stop();
+        audio.pause();
+        source.disconnect(dest);
+    });
+
+    document.getElementById('resumeRecord').addEventListener('click', function (e) {
+        audio.play();
+        mediaRecorder.resume();
+
+    });
+
+    document.getElementById('pauseRecord').addEventListener('click', function (e) {
+        mediaRecorder.pause();
+        audio.pause();
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', function (e) {
+        // Make blob out of our blobs, and open it.
+        var blob = new Blob(chunks, { 'type' : 'audio/mpeg' });
+
+        const formData = new FormData();
+        formData.append('file_data', blob);
+
+        fetch("http://localhost:3000/api/music",  {
+            method: 'POST',
+            headers: {
+                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM'
+            },
+            body: formData})
+            .then(async response => {
+                var result = await response.json();
+                if (response.ok)
+                {
+                    document.getElementById("audio2").src = result.file_path;
+                    console.log('Успех:', JSON.stringify(result));
+                }
+                else
+                {
+                    alert(result.message);
+                }
+            })
+            .catch(error => console.log('error', error));
+
+    });
+
+
 
 </script>
 
