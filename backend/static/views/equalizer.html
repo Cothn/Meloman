@@ -43,7 +43,12 @@
     <div class="selectors_label"></div>
 </div>
 
-<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio"></audio>
+<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls class="audio" id="audio"></audio>
+<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio2"></audio>
+
+<div class="record">
+</div>
+<!-- -->
 <input type="file" id="file">
 <div id="canvas1"> </div>
 <script>
@@ -56,24 +61,27 @@
 
 </script>
 <script type="text/javascript" src="/scripts/equalizer.js"></script>
+<script type="text/javascript" src="/scripts/visualizer.js"></script>
 <script>
 
     var context = new (window.AudioContext || window.webkitAudioContext)();
-    document.getElementById('audio').addEventListener('playing', function() {
-        context.resume().then(() => {
-            console.log('Playback resumed successfully');
-        });
+    document.getElementById('audio').addEventListener('play', function() {
+        context.resume();
     });
 
+    //connect visualizer
+    var visualizer = getVisualizer({
 
-    var analyser = context.createAnalyser();
+        context: context,
+        container: "canvas1"
+    });
+    visualizer.connect(context.destination);
 
     //connect equalizer
     var equalizerInput = equalizer({
 
         context: context,
-        next_node: analyser,
-
+        next_node: visualizer,
         container: '.selectors'
     });
 
@@ -85,43 +93,36 @@
     }
 
     var source = context.createMediaElementSource(audio);
+
     source.connect(equalizerInput);
-    analyser.connect(context.destination);
+/*
+    var delayNode = context.createDelay();
+    delayNode.delayTime.value = 0.3;
 
-    analyser.fftSize = 1024;
-    var bufferLength = analyser.frequencyBinCount;
-    var dataArray = new Uint8Array(bufferLength);
+    var gainNode = context.createGain();
+    gainNode.gain.value = 0.6;
 
-    var canva = document.createElement('canvas');
-    var canvas_ctx = canva.getContext('2d');
+    source.connect(gainNode);
+    gainNode.connect(delayNode);
+    delayNode.connect(gainNode);
+    gainNode.connect(equalizerInput);
+*/
 
-    canva.width = window.innerWidth/2;
-    canva.height = window.innerHeight/3;
-    document.getElementById('canvas1').appendChild(canva);
+    //var source1 = context.createMediaElementSource(document.getElementById('audio1'));
+    // source1.connect(equalizerInput);
 
-    canvas_ctx.clearRect(0, 0, canva.width, canva.height);
-    function drawGistograms(){
 
-        requestAnimationFrame(drawGistograms);
-        analyser.getByteFrequencyData(dataArray);
-        canvas_ctx.fillStyle = 'rgb(0,0,0)';
-        canvas_ctx.fillRect(0,0, canva.width, canva.height);
-        var barWidth = (canva.width/ bufferLength) * 2.5;
-        var barHeight;
-        var x = 0;
-
-        for( var i=0; i< bufferLength; i++){
-            barHeight = dataArray[i]/2;
-            canvas_ctx.fillStyle = 'rgb(' + (barHeight+100)+',50,50)';
-            canvas_ctx.fillRect(x, canva.height - barHeight, barWidth, barHeight);
-            x += barWidth +1;
-        }
-
-    }
-
-    drawGistograms();
 
 </script>
 
+<script type="text/javascript" src="/scripts/editing.js"></script>
+<script>
+    editing({
+        context: context,
+        container: '.record',
+        source: visualizer,
+        endpoint: 'audio2'
+    });
+</script>
 </body>
 </html>
