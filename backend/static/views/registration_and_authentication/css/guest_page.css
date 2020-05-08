@@ -288,7 +288,7 @@ hr {
 	justify-content: center;
 	align-items: flex-end;
 	margin-left: 2%;
-	padding-right: 1%;
+	padding-right: 2%;
 }
 
 .body-playlist-single-track-duration-block p {
@@ -425,7 +425,7 @@ hr {
 
 	
 	
-.body-player {
+.main-player {
 	position: fixed;
 	bottom: 0;
 	left: 17.5%;

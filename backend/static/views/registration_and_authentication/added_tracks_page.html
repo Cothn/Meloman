@@ -42,10 +42,14 @@
 		.body-main {
 			padding-bottom: 1%;
 		}
+		.body-playlist-tracks-block {
+			max-height: none;
+			padding-bottom: 1%;
+		}
 	</style>
 
 </head>
-<body>
+<body onload="onAddedTracksPageLoad('body-playlist-tracks-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -95,13 +99,337 @@
 	</header>
 	
 	<div class="limiter body-main first">
-		<div class="body-added-tracks-header-block">
+		<div id="body-added-tracks-header-block" class="body-added-tracks-header-block">
 			<p><b>Added tracks</b></p>
 		</div>
+		
+		<div id="body-post-block" class="body-post-block">
+
+			<hr class="hr-body-start">
+			
+			<div class="body-post-content-block">
+				<div class="v1-body" style="flex-grow:1;"></div>
+				
+				<div class="body-post-content-main-block">
+					<div class="body-playlist-block" style="flex-grow:3;">
+						<div id="body-playlist-tracks-block" class="body-playlist-tracks-block">
+						
+							<!-- <div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>		
+
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>	
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>	
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>	
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>	
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>	
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>	
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>	 -->
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<hr class="hr-body-end">
+			
+		</div>		
 	</div>
 
 	<div>
-		<audio controls class="body-player">
+		<audio controls id="main-player" class="main-player">
 		</audio>
 	</div>	
 
@@ -122,8 +450,10 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-<!-- 	<script src="js/add_track_page_main.js"></script> -->
+	<script src="js/added_tracks_page_main.js"></script>
 	<script src="js/changeVisibility.js"></script>
-
+	<script src="js/playMusic.js"></script>
+	<script src="js/onMusicEnded.js"></script>
+	
 </body>
 </html>

@@ -46,8 +46,8 @@
 	</style>
 
 </head>
-<body>
-	<header class="header-main">
+<body onload="onAddTrackPageLoad('choose-track-genre-list-label')">
+	<header id="header-main" class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
 			
@@ -100,30 +100,35 @@
 			<p><b>Add track:</b></p>
 		</div>
 		
-		<form class="body-add-track-block">
-			<div class="body-add-track-input-block">
-				<input required type="file" accept="audio/mp3" class="body-add-track-input">
+		<div class="body-add-track-block">
+			<div class="write-add-track-title-block">
+				<label for="write-add-track-title-author" class="body-add-track-labels">Input track author:</label>
+				<input required id="write-add-track-title-author" class="write-add-track-title author" type="text" placeholder="Playlist name">
+			</div>		
+
+			<div class="write-add-track-title-block">
+				<label for="write-add-track-title-name" class="body-add-track-labels">Input track name:</label>
+				<input required id="write-add-track-title-name" class="write-add-track-title name" type="text" placeholder="Playlist name">
+			</div>		
+		
+			<div class="body-add-track-input-file-block">
+				<input required type="file" accept="audio/mp3" id="body-add-track-input-file" class="body-add-track-input-file">
 			</div>
 			
 			<div class="choose-track-genre-block">
-				<label for="choose-track-genre-list" class="body-add-track-labels">Choose track genre:</label>
-				<select required size="1" id="choose-track-genre-list" class="choose-track-genre-list">
-					<option value="1">Pop</option>
-					<option value="2">Jazz</option>
-					<option value="3">Rock</option>
-					<option value="4">Rap</option>
-					<option value="5">Alternative</option>
-				</select>
+				<label id="choose-track-genre-list-label" for="choose-track-genre-list" class="body-add-track-labels">Choose track genre:</label>
 			</div>			
 			
 			<div class="body-add-track-buttons">
-				<button class="login100-form-btn btn playlist-create-btn">Add track</button>
+				<button class="login100-form-btn btn playlist-create-btn" onclick="onAddTrackClick('write-add-track-title-author', 'write-add-track-title-name', 'body-add-track-input-file', 'main-player')">
+					Add track
+				</button>
 			</div>
-		</form>
+		</div>
 	</div>
 
 	<div>
-		<audio controls class="body-player">
+		<audio controls id="main-player" class="body-player">
 		</audio>
 	</div>	
 
@@ -144,7 +149,7 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-<!-- 	<script src="js/add_track_page_main.js"></script> -->
+	<script src="js/add_track_page_main.js"></script>
 	<script src="js/changeVisibility.js"></script>
 
 </body>
