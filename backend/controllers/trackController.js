@@ -122,7 +122,7 @@ exports.deleteTrack = function(request, response){
     connection.end();
 };
 
-
+//duration
 exports.addTrack= function(request, response){
     const title = request.body.title;
     const genre_id= request.body.genre_id;
