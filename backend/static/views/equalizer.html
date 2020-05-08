@@ -47,12 +47,6 @@
 <audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio2"></audio>
 
 <div class="record">
-    <p>установите точку на проигрывателе в начало записи</p>
-    <button id="startRecord">StartRecord</button>
-    <button id="pauseRecord">PauseRecord</button>
-    <button id="resumeRecord">ResumeRecord</button>
-    <button id="stopRecord">StopRecord</button>
-    <button id="saveBtn">Сохранить фрагмент</button>
 </div>
 <!-- -->
 <input type="file" id="file">
@@ -67,26 +61,30 @@
 
 </script>
 <script type="text/javascript" src="/scripts/equalizer.js"></script>
+<script type="text/javascript" src="/scripts/visualizer.js"></script>
 <script>
 
     var context = new (window.AudioContext || window.webkitAudioContext)();
     document.getElementById('audio').addEventListener('play', function() {
-        //document.getElementById('audio1').play();
-        context.resume().then(() => {
-            console.log('Playback resumed successfully');
-        });
+        context.resume();
     });
 
+    //connect visualizer
+    var visualizer = getVisualizer({
 
-    var analyser = context.createAnalyser();
+        context: context,
+        container: "canvas1"
+    });
+    visualizer.connect(context.destination);
+
     //connect equalizer
     var equalizerInput = equalizer({
 
         context: context,
-        next_node: analyser,
-
+        next_node: visualizer,
         container: '.selectors'
     });
+
 
     var audio = document.getElementById('audio');
     if (!audio) {
@@ -95,6 +93,8 @@
     }
 
     var source = context.createMediaElementSource(audio);
+
+    source.connect(equalizerInput);
 /*
     var delayNode = context.createDelay();
     delayNode.delayTime.value = 0.3;
@@ -111,109 +111,18 @@
     //var source1 = context.createMediaElementSource(document.getElementById('audio1'));
     // source1.connect(equalizerInput);
 
-    source.connect(equalizerInput);
-    analyser.connect(context.destination);
 
-    analyser.fftSize = 1024;
-    var bufferLength = analyser.frequencyBinCount;
-    var dataArray = new Uint8Array(bufferLength);
-
-    var canva = document.createElement('canvas');
-    var canvas_ctx = canva.getContext('2d');
-
-    canva.width = window.innerWidth/2;
-    canva.height = window.innerHeight/3;
-    document.getElementById('canvas1').appendChild(canva);
-
-    canvas_ctx.clearRect(0, 0, canva.width, canva.height);
-    function drawGistograms(){
-
-        requestAnimationFrame(drawGistograms);
-        analyser.getByteFrequencyData(dataArray);
-        canvas_ctx.fillStyle = 'rgb(0,0,0)';
-        canvas_ctx.fillRect(0,0, canva.width, canva.height);
-        var barWidth = (canva.width/ bufferLength) * 2.5;
-        var barHeight;
-        var x = 0;
-
-        for( var i=0; i< bufferLength; i++){
-            barHeight = dataArray[i]/2;
-            canvas_ctx.fillStyle = 'rgb(' + (barHeight+100)+',50,50)';
-            canvas_ctx.fillRect(x, canva.height - barHeight, barWidth, barHeight);
-            x += barWidth +1;
-        }
-
-    }
-
-    drawGistograms();
 
 </script>
+
+<script type="text/javascript" src="/scripts/editing.js"></script>
 <script>
-
-    var chunks = [];
-    var dest = context.createMediaStreamDestination();
-    var mediaRecorder = new MediaRecorder(dest.stream);
-    mediaRecorder.ondataavailable = function(evt) {
-        // push each chunk (blobs) in an array
-        chunks.push(evt.data);
-    };
-
-    document.getElementById('startRecord').addEventListener('click', function (e) {
-        mediaRecorder.start();
-        chunks = [];
-        audio.play();
-        source.connect(dest);
+    editing({
+        context: context,
+        container: '.record',
+        source: visualizer,
+        endpoint: 'audio2'
     });
-
-    document.getElementById('stopRecord').addEventListener('click', function (e) {
-        mediaRecorder.stop();
-        audio.pause();
-        source.disconnect(dest);
-    });
-
-    document.getElementById('resumeRecord').addEventListener('click', function (e) {
-        audio.play();
-        mediaRecorder.resume();
-
-    });
-
-    document.getElementById('pauseRecord').addEventListener('click', function (e) {
-        mediaRecorder.pause();
-        audio.pause();
-    });
-
-    document.getElementById('saveBtn').addEventListener('click', function (e) {
-        // Make blob out of our blobs, and open it.
-        var blob = new Blob(chunks, { 'type' : 'audio/mpeg' });
-
-        const formData = new FormData();
-        formData.append('file_data', blob);
-
-        fetch("http://localhost:3000/api/music",  {
-            method: 'POST',
-            headers: {
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM'
-            },
-            body: formData})
-            .then(async response => {
-                var result = await response.json();
-                if (response.ok)
-                {
-                    document.getElementById("audio2").src = result.file_path;
-                    console.log('Успех:', JSON.stringify(result));
-                }
-                else
-                {
-                    alert(result.message);
-                }
-            })
-            .catch(error => console.log('error', error));
-
-    });
-
-
-
 </script>
-
 </body>
 </html>

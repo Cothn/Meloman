@@ -39,21 +39,6 @@
             if (!param) {
                 throw new TypeError('error equalizer must have audio and input container params');
             }
-/*
-            if (param.audio instanceof HTMLMediaElement) {
-                audio = param.audio;
-            } else if (typeof param.audio === 'string') {
-                audio = $(param.audio);
-
-                if (!audio) {
-                    throw new TypeError('equalizer there\'s no element that match selector' +
-                        param.audio);
-                }
-            } else {
-                throw new TypeError('equalizer parameter "audio" must be string or an audio element');
-            }
-
-*/
             return true;
         },
 
