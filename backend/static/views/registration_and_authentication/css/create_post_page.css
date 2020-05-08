@@ -1,0 +1,103 @@
+
+.body-post-create-header-block {
+	padding-left: 3%;
+	padding-bottom: 2%;
+}
+
+.body-post-create-header-block p {
+	font-size: 4vmin;
+	color: black;
+}
+
+.body-post-create-block {
+	padding-left: 5%;
+	padding-bottom: 2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;	
+	align-items: flex-start;
+}
+
+.choose-playlist-block {
+	width: 100%;
+	min-height: 1vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;
+	padding-bottom: 2%;
+}
+
+.body-post-create-labels {
+	min-width: 10%;
+	max-width: 17%;
+	margin-right: 1%;
+	font-size: 2vmin;
+	font-style: italic;
+}
+
+.choose-playlist-list {
+	min-width: 20%;
+	max-width: 50%;
+	min-height: 3vmin;
+	max-height: 4vmin;
+	font-size: 2vmin;
+}
+
+
+
+.write-post-text-block {
+	width: 100%;
+	min-height: 1vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;
+	padding-bottom: 2%;	
+}
+
+.write-post-text-textarea {
+	min-width: 50%;
+	max-width: 82%;
+	min-height: 4vmin;
+	max-height: 20vmin;
+	font-size: 1.8vmin;
+	resize: both;
+}
+
+
+
+.body-post-create-buttons {
+	width: 100%;
+	min-height: 4vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;	
+}
+
+.body-post-create-buttons .btn {
+	min-width: 10%;
+	max-width: 30%;
+	min-height: 3vmin;
+	max-height: 5vmin;
+	margin-right: 1%;
+}
+
+
+.test-post {
+	padding-top: 0%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

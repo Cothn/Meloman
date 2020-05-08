@@ -86,7 +86,7 @@
 }
 
 .body-user-quick-btn:nth-child(2n) {
-  background-color: #8A0CE7;
+  background-color: #554BEE;
 }
 
 .body-user-quick-btn:nth-child(2n):hover {
@@ -95,10 +95,10 @@
 
 .body-user-quick-btn:nth-child(2n+1) {
   color: black;
-  background-color: #E7BC0C;
+  background-color: #6FA0ED;
 }
 
 .body-user-quick-btn:nth-child(2n+1):hover {
-  background-color: #2AE70C;
+  background-color: #ADD9EC;
 }
 

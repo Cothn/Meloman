@@ -1,3 +1,7 @@
+a {
+	font-size: 0px;
+}
+
 .main-logo {
 	width: 100%;
 	height: 100%;
@@ -88,6 +92,7 @@
 
 .header-search-field {
 	width: 100%;
+	height: 66%;
 	background-color: #7122F3;
 }
 
@@ -125,7 +130,7 @@ hr {
 	color: black; /* Цвет линии для IE6-7 */
 	margin: 0px;
 	width: 100%;
-	<!-- height: 0.33vw; /* Толщина линии */ -->
+	height: 0.33vw; /* Толщина линии */
 }
 .hr-header {
 	height: 0.33vw;
