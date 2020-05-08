@@ -20,5 +20,7 @@ var postRout = require('./commentRout');
 router.use('/comment', postRout);
 var postRout = require('./likeRout');
 router.use('/like_in_post', postRout);
+var genreRout = require('./genreRout');
+router.use('/genre', genreRout);
 
 module.exports = router;
