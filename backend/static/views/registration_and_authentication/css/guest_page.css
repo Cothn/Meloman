@@ -260,6 +260,15 @@ hr {
 .track-play-img {
 	background-image: url(../images/icons/baseline_play_arrow_black_18dp.png);
 }
+
+.track-playing-img {
+	background-image: url(../images/icons/baseline_pause_black_18dp.png);	
+}
+
+.track-paused-img {
+	background-image: url(../images/icons/baseline_stop_black_18dp.png);	
+}
+
 .body-playlist-single-track-btn .btn.action .track-add-img {
 	background-image: url(../images/icons/baseline_add_black_18dp.png);
 	width: 0.5vw;
@@ -288,7 +297,7 @@ hr {
 	justify-content: center;
 	align-items: flex-end;
 	margin-left: 2%;
-	padding-right: 1%;
+	padding-right: 2%;
 }
 
 .body-playlist-single-track-duration-block p {
@@ -425,7 +434,7 @@ hr {
 
 	
 	
-.body-player {
+.main-player {
 	position: fixed;
 	bottom: 0;
 	left: 17.5%;

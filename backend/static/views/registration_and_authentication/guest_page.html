@@ -111,7 +111,7 @@
 						
 							<div class="body-playlist-single-track-block">
 								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
+									<a id="post1-track1" class="btn-link" data-trackURL="audio/test.mp3" data-isLast="false" onclick="playMusic('post1-track1', 'data-trackURL', 'data-isLast', 'main-player', 'post1-track2')">
 										<span class="btn action">
 											<i class="icon track-play-img"></i>
 										</span>
@@ -138,7 +138,7 @@
 							
 							<div class="body-playlist-single-track-block">
 								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
+									<a id="post1-track2" class="btn-link" data-trackURL="audio/test.mp3" data-isLast="true" onclick="playMusic('post1-track2', 'data-trackURL', 'data-isLast', 'main-player', '')">
 										<span class="btn action">
 											<i class="icon track-play-img"></i>
 										</span>
@@ -671,7 +671,7 @@
 	</div>	
 
 	<div>
-		<audio controls class="body-player">
+		<audio controls id="main-player" class="main-player">
 		</audio>
 	</div>	
 
@@ -692,7 +692,9 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="js/signin_main.js"></script>
+	<script src="js/playMusic.js"></script>
+	<script src="js/onMusicEnded.js"></script>
+	<!-- <script src="js/signin_main.js"></script> -->
 
 </body>
 </html>
