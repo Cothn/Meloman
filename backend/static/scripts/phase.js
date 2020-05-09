@@ -95,9 +95,9 @@
                 var container = $(param.container);
                 let input =createInput(container);
                 console.log(input.id);
-                createFilters(7);
+                createFilters(3);
                 initEvent(input, param.source, param.output);
-                //return context;
+                return gainPhaseNodes[0];
 
             }
         };

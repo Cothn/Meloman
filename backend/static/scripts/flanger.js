@@ -105,7 +105,7 @@
                 console.log(input.id);
                 createFilters(7);
                 initEvent(input, param.source, param.output);
-                //return context;
+                return gainFlangerNodes[0];
 
             }
         };

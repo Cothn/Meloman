@@ -115,7 +115,7 @@
                 console.log(input.id);
                 createFilters(10);
                 initEvent(input, param.source, param.output);
-                //return context;
+                return lowpassFilter;
 
             }
         };

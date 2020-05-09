@@ -84,7 +84,7 @@
                 console.log(input.id);
                 createFilters();
                 initEvent(input, param.source, param.output);
-                //return context;
+                return gainReverbNode;
 
             }
         };
