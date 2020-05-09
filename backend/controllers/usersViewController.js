@@ -24,6 +24,18 @@ exports.addTrack = function(request, response){
     response.status(200).sendFile( 'registration_and_authentication/add_track_page.html', {root: root_path});
 };
 
+exports.addedTracks = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/added_tracks_page.html', {root: root_path});
+};
+
+exports.createPlaylist = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/create_playlist_page.html', {root: root_path});
+};
+
+exports.addedPlaylists = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/added_playlists_page.html', {root: root_path});
+};
+
 exports.equalizer = function(request, response){
     response.status(200).sendFile( 'registration_and_authentication/equalizer_page.html', {root: root_path});
 };

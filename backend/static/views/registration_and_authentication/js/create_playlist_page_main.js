@@ -3,10 +3,12 @@ const selectPlaylistTracksIdName = "choose-playlist-tracks-list";
 
 function onCreatePlaylistPageLoad(afterWhichElementId) {
 	
+	var currUserToken = getCookie("userToken");
+	
 	var requestOptions = {
 		method: 'GET',
 		headers: {
-			'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM'
+			'Authorization':`Bearer ${currUserToken}`
 		},
 		redirect: 'follow'
 	};
@@ -72,14 +74,14 @@ function onCreatePlaylistClick(inputPlaylistNameId) {
 	}
 	
 	var raw = `{\"title\": \"${playlistName}\",\"tracks\": [${selectedTracksId}]}`;
-	
-	console.log(raw);
+			
+	var currUserToken = getCookie("userToken");		
 			
 	var requestOptions = {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
-			'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM'
+			'Authorization':`Bearer ${currUserToken}`
 		},
 		body: raw,
 		redirect: 'follow'
@@ -113,4 +115,11 @@ function validateData(inputPlaylistNameId) {
 	}	
 	
 	return true;
+}
+
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
 }

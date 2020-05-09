@@ -103,12 +103,12 @@
 		<div class="body-add-track-block">
 			<div class="write-add-track-title-block">
 				<label for="write-add-track-title-author" class="body-add-track-labels">Input track author:</label>
-				<input required id="write-add-track-title-author" class="write-add-track-title author" type="text" placeholder="Playlist name">
+				<input required id="write-add-track-title-author" class="write-add-track-title author" type="text" placeholder="Track author">
 			</div>		
 
 			<div class="write-add-track-title-block">
 				<label for="write-add-track-title-name" class="body-add-track-labels">Input track name:</label>
-				<input required id="write-add-track-title-name" class="write-add-track-title name" type="text" placeholder="Playlist name">
+				<input required id="write-add-track-title-name" class="write-add-track-title name" type="text" placeholder="Track name">
 			</div>		
 		
 			<div class="body-add-track-input-file-block">
@@ -134,18 +134,19 @@
 
 	<script>
 	    var audio = document.getElementById("main-player");
-	    audio.volume = 0.4;
-	
-		audio.addEventListener('play', (event) => {
-			onAudioPlay('main-player');
-		});		
-	
-		audio.addEventListener('pause', (event) => {
-			onAudioPause('main-player');			
-		});		  
+	    audio.volume = 0.4; 
 	</script>
 
-	<div id="dropDownSelect1"></div>
+	<script>
+
+		document.getElementById('body-add-track-input-file').addEventListener('change', function (e) {
+			var url = URL.createObjectURL(e.target.files[0]);
+
+			document.getElementById('main-player').src = url;
+		}, false);
+
+	</script>
+
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
