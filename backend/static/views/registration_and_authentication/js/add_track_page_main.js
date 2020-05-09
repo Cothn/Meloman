@@ -1,7 +1,7 @@
 
 const selectGenreIdName = "choose-track-genre-list";
 
-function onAddTrackPageLoad(afterWhichLabelId) {
+function onAddTrackPageLoad(afterWhichElementId) {
 	
 	let select_choose_track_genre_list = document.createElement('select');
 	select_choose_track_genre_list.id = selectGenreIdName;
@@ -23,17 +23,13 @@ function onAddTrackPageLoad(afterWhichLabelId) {
 		}
 		
 
-	document.getElementById(afterWhichLabelId).insertAdjacentElement('afterend', select_choose_track_genre_list);
+	document.getElementById(afterWhichElementId).insertAdjacentElement('afterend', select_choose_track_genre_list);
 }
 
 
 function onAddTrackClick(inputAuthorId, inputNameId, inputFileId, playerId) {
 	
-	let targetFile = document.getElementById(inputFileId).files[0];
-	
-	if (targetFile === undefined) {
-		console.log("File didnt choose");
-		alert("You need to choose a file!");
+	if (validateData(inputAuthorId, inputNameId, inputFileId) === false) {
 		return;
 	}
 	
@@ -97,4 +93,33 @@ function onAddTrackClick(inputAuthorId, inputNameId, inputFileId, playerId) {
 	})
 	.catch(error => console.log('error', error));
 
+}
+
+
+function validateData(inputAuthorId, inputNameId, inputFileId) {
+	let targetAuthor = document.getElementById(inputAuthorId).value;
+	
+	if (targetAuthor === undefined || targetAuthor === "") {
+		console.log("Author input is empty");
+		alert("You need to write track author!");
+		return false;
+	}	
+	
+	let targetName = document.getElementById(inputNameId).value;
+	
+	if (targetName === undefined || targetName === "") {
+		console.log("Name input is empty");
+		alert("You need to write track name!");
+		return false;
+	}
+	
+	let targetFile = document.getElementById(inputFileId).files[0];
+	
+	if (targetFile === undefined) {
+		console.log("File didnt choose");
+		alert("You need to choose a file!");
+		return false;
+	}
+	
+	return true;
 }

@@ -433,7 +433,19 @@
 		</audio>
 	</div>	
 
-	<div id="dropDownSelect1"></div>
+	<script>
+	    var audio = document.getElementById("main-player");
+	    audio.volume = 0.4;
+	
+		audio.addEventListener('play', (event) => {
+			onAudioPlay('main-player');
+		});		
+	
+		audio.addEventListener('pause', (event) => {
+			onAudioPause('main-player');			
+		});		  
+	</script>
+
 	
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>

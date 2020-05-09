@@ -54,7 +54,7 @@
 	</style>
 
 </head>
-<body>
+<body onload="onCreatePlaylistPageLoad('choose-playlist-tracks-list-label')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -107,15 +107,15 @@
 		<div class="body-playlist-create-header-block">
 			<p><b>Playlist creation:</b></p>
 		</div>
-		<form class="body-playlist-create-block">
+		<div class="body-playlist-create-block">
 			<div class="write-playlist-title-block">
 				<label for="write-playlist-title" class="body-playlist-create-labels">Input playlist name:</label>
 				<input required id="write-playlist-title" class="write-playlist-title" type="text" placeholder="Playlist name">
 			</div>
 			
 			<div class="choose-playlist-tracks-block">
-				<label for="choose-playlist-tracks-list" class="body-playlist-create-labels">Choose tracks:</label>
-				<select required size="25" id="choose-playlist-tracks-list" class="choose-playlist-tracks-list" multiple>
+				<label id="choose-playlist-tracks-list-label" for="choose-playlist-tracks-list" class="body-playlist-create-labels">Choose tracks:</label>
+<!-- 				<select required size="25" id="choose-playlist-tracks-list" class="choose-playlist-tracks-list" multiple>
 					<option selected value="12">Земляне - Трава у дома</option>
 					<option value="125">Meg Myers - Funeral</option>
 					<option value="125">Meg Myers - Little Black Death</option>
@@ -128,13 +128,13 @@
 					<option value="125">Meg Myers - Sorry</option>
 					<option value="125">Meg Myers - Moter</option>
 					<option value="125">Meg Myers - Desire</option>
-				</select>
+				</select> -->
 			</div>
 			
 			<div class="body-playlist-create-buttons">
-				<button class="login100-form-btn btn playlist-create-btn">Create playlist</button>
+				<button class="login100-form-btn btn playlist-create-btn" onclick="onCreatePlaylistClick('write-playlist-title')">Create playlist</button>
 			</div>
-		</form>
+		</div>
 		
 		<div>
 			<button class="login100-form-btn btn playlist-show-result-btn" onclick="changeVisibility('test-playlist')">Check result lookout</button>
@@ -317,9 +317,22 @@
 	</div>
 
 	<div>
-		<audio controls class="body-player">
+		<audio controls id="main-player" class="main-player">
 		</audio>
 	</div>	
+
+	<script>
+	    var audio = document.getElementById("main-player");
+	    audio.volume = 0.4;
+	
+		audio.addEventListener('play', (event) => {
+			onAudioPlay('main-player');
+		});		
+	
+		audio.addEventListener('pause', (event) => {
+			onAudioPause('main-player');			
+		});		  
+	</script>
 
 	<div id="dropDownSelect1"></div>
 	
