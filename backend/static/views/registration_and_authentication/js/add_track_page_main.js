@@ -61,14 +61,13 @@ function onAddTrackClick(inputAuthorId, inputNameId, inputFileId, playerId) {
 	fetch("http://localhost:3000/api/music",  {
 	method: 'POST',
 	headers: {
-	'Authorization':`Bearer ${currUserToken}`
+		'Authorization':`Bearer ${currUserToken}`
 	},
 	body: formData})
 	.then(async response => {
 		var result = await response.json();
 		if (response.ok)
 		{
-			document.getElementById(playerId).src = result.file_path;
 			console.log('Успех:', JSON.stringify(result));
 			
 

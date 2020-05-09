@@ -10,10 +10,12 @@ const TRACK_TITLE_SEPARATOR = " - ";
 
 function onAddedTracksPageLoad(afterWhichDivId) {
 	
+	var currUserToken = getCookie("userToken");	
+	
 	var requestOptions = {
 		method: 'GET',
 		headers: {
-			'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM'
+			'Authorization':`Bearer ${currUserToken}`
 		},
 		redirect: 'follow'
 	};
@@ -31,8 +33,7 @@ function onAddedTracksPageLoad(afterWhichDivId) {
 					
 					var currTrackTitle = result[trackCount].title;
 					var currTrackURL = result[trackCount].music_url;
-					var currTrackDuration = 290;
-					/* var currTrackDuration = result[trackCount].duration; */
+					var currTrackDuration = parseInt(result[trackCount].duration);
 					
 					var arrayOfStrings = currTrackTitle.split(TRACK_TITLE_SEPARATOR);
 					
@@ -59,7 +60,7 @@ function onAddedTracksPageLoad(afterWhichDivId) {
 							
 							a_btn_link.id = newTrackId;
 							a_btn_link.className = "btn-link";
-							a_btn_link.setAttribute(TRACK_URL_DATA_NAME, TEST_URL);
+							a_btn_link.setAttribute(TRACK_URL_DATA_NAME, currTrackURL);
 							
 							var data_isLast = false;
 							
@@ -125,4 +126,11 @@ function onAddedTracksPageLoad(afterWhichDivId) {
 			}
 		})
 		.catch(error => console.log('error', error));		
+}
+
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
 }
