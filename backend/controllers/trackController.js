@@ -53,7 +53,7 @@ exports.getTracksByQuery = function (request, response){
             return response.status(200).send(data);
         });
     }
-
+    connection.end();
 };
 
 

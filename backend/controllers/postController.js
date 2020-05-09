@@ -14,7 +14,6 @@ exports.getPostsByQuery = function (request, response){
     const playlist_id = request.query.playlist_id;
 
     const connection = mysql.createConnection(mySqlConfig.config);
-
     if (id){
         logger.debug(Post.GET_ALL_POSTS+' WHERE id='+id);
         connection.query(Post.GET_ALL_POSTS+' WHERE id='+id, function (err, data) {
@@ -53,7 +52,7 @@ exports.getPostsByQuery = function (request, response){
             return response.status(200).send(data);
         });
     }
-
+    connection.end();
 };
 
 exports.updatePost = function(request, response) {

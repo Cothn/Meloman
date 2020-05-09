@@ -34,7 +34,7 @@ exports.getLikesFromPost = function (request, response){
         };
         return response.status(200).send(data);
     });
-
+    connection.end();
 };
 
 exports.deleteLikeFromPost = function(request, response){

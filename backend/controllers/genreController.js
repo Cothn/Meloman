@@ -35,7 +35,7 @@ exports.getGenresByQuery = function (request, response){
             return response.status(200).send(data);
         });
     }
-
+    connection.end();
 };
 
 exports.updateGenre = function(request, response) {
