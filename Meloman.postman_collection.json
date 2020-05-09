@@ -622,7 +622,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"asdasd\"\n    }",
+							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"asdassdfsdd\",\n        \"duration\":\"600\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -652,7 +652,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg5ODkxODMsImV4cCI6MTU4ODk5Mjc4M30._tzXIb8V0kSmUOXn1EIZnbbNILdXauU1PBeyIHc3tMo",
 									"type": "string"
 								},
 								{
@@ -666,7 +666,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"/music/2020-5-5_12-57-58-886_0aa258b17edff0564427b137asd2de9f4a901af495e.mp3\"\n    }",
+							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"/music/2020-5-5_12-57-58-886_0aa258b17edff0564427b137asd2de9f4a901af495e.mp3\",\n        \"duration\":\"600\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
