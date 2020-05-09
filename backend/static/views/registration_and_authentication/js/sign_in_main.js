@@ -39,7 +39,7 @@
                 var result = await response.json();
                 if (response.ok)
                 {
-					document.cookie = `userToken=${result.token};expires=${new Date(new Date().getTime() + result.exp*1000)}`;
+					document.cookie = `userToken=${result.token}; expires=${new Date(new Date().getTime() + result.exp*1000)}`;
                     window.location.href = '/view/user';
                 }
                 else

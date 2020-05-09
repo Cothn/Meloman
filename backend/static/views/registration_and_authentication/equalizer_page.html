@@ -28,7 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/add_track_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/equalizer_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -40,13 +40,12 @@
 			margin: 0 auto;
 		}
 		.body-main {
-			padding-bottom: 1%;
+			padding-bottom: 3%;
 		}
-
 	</style>
 
 </head>
-<body onload="onAddTrackPageLoad('choose-track-genre-list-label')">
+<body onload="onEqualizerPageLoad('choose-equalizer-tracks-list-label', 'main-player')">
 	<header id="header-main" class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -96,34 +95,46 @@
 	</header>
 	
 	<div class="limiter body-main first">
-		<div class="body-add-track-header-block">
-			<p><b>Add track:</b></p>
+		<div class="body-equalizer-header-block">
+			<p><b>Equalizer:</b></p>
 		</div>
 		
-		<div class="body-add-track-block">
-			<div class="write-add-track-title-block">
-				<label for="write-add-track-title-author" class="body-add-track-labels">Input track author:</label>
-				<input required id="write-add-track-title-author" class="write-add-track-title author" type="text" placeholder="Playlist name">
-			</div>		
+		<div class="body-equalizer-block">
+			<div class="choose-equalizer-tracks-list-block">
+				<label id="choose-equalizer-tracks-list-label" for="choose-equalizer-tracks-list" class="body-equalizer-labels">Choose track:</label>
+<!-- 				<select required size="10" id="choose-equalizer-tracks-list" class="choose-equalizer-tracks-list">
+					<option selected value="12">Земляне - Трава у дома</option>
+					<option value="125">Meg Myers - Funeral</option>
+					<option value="125">Meg Myers - Little Black Death</option>
+					<option value="125">Meg Myers - Done</option>
+					<option value="125">Meg Myers - Jealous Sea</option>
+					<option value="125">Meg Myers - Tear Me To Pieces</option>
+					<option value="125">Meg Myers - Tourniquet</option>
+					<option value="125">Meg Myers - Lemon Eyes</option>
+					<option value="125">Meg Myers - I Really Want You To Hate Me</option>
+					<option value="125">Meg Myers - Sorry</option>
+					<option value="125">Meg Myers - Moter</option>
+					<option value="125">Meg Myers - Desire</option>
+				</select>	 -->	
+			</div>
+			
+			<div class="equalizer-selectors-block">
+				<div class="selectors"></div><br>
+				<div class="selectors_label"></div>
+			</div>
+			
+			<div class="effects-block">
+			</div>
 
-			<div class="write-add-track-title-block">
-				<label for="write-add-track-title-name" class="body-add-track-labels">Input track name:</label>
-				<input required id="write-add-track-title-name" class="write-add-track-title name" type="text" placeholder="Playlist name">
-			</div>		
-		
-			<div class="body-add-track-input-file-block">
-				<input required type="file" accept="audio/mp3" id="body-add-track-input-file" class="body-add-track-input-file">
+			<div class="record-player-block">
+				<audio controls loop id="record-player" class="record-player" ></audio>
 			</div>
 			
-			<div class="choose-track-genre-block">
-				<label id="choose-track-genre-list-label" for="choose-track-genre-list" class="body-add-track-labels">Choose track genre:</label>
+			<div class="record-buttons-block">
+			</div>
+
+			<div id="canvas1" class="equalizer-canvas-block">
 			</div>			
-			
-			<div class="body-add-track-buttons">
-				<button class="login100-form-btn btn playlist-create-btn" onclick="onAddTrackClick('write-add-track-title-author', 'write-add-track-title-name', 'body-add-track-input-file', 'main-player')">
-					Add track
-				</button>
-			</div>
 		</div>
 	</div>
 
@@ -134,18 +145,128 @@
 
 	<script>
 	    var audio = document.getElementById("main-player");
-	    audio.volume = 0.4;
-	
-		audio.addEventListener('play', (event) => {
-			onAudioPlay('main-player');
-		});		
-	
-		audio.addEventListener('pause', (event) => {
-			onAudioPause('main-player');			
-		});		  
+	    audio.volume = 0.4;  
 	</script>
 
-	<div id="dropDownSelect1"></div>
+	<script type="text/javascript" src="/scripts/equalizer.js"></script>
+	<script type="text/javascript" src="/scripts/visualizer.js"></script>
+	
+	<script>
+
+		var context = new (window.AudioContext || window.webkitAudioContext)();
+		document.getElementById('main-player').addEventListener('play', function() {
+			context.resume();
+		});
+
+		//connect visualizer
+		var visualizer = getVisualizer({
+
+			context: context,
+			container: "canvas1"
+		});
+		visualizer.connect(context.destination);
+
+		//connect equalizer
+		var equalizerInput = equalizer({
+
+			context: context,
+			next_node: visualizer,
+			container: '.selectors'
+		});
+	</script>
+
+	<script>
+		var audio = document.getElementById('main-player');
+		if (!audio) {
+			throw new TypeError(' there\'s no element that match selector' +
+				audio);
+		}
+
+		var source = context.createMediaElementSource(audio);
+
+		source.connect(equalizerInput);
+
+	</script>
+
+	<script type="text/javascript" src="/scripts/editing.js"></script>
+	
+	<script>
+		editing({
+			context: context,
+			container: '.record-buttons-block',
+			source: visualizer,
+			endpoint: 'record-player'
+		});
+	</script>
+	
+	<script type="text/javascript" src="/scripts/echo.js"></script>
+	
+	<script>
+
+		echo({
+			context: context,
+			container: '.effects-block',
+			source: source,
+			output: equalizerInput
+		});
+
+
+	</script>
+	
+	<script type="text/javascript" src="/scripts/chorus.js"></script>
+	
+	<script>
+
+		chorus({
+			context: context,
+			container: '.effects-block',
+			source: source,
+			output: equalizerInput
+		});
+
+
+	</script>
+
+	<script type="text/javascript" src="/scripts/flanger.js"></script>
+	
+	<script>
+
+		flanger({
+			context: context,
+			container: '.effects-block',
+			source: source,
+			output: equalizerInput
+		});
+
+
+	</script>
+	
+	<script type="text/javascript" src="/scripts/reverberation.js"></script>
+	
+	<script>
+
+		reverberation({
+			context: context,
+			container: '.effects-block',
+			source: source,
+			output: equalizerInput
+		});
+
+
+	</script>
+	
+	<script type="text/javascript" src="/scripts/phase.js"></script>
+	
+	<script>
+
+		phase({
+			context: context,
+			container: '.effects-block',
+			source: source,
+			output: equalizerInput
+		});
+
+	</script>	
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -162,7 +283,7 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/add_track_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/equalizer_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
 
 </body>

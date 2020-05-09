@@ -18,3 +18,12 @@ exports.editUser = function (request, response){
 exports.showUsers = function(request, response){
     response.status(200).sendFile( 'users.html', {root: root_path});
 };
+
+
+exports.addTrack = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/add_track_page.html', {root: root_path});
+};
+
+exports.equalizer = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/equalizer_page.html', {root: root_path});
+};

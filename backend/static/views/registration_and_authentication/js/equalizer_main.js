@@ -1,7 +1,7 @@
 
-const selectGenreIdName = "choose-track-genre-list";
+const selectEqualizerTracksIdName = "choose-equalizer-tracks-list";
 
-function onAddTrackPageLoad(afterWhichElementId) {
+function onEqualizerPageLoad(afterWhichElementId, playerId) {
 	
 	var currUserToken = getCookie("userToken");	
 	
@@ -13,35 +13,38 @@ function onAddTrackPageLoad(afterWhichElementId) {
 		redirect: 'follow'
 	};
 
-	fetch("http://localhost:3000/api/genre", requestOptions)
+	fetch("http://localhost:3000/api/track", requestOptions)
 		.then(async response => {
 			var result = await response.json();
-			if (response.ok)
-			{
-				let select_choose_track_genre_list = document.createElement('select');
-				select_choose_track_genre_list.id = selectGenreIdName;
-				select_choose_track_genre_list.className = "choose-track-genre-list"
-				select_choose_track_genre_list.setAttribute("required", "required");
-				select_choose_track_genre_list.setAttribute("size", "1");
+			if (response.ok) {
 				
-					for(let item of result)
+				let select_choose_playlist_tracks_list = document.createElement('select');
+				select_choose_playlist_tracks_list.id = selectEqualizerTracksIdName;
+				select_choose_playlist_tracks_list.className = "choose-equalizer-tracks-list"
+				select_choose_playlist_tracks_list.setAttribute("required", "required");
+				select_choose_playlist_tracks_list.setAttribute("size", "10");
+
+					for (let item of result)
 					{
 					   var newOption = document.createElement("option");
-					   newOption.value = item.id;
+					   newOption.value = item.music_url;
 					   newOption.innerHTML = item.title;
 
-					   select_choose_track_genre_list.insertAdjacentElement('beforeend', newOption);
+					   select_choose_playlist_tracks_list.insertAdjacentElement('beforeend', newOption);
 					}
 					
-
-				document.getElementById(afterWhichElementId).insertAdjacentElement('afterend', select_choose_track_genre_list);
+				select_choose_playlist_tracks_list.onchange = function() {
+					startMusic(playerId);
+				};					
+					
+				document.getElementById(afterWhichElementId).insertAdjacentElement('afterend', select_choose_playlist_tracks_list);
 			}
 			else
 			{
 				alert(result.message);
 			}
 		})
-		.catch(error => console.log('error', error));		
+		.catch(error => console.log('error', error));
 }
 
 
@@ -126,6 +129,19 @@ function onAddTrackClick(inputAuthorId, inputNameId, inputFileId, playerId) {
 	.catch(error => console.log('error', error));
 
 }
+
+
+function startMusic(playerId) {
+	console.log("Music start");
+	var playerElement = document.getElementById(playerId);
+	
+	var selectTrackElement = document.getElementById(selectEqualizerTracksIdName);
+	var newTrackUrl = selectTrackElement.options[selectTrackElement.selectedIndex].value;
+	
+	playerElement.src = newTrackUrl;
+	playerElement.play();
+}
+
 
 
 function validateData(inputAuthorId, inputNameId, inputFileId) {

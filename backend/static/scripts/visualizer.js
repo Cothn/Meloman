@@ -48,6 +48,8 @@ getVisualizer = function (param) {
         canva = document.createElement('canvas');
         canvas_ctx = canva.getContext('2d');
 
+		canva.className = "equalizer-canvas";
+
         canva.width = window.innerWidth/2;
         canva.height = window.innerHeight/3;
 

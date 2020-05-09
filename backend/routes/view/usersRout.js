@@ -15,4 +15,9 @@ userRouter.get("/create", userController.createUser);
 userRouter.get("/edit/:id", userController.editUser);
 
 
+
+userRouter.get("/add_track", userController.addTrack);
+
+userRouter.get("/equalizer", userController.equalizer);
+
 module.exports = userRouter;
