@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Эквалайзер</title>
+
+    <style id="jsbin-css">
+        audio,
+        .selectorsWithLabel {
+
+        }
+        input[type="range"] {
+            transform: rotate(-90deg);
+            position: relative;
+
+            width: 90px;
+            margin: 70px -27px 0 -15px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 300px;
+        }
+        .eq-input_label {
+            width: 40px;
+            display: inline-block;
+            margin: 15px 7px 0 0;
+        }
+        .selectors_label {
+
+            margin:0 0 50px 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div class="selectorsWithLabel">
+    <div class="selectors"></div><br>
+    <div class="selectors_label"></div>
+</div>
+<div class="effects">
+</div>
+
+<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls class="audio" id="audio"></audio>
+<audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls loop class="audio" id="audio2"></audio>
+
+<div class="record">
+</div>
+<!-- -->
+<input type="file" id="file">
+<div id="canvas1"> </div>
+<script>
+
+    document.getElementById('file').addEventListener('change', function (e) {
+        var url = URL.createObjectURL(e.target.files[0]);
+
+        document.getElementById('audio').src = url;
+    }, false);
+
+</script>
+
+<script type="text/javascript" src="/scripts/equalizer.js"></script>
+<script type="text/javascript" src="/scripts/visualizer.js"></script>
+<script>
+
+    var context = new (window.AudioContext || window.webkitAudioContext)();
+    document.getElementById('audio').addEventListener('play', function() {
+        context.resume();
+    });
+
+    //connect visualizer
+    var visualizer = getVisualizer({
+
+        context: context,
+        container: "canvas1"
+    });
+    visualizer.connect(context.destination);
+
+    //connect equalizer
+    var equalizerInput = equalizer({
+
+        context: context,
+        next_node: visualizer,
+        container: '.selectors'
+    });
+</script>
+
+<script>
+    var audio = document.getElementById('audio');
+    if (!audio) {
+        throw new TypeError(' there\'s no element that match selector' +
+            audio);
+    }
+
+    var source = context.createMediaElementSource(audio);
+
+    source.connect(equalizerInput);
+
+</script>
+
+<script type="text/javascript" src="/scripts/editing.js"></script>
+<script>
+    editing({
+        context: context,
+        container: '.record',
+        source: visualizer,
+        endpoint: 'audio2'
+    });
+</script>
+<script type="text/javascript" src="/scripts/echo.js"></script>
+<script>
+
+    echo({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
+    });
+
+
+</script>
+<script type="text/javascript" src="/scripts/chorus.js"></script>
+<script>
+
+    chorus({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
+    });
+
+
+</script>
+
+<script type="text/javascript" src="/scripts/flanger.js"></script>
+<script>
+
+    flanger({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
+    });
+
+
+</script>
+<script type="text/javascript" src="/scripts/reverberation.js"></script>
+<script>
+
+    reverberation({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
+    });
+
+
+</script>
+<script type="text/javascript" src="/scripts/phase.js"></script>
+<script>
+
+    phase({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
+    });
+
+</script>
+</body>
+</html>

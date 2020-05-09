@@ -1,0 +1,29 @@
+
+.body-added-playlists-header-block {
+	width: 100%;
+	height: 7vmin;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.body-added-playlists-header-block p {
+	font-size: 6vmin;
+	color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

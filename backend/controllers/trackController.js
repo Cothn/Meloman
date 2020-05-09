@@ -53,7 +53,7 @@ exports.getTracksByQuery = function (request, response){
             return response.status(200).send(data);
         });
     }
-
+    connection.end();
 };
 
 
@@ -127,10 +127,11 @@ exports.addTrack= function(request, response){
     const title = request.body.title;
     const genre_id= request.body.genre_id;
     const music_url = request.body.music_url;
+    const duration = request.body.duration;
     const user_id = request.currentUser.user_id;
     const connection = mysql.createConnection(mySqlConfig.config);
     connection.query( Track.ADD_TRACK
-        , [title, music_url, user_id, genre_id], function(err, data) {
+        , [title, music_url, user_id, genre_id, duration], function(err, data) {
             if(err) {
                 return response.status(400).send({message: err.message});
             };

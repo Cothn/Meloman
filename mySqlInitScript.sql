@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`track` (
   `music_url` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
   `genre_id` INT NOT NULL,
+  `duration` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_track_users1_idx` (`user_id` ASC) ,
   INDEX `fk_track_genres1_idx` (`genre_id` ASC) ,

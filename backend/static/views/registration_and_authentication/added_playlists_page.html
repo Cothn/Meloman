@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Added playlists</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/views/registration_and_authentication/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/added_playlists_page.css">
+<!--===============================================================================================-->
+	<style>
+		body {
+			background: url(/views/registration_and_authentication/images/background/main_background.jpeg) repeat;
+		}
+		.limiter {
+			width: 65%;
+			min-height: 30vmin;
+			margin: 0 auto;
+		}
+		.body-main {
+			padding-bottom: 1%;
+		}
+		.hr-body-start {
+			margin-top: 1%;
+		}		
+		.hr-body-end {
+			margin-bottom: 1%;
+		}
+	</style>
+
+</head>
+<body onload="onAddedPlaylistsLoad('main-block')">
+	<header class="header-main">
+		<div class="header-content">
+			<div class="header-content-main">
+			
+				<div class="header-subpart header-main-logo-img" style="flex-grow:2;">
+					<a class="header-main-logo-link">
+						<img class="main-logo" src="/views/registration_and_authentication/images/logo/music_people_logo_cut.png">
+					</a>
+				</div>
+				
+				<div class="vl-header" style="flex-grow:1;"></div>
+				
+				<div class="header-subpart" style="flex-grow:2;">
+					<!-- <button class="header-search-btn"></button> -->
+					<a class="header-search-link">
+						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
+					</a>
+					
+					<input class="header-search-field" type="search" name="search-field" placeholder="Search music">
+					
+					<a class="header-search-link">
+						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_more_horiz_white_18dp.png" title="Redirect to exntended search page">
+					</a>
+				</div>
+				
+				<div class="vl-header" style="flex-grow:1;"></div>
+				
+				<div class="header-subpart" style="flex-grow:2;">
+				
+					<div class="header-username-block" style="flex-grow:2;">
+						<a class="header-username">COVID-19</a>
+					</div>
+					
+					<div class="header-sign_out-block" style="flex-grow:2;">
+						<button class="login100-form-btn header-button">
+							Sign out
+						</button>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<hr class="hr-header">
+			
+		</div>
+	</header>
+	
+	<div id="main-block" class="limiter body-main first">
+		<div class="body-added-playlists-header-block">
+			<p><b>Added playlists</b></p>
+		</div>
+		
+		
+	</div>
+
+	<div>
+		<audio controls id="main-player" class="main-player">
+		</audio>
+	</div>	
+
+	<script>
+	    var audio = document.getElementById("main-player");
+	    audio.volume = 0.4;
+	
+		audio.addEventListener('play', (event) => {
+			onAudioPlay('main-player');
+		});		
+	
+		audio.addEventListener('pause', (event) => {
+			onAudioPause('main-player');			
+		});		  
+	</script>
+	
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/bootstrap/js/popper.js"></script>
+	<script src="/views/registration_and_authentication/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/views/registration_and_authentication/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/js/added_playlists_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
+	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
+	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>
+
+</body>
+</html>

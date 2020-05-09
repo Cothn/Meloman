@@ -53,7 +53,7 @@ exports.getCommentsByQuery = function (request, response){
             return response.status(200).send(data);
         });
     }
-
+    connection.end();
 };
 
 exports.updateComment = function(request, response) {

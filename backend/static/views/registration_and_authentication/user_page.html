@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>My profile</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/guest_page.css">
+	<link rel="stylesheet" type="text/css" href="css/main_page.css">
+	<link rel="stylesheet" type="text/css" href="css/user_page.css">
+<!--===============================================================================================-->
+	<style>
+		body {
+			background: url(images/background/main_background.jpeg) repeat;
+		}
+		.limiter {
+			width: 65%;
+			margin: 0 auto;
+		}
+		.container-login100 {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			padding: 0px;
+			justify-content: flex-start;
+			align-items: center;
+		}
+		
+		pre {
+			margin: 0px;
+		}
+	</style>
+
+</head>
+<body>
+	<header class="header-main">
+		<div class="header-content">
+			<div class="header-content-main">
+			
+				<div class="header-subpart header-main-logo-img" style="flex-grow:2;">
+					<a class="header-main-logo-link">
+						<img class="main-logo" src="images/logo/music_people_logo_cut.png">
+					</a>
+				</div>
+				
+				<div class="vl-header" style="flex-grow:1;"></div>
+				
+				<div class="header-subpart" style="flex-grow:2;">
+					<!-- <button class="header-search-btn"></button> -->
+					<a class="header-search-link">
+						<img class="header-search-img" src="images/icons/baseline_search_white_18dp.png" title="Search...">
+					</a>
+					
+					<input class="header-search-field" type="search" name="search-field" placeholder="Search music">
+					
+					<a class="header-search-link">
+						<img class="header-search-img" src="images/icons/baseline_more_horiz_white_18dp.png" title="Redirect to exntended search page">
+					</a>
+				</div>
+				
+				<div class="vl-header" style="flex-grow:1;"></div>
+				
+				<div class="header-subpart" style="flex-grow:2;">
+				
+					<div class="header-username-block" style="flex-grow:2;">
+						<a class="header-username">COVID-19</a>
+					</div>
+					
+					<div class="header-sign_out-block" style="flex-grow:2;">
+						<button class="login100-form-btn header-button">
+							Sign out
+						</button>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<hr class="hr-header">
+			
+		</div>
+	</header>
+	
+	<div class="limiter body-user-block">
+		<div class="body-user-info-block">
+			<div class="body-user-about-block" style="flex-grow:3;">
+				<div>
+					<a class="body-user-about-username">COVID-19</a>
+					
+					<a>
+						<img class="body-user-edit-btn" src="images/icons/baseline_edit_black_18dp.png" title="Edit account...">
+					</a>
+				</div>
+				
+				<div>
+					<p class="body-user-about-name-surname">Jesse Heisenberg</p>
+				</div>
+			</div>
+			<div class="body-user-main-track-block" style="flex-grow:2;">
+				<div class="body-user-main-track-info">
+					<p><b>Земляне</b><pre> - </pre></p>
+					<p>Трава у дома</p>
+				</div>
+				
+				<audio controls class="body-user-main-track"></audio>
+			</div>
+		</div>
+		
+		<div class="body-user-quick-buttons-block">
+			<button class="login100-form-btn body-user-quick-btn">
+				My playlists
+			</button>
+			
+			<button class="login100-form-btn body-user-quick-btn">
+				Added playlists
+			</button>
+			
+			<button class="login100-form-btn body-user-quick-btn">
+				Added tracks
+			</button>
+			
+			<button class="login100-form-btn body-user-quick-btn">
+				Create post
+			</button>
+			
+			<button class="login100-form-btn body-user-quick-btn">
+				Add playlist
+			</button>
+			
+			<button class="login100-form-btn body-user-quick-btn">
+				Add track
+			</button>			
+		</div>		
+	</div>
+	
+	<div class="limiter body-main">
+		<div class="body-post-block">
+		
+			<div class="body-post-username-block">
+				<hr class="hr-body-start">
+				<a class="body-post-username-link">COVID-19</a>
+				<hr class="hr-body">
+			</div>
+			
+			<div class="body-post-content-block">
+			
+				<div class="v1-body" style="flex-grow:1;"></div>
+				
+				<div class="body-post-content-main-block">
+					<div class="body-playlist-block" style="flex-grow:3;">
+						<a class="body-playlist-name-link">Epic music</a>
+						
+						<div class="body-playlist-tracks-block">
+						
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="v1-body" style="flex-grow:0.05;"></div>
+
+					
+					<div class="body-post-text-block" style="flex-grow:1;">
+						<a class="body-post-text-header">Post text:</a>
+						<br>
+						<textarea disabled class="body-post-textarea">Your mind is gonna blow up after this EEEEEPIC music! 
+						ashdsajd hasjdhasj dkhasdj ka
+						ajdhasjdhasdjkahsdkjashdjka shdajsd hasjkd haskjdh ajdhsdjkahdjaks hdasjdh ajkd hasjd ahsdjashdajs hd asjdkash djashd asjhas dhasdkjashdaskjh data
+						adhjas dhasj dhasj dasdj ashd kajsdhasjkd haskj
+						</textarea>
+					</div>
+					
+				</div>
+			</div>
+			
+			<hr class="hr-body">
+			
+			<div class="body-post-buttons-block">
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-like-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-likes-amount-block">
+					<i>14628</i>
+				</div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-favorites-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-comment-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-write-comment-block">
+					<div class="body-post-write-comment-text-block">
+						<textarea class="body-post-write-comment-text">Just want to comment it!
+Поле ввода имени пользователя.
+Поле ввода пароля пользователя (использовать сокрытие набираемых пользователем символов).
+Checkbox, используемый для сохранения логина и пароля пользователя в кэше в случае состояния true (пользователь поставил галочку).
+Ссылочный текст, при нажатии на который произойдёт переход на страницу восстановления пароля.
+Кнопка авторизации (проверка введёных пользователем данных с тремя исходами: допущена ошибка в одном из полей ввода (пустые или недопустимые символы), такого пользователя не существует и авторизация прошла успешно (после чего происходит переход на стартовую страницу авторизованного пользователя).
+						</textarea>
+					</div>
+					<div class="body-post-write-comment-btn-block">
+						<button class="login100-form-btn write-comment-button">
+							Comment
+						</button>
+					</div>
+				</div>				
+			</div>
+			
+			<hr class="hr-body">			
+			
+			<div class="body-post-comments-block">
+				<a class="body-post-comments-header">Comments:</a>
+				
+				<div class="body-post-single-comment-block">
+				
+					<p><a class="body-post-single-comment-username">micky_777</a>:</p>
+					<textarea disabled class="body-post-single-comment-textarea">nice playlist, bro!</textarea>
+					
+					<p><a class="body-post-single-comment-username">A queen</a>:</p>
+					<textarea disabled class="body-post-single-comment-textarea">not for me :(</textarea>
+					
+				</div>
+				
+			</div>
+			
+			<hr class="hr-body-end">
+			
+		</div>
+<!-- 					<p>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</p> -->
+	</div>
+
+	<div class="limiter body-main">
+		<div class="body-post-block">
+		
+			<div class="body-post-username-block">
+				<hr class="hr-body-start">
+				<a class="body-post-username-link">COVID-19</a>
+				<hr class="hr-body">
+			</div>
+			
+			<div class="body-post-content-block">
+			
+				<div class="v1-body" style="flex-grow:1;"></div>
+				
+				<div class="body-post-content-main-block">
+					<div class="body-playlist-block" style="flex-grow:3;">
+						<a class="body-playlist-name-link">Epic music</a>
+						<div class="body-playlist-tracks-block">
+						
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+							<div class="body-playlist-single-track-block">
+								<div class="body-playlist-single-track-btn">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-play-img"></i>
+										</span>
+									</a>
+								</div>
+								<div class="body-playlist-single-track-name-block">
+									<p><b>Земляне</b></p>
+									<p>Трава у дома</p>
+								</div>
+								<div class="body-playlist-single-track-btn track-add-block">
+									<a class="btn-link">
+										<span class="btn action">
+											<i class="icon track-add-img"></i>
+										</span>
+									</a>	
+								</div>
+								<div class="body-playlist-single-track-duration-block">
+									<p>4:28</p>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+					<div class="v1-body" style="flex-grow:0.05;"></div>
+
+					
+					<div class="body-post-text-block" style="flex-grow:1;">
+						<a class="body-post-text-header">Post text:</a>
+						<br>
+						<textarea disabled class="body-post-textarea">Your mind is gonna blow up after this EEEEEPIC music! 
+						ashdsajd hasjdhasj dkhasdj ka
+						ajdhasjdhasdjkahsdkjashdjka shdajsd hasjkd haskjdh ajdhsdjkahdjaks hdasjdh ajkd hasjd ahsdjashdajs hd asjdkash djashd asjhas dhasdkjashdaskjh data
+						adhjas dhasj dhasj dasdj ashd kajsdhasjkd haskj
+						</textarea>
+					</div>
+					
+				</div>
+			</div>
+			
+			<hr class="hr-body">
+			
+			<div class="body-post-buttons-block">
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-like-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-likes-amount-block">
+					<i>14628</i>
+				</div>				
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-favorites-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-hot-button-block">
+					<a>
+						<span class="btn action">
+							<i class="icon post-comment-btn"></i>
+						</span>
+					</a>
+				</div>
+				<div class="body-post-write-comment-block">
+					<div class="body-post-write-comment-text-block">
+						<textarea class="body-post-write-comment-text">Just want to comment it!
+Поле ввода имени пользователя.
+Поле ввода пароля пользователя (использовать сокрытие набираемых пользователем символов).
+Checkbox, используемый для сохранения логина и пароля пользователя в кэше в случае состояния true (пользователь поставил галочку).
+Ссылочный текст, при нажатии на который произойдёт переход на страницу восстановления пароля.
+Кнопка авторизации (проверка введёных пользователем данных с тремя исходами: допущена ошибка в одном из полей ввода (пустые или недопустимые символы), такого пользователя не существует и авторизация прошла успешно (после чего происходит переход на стартовую страницу авторизованного пользователя).
+						</textarea>
+					</div>
+					<div class="body-post-write-comment-btn-block">
+						<button class="login100-form-btn write-comment-button">
+							Comment
+						</button>
+					</div>
+				</div>				
+			</div>
+			
+			<hr class="hr-body">			
+			
+			<div class="body-post-comments-block">
+				<a class="body-post-comments-header">Comments:</a>
+				
+				<div class="body-post-single-comment-block">
+				
+					<p><a class="body-post-single-comment-username">micky_777</a>:</p>
+					<textarea disabled class="body-post-single-comment-textarea">nice playlist, bro!</textarea>
+					
+					<p><a class="body-post-single-comment-username">A queen</a>:</p>
+					<textarea disabled class="body-post-single-comment-textarea">not for me :(</textarea>
+					
+				</div>
+				
+			</div>
+			
+			<hr class="hr-body-end">
+			
+		</div>
+<!-- 					<p>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</p> -->
+	</div>
+
+	<div>
+		<audio controls class="body-player">
+		</audio>
+	</div>	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/signin_main.js"></script>
+
+</body>
+</html>

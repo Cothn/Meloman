@@ -14,7 +14,6 @@ exports.getPlayListsByQuery = function (request, response){
     const title = request.query.title;
 
     const connection = mysql.createConnection(mySqlConfig.config);
-
     if (id){
         logger.debug(PlayList.GET_ALL_PLAYLISTS+' WHERE id='+id);
         connection.query(PlayList.GET_ALL_PLAYLISTS+' WHERE id='+id, function (err, data) {
@@ -48,7 +47,7 @@ exports.getPlayListsByQuery = function (request, response){
             return response.status(200).send(data);
         });
     }
-
+    connection.end();
 };
 
 exports.getPlayListsTracks = function (request, response){
@@ -63,7 +62,7 @@ exports.getPlayListsTracks = function (request, response){
             };
             return response.status(200).send(data);
         });
-
+    connection.end();
 };
 
 

@@ -180,7 +180,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/user?name=",
+							"raw": "http://localhost:3000/api/user",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -203,7 +203,8 @@
 								},
 								{
 									"key": "name",
-									"value": ""
+									"value": "",
+									"disabled": true
 								},
 								{
 									"key": "surname",
@@ -226,7 +227,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4OTA2Mjc4NiwiZXhwIjoxNTg5MDY2Mzg2fQ.5shoMPgQfQoMD-qXQ57IDrO4gpsvSSUES3MFfJTvSp8",
 									"type": "string"
 								},
 								{
@@ -622,7 +623,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"asdasd\"\n    }",
+							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"asdassdfsdd\",\n        \"duration\":\"600\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -652,7 +653,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2ODAyODIsImV4cCI6MTU4ODY4Mzg4Mn0.DRhSHwgxmajfzp4hcrqus_LrLFg5SYAwpm3bdo86B5Q",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg5ODkxODMsImV4cCI6MTU4ODk5Mjc4M30._tzXIb8V0kSmUOXn1EIZnbbNILdXauU1PBeyIHc3tMo",
 									"type": "string"
 								},
 								{
@@ -666,7 +667,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"/music/2020-5-5_12-57-58-886_0aa258b17edff0564427b137asd2de9f4a901af495e.mp3\"\n    }",
+							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"/music/2020-5-5_12-57-58-886_0aa258b17edff0564427b137asd2de9f4a901af495e.mp3\",\n        \"duration\":\"600\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -832,7 +833,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/track?user_id=12",
+							"raw": "http://localhost:3000/api/track",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -855,7 +856,13 @@
 								},
 								{
 									"key": "user_id",
-									"value": "12"
+									"value": "12",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "14",
+									"disabled": true
 								}
 							]
 						}
@@ -873,7 +880,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4OTA2Mjc4NiwiZXhwIjoxNTg5MDY2Mzg2fQ.5shoMPgQfQoMD-qXQ57IDrO4gpsvSSUES3MFfJTvSp8",
 									"type": "string"
 								},
 								{
@@ -1007,6 +1014,359 @@
 								"api",
 								"track",
 								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"pope\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg5NjI2ODEsImV4cCI6MTU4ODk2NjI4MX0.htmshHi-VDag4FUwNA_wJVWyrhJiGSp7zQ9x_L77Iwc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Rock\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateASUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg5NjI2ODEsImV4cCI6MTU4ODk2NjI4MX0.htmshHi-VDag4FUwNA_wJVWyrhJiGSp7zQ9x_L77Iwc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 6,\n    \"title\": \"asda1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 6,\n    \"title\": \"Rep\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "P",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAsUser",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg5NjI2ODEsImV4cCI6MTU4ODk2NjI4MX0.htmshHi-VDag4FUwNA_wJVWyrhJiGSp7zQ9x_L77Iwc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/genre/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"genre",
+								"6"
 							]
 						}
 					},
@@ -1618,7 +1978,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4OTA2Mjc4NiwiZXhwIjoxNTg5MDY2Mzg2fQ.5shoMPgQfQoMD-qXQ57IDrO4gpsvSSUES3MFfJTvSp8",
 									"type": "string"
 								},
 								{
@@ -1676,7 +2036,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/playlist/tracks/2",
+							"raw": "http://localhost:3000/api/playlist/tracks/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1686,7 +2046,7 @@
 								"api",
 								"playlist",
 								"tracks",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1732,6 +2092,11 @@
 								{
 									"key": "title",
 									"value": "a",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "4",
 									"disabled": true
 								}
 							]
@@ -1989,7 +2354,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4OTA2Mjc4NiwiZXhwIjoxNTg5MDY2Mzg2fQ.5shoMPgQfQoMD-qXQ57IDrO4gpsvSSUES3MFfJTvSp8",
 									"type": "string"
 								},
 								{
@@ -2044,7 +2409,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/post",
+							"raw": "http://localhost:3000/api/post?id=9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2069,6 +2434,10 @@
 									"key": "author_id",
 									"value": "1",
 									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "9"
 								}
 							]
 						}
@@ -2469,7 +2838,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODYyMDIwOSwiZXhwIjoxNTg4NjIzODA5fQ.z1lwbodjg0GuMvDVT4vDh710NawsqWOnHIptdv1kLOI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4OTA2Mjc4NiwiZXhwIjoxNTg5MDY2Mzg2fQ.5shoMPgQfQoMD-qXQ57IDrO4gpsvSSUES3MFfJTvSp8",
 									"type": "string"
 								},
 								{
@@ -2539,7 +2908,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comment?post_id=11",
+							"raw": "http://localhost:3000/api/comment",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2562,7 +2931,13 @@
 								},
 								{
 									"key": "post_id",
-									"value": "11"
+									"value": "11",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "4",
+									"disabled": true
 								}
 							]
 						}
@@ -2580,7 +2955,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4OTA2Mjc4NiwiZXhwIjoxNTg5MDY2Mzg2fQ.5shoMPgQfQoMD-qXQ57IDrO4gpsvSSUES3MFfJTvSp8",
 									"type": "string"
 								},
 								{
@@ -2602,7 +2977,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/comment/my?post_id=11",
+							"raw": "http://localhost:3000/api/comment/my?id=5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2626,7 +3001,12 @@
 								},
 								{
 									"key": "post_id",
-									"value": "11"
+									"value": "11",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "5"
 								}
 							]
 						}
@@ -2939,7 +3319,7 @@
 							"oauth2": [
 								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMiwidXNlcl9yb2xlIjoyLCJpYXQiOjE1ODg2NzkzNzksImV4cCI6MTU4ODY4Mjk3OX0.ZK4RmkvMNg9_qu3VRYaV4e74V0lcyqqm7H5L_WMjYTY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4OTA2Mjc4NiwiZXhwIjoxNTg5MDY2Mzg2fQ.5shoMPgQfQoMD-qXQ57IDrO4gpsvSSUES3MFfJTvSp8",
 									"type": "string"
 								},
 								{

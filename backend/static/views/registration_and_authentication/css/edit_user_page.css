@@ -1,0 +1,64 @@
+
+.body-edit-user-header-block {
+	padding-left: 3%;
+	padding-bottom: 2%;
+}
+
+.body-edit-user-header-block p {
+	font-size: 4vmin;
+	color: black;
+}
+
+.body-edit-user-block {
+	padding-left: 5%;
+	padding-bottom: 2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;	
+	align-items: flex-start;
+}
+
+
+.body-edit-user-input-block {
+	margin-bottom: 2%;
+}
+
+.body-edit-user-input {
+	font-size: 2vmin;
+}
+
+
+.body-edit-user-buttons {
+	width: 100%;
+	min-height: 4vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;	
+}
+
+.body-edit-user-buttons .btn {
+	min-width: 10%;
+	max-width: 30%;
+	min-height: 3vmin;
+	max-height: 5vmin;
+	margin-right: 1%;
+}
+
+
+.test-playlist {
+	padding-top: 0%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

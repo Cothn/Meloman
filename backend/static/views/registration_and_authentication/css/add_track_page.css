@@ -1,0 +1,110 @@
+
+.body-add-track-header-block {
+	padding-left: 3%;
+	padding-bottom: 2%;
+}
+
+.body-add-track-header-block p {
+	font-size: 4vmin;
+	color: black;
+}
+
+.body-add-track-block {
+	padding-left: 5%;
+	padding-bottom: 2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;	
+	align-items: flex-start;
+}
+
+.body-add-track-labels {
+	min-width: 15%;
+	max-width: 25%;
+	margin-right: 1%;
+	font-size: 2vmin;
+	font-style: italic;
+}
+
+.write-add-track-title-block {
+	width: 100%;
+	min-height: 1vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;
+	padding-bottom: 2%;
+}
+
+.write-add-track-title {
+	min-width: 20%;
+	max-width: 50%;
+	min-height: 3vmin;
+	max-height: 4vmin;
+	font-size: 2vmin;
+}
+
+
+.body-add-track-input-file-block {
+	margin-bottom: 2%;
+}
+
+.body-add-track-input-file {
+	font-size: 2vmin;
+	color: black;
+}
+
+
+.choose-track-genre-block {
+	width: 100%;
+	min-height: 1vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;
+	padding-bottom: 2%;
+}
+
+.choose-track-genre-list {
+	min-width: 20%;
+	max-width: 50%;
+	min-height: 3vmin;
+	max-height: 4vmin;
+	font-size: 2vmin;
+}
+
+
+.body-add-track-buttons {
+	width: 100%;
+	min-height: 4vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;	
+}
+
+.body-add-track-buttons .btn {
+	min-width: 10%;
+	max-width: 30%;
+	min-height: 3vmin;
+	max-height: 5vmin;
+	margin-right: 1%;
+}
+
+
+.test-playlist {
+	padding-top: 0%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
