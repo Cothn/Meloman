@@ -25,35 +25,40 @@
 
             node = document.createElement('button');
             node.id = "startRecord";
-            label = document.createTextNode("StartRecord");
+			node.className = "login100-form-btn";
+            label = document.createTextNode("Start record");
             node.appendChild(label);
             container.appendChild(node);
 
             node = document.createElement('button');
             node.id = "stopRecord";
+			node.className = "login100-form-btn";
             node.hidden = true;
-            label = document.createTextNode("StopRecord");
+            label = document.createTextNode("Stop record");
             node.appendChild(label);
             container.appendChild(node);
 
             node = document.createElement('button');
             node.id = "pauseRecord";
+			node.className = "login100-form-btn";
             node.hidden = true;
-            label = document.createTextNode("PauseRecord");
+            label = document.createTextNode("Pause record");
             node.appendChild(label);
             container.appendChild(node);
 
             node = document.createElement('button');
             node.id = "resumeRecord";
+			node.className = "login100-form-btn";
             node.hidden = true;
-            label = document.createTextNode("ResumeRecord");
+            label = document.createTextNode("Resume record");
             node.appendChild(label);
             container.appendChild(node);
 
             node = document.createElement('button');
             node.id = "saveBtn";
+			node.className = "login100-form-btn";
             node.hidden = true;
-            label = document.createTextNode("Сохранить фрагмент");
+            label = document.createTextNode("Save fragment");
             node.appendChild(label);
             container.appendChild(node);
         },
@@ -125,10 +130,12 @@
                 const formData = new FormData();
                 formData.append('file_data', blob);
 
+				var currUserToken = getCookie("userToken");					
+
                 fetch("http://localhost:3000/api/music",  {
                     method: 'POST',
                     headers: {
-                        'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM'
+                        'Authorization':`Bearer ${currUserToken}`
                     },
                     body: formData})
                     .then(async response => {
