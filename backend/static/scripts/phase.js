@@ -2,15 +2,15 @@
 
     var context = null,
         //audio = null,
-        delayEchoNodes = [],
-        gainEchoNodes = [],
+        delayPhaseNodes = [],
+        gainPhaseNodes = [],
 
 
         $ = document.querySelector.bind(document),
         createContext = function (param) {
             context = param.context;
-            delayEchoNodes = [];
-                gainEchoNodes = [];
+            delayPhaseNodes = [];
+                gainPhaseNodes = [];
         },
         /**
          * creates number input elements
@@ -19,9 +19,9 @@
             var node, label;
 
             node = document.createElement('input');
-            node.id = "echoEffect";
+            node.id = "phaseEffect";
             node.type = "checkbox";
-            label = document.createTextNode("Echo");
+            label = document.createTextNode("Phase");
             container.appendChild(node);
             container.appendChild(label);
             label = document.createElement('br');
@@ -49,12 +49,12 @@
             input.addEventListener('change', function() {
                 if(this.checked) {
 
-                    source.connect(gainEchoNodes[0]);
-                    delayEchoNodes[0].connect(output);
+                    source.connect(gainPhaseNodes[0]);
+                    delayPhaseNodes[0].connect(output);
                 }
                 else{
-                    source.disconnect(gainEchoNodes[0]);
-                    delayEchoNodes[0].disconnect(output);
+                    source.disconnect(gainPhaseNodes[0]);
+                    delayPhaseNodes[0].disconnect(output);
                 }
             });
         },
@@ -66,20 +66,20 @@
          */
         createFilters = function (number) {
 
-            delayEchoNodes.push(context.createDelay());
-            gainEchoNodes.push(context.createGain());
-            delayEchoNodes[0].delayTime.value = 0.05;
-            gainEchoNodes[0].gain.value = 0.6;
-            gainEchoNodes[0].connect(delayEchoNodes[0]);
+            delayPhaseNodes.push(context.createDelay());
+            gainPhaseNodes.push(context.createGain());
+            delayPhaseNodes[0].delayTime.value = 0.00001;
+            gainPhaseNodes[0].gain.value = 0.9;
+            gainPhaseNodes[0].connect(delayPhaseNodes[0]);
 
-            for(let i= 1; i<number; i++) {
-                delayEchoNodes.push(context.createDelay());
-                gainEchoNodes.push(context.createGain());
-                delayEchoNodes[i].delayTime.value = 0.05;
-                gainEchoNodes[i].gain.value = 0.7;
-                gainEchoNodes[i].connect(delayEchoNodes[i]);
-                gainEchoNodes[i-1].connect(gainEchoNodes[i]);
-                delayEchoNodes[i].connect(delayEchoNodes[i-1]);
+            for(let i= 1; i<7; i++) {
+                delayPhaseNodes.push(context.createDelay());
+                gainPhaseNodes.push(context.createGain());
+                delayPhaseNodes[i].delayTime.value = Math.random() * (0.00005 - 0.00001) + 0.00001;
+                gainPhaseNodes[i].gain.value = 1;
+                gainPhaseNodes[i].connect(delayPhaseNodes[i]);
+                gainPhaseNodes[i-1].connect(gainPhaseNodes[i]);
+                delayPhaseNodes[i].connect(delayPhaseNodes[0]);
 
             }
         },
@@ -88,7 +88,7 @@
         /**
          * main function
          */
-        echo = function (param) {
+        phase = function (param) {
 
             if (validateParam(param)){
                 createContext(param);
@@ -102,8 +102,8 @@
             }
         };
 
-    echo.context = context;
+    phase.context = context;
 
-    window.echo = echo;
+    window.phase = phase;
 
 }());

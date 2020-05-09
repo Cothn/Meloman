@@ -2,15 +2,15 @@
 
     var context = null,
         //audio = null,
-        delayEchoNodes = [],
-        gainEchoNodes = [],
+        delayReverbNode,
+        gainReverbNode,
 
 
         $ = document.querySelector.bind(document),
         createContext = function (param) {
             context = param.context;
-            delayEchoNodes = [];
-                gainEchoNodes = [];
+            delayReverbNode = context.createDelay();
+            gainReverbNode  = context.createGain();
         },
         /**
          * creates number input elements
@@ -19,9 +19,9 @@
             var node, label;
 
             node = document.createElement('input');
-            node.id = "echoEffect";
+            node.id = "reverbEffect";
             node.type = "checkbox";
-            label = document.createTextNode("Echo");
+            label = document.createTextNode("Reverberation");
             container.appendChild(node);
             container.appendChild(label);
             label = document.createElement('br');
@@ -45,16 +45,15 @@
          * bind input.change events to the filters
          */
         initEvent = function (input, source, output) {
-
             input.addEventListener('change', function() {
                 if(this.checked) {
 
-                    source.connect(gainEchoNodes[0]);
-                    delayEchoNodes[0].connect(output);
+                    source.connect(gainReverbNode );
+                    gainReverbNode .connect(output);
                 }
                 else{
-                    source.disconnect(gainEchoNodes[0]);
-                    delayEchoNodes[0].disconnect(output);
+                    source.disconnect(gainReverbNode);
+                    gainReverbNode .disconnect(output);
                 }
             });
         },
@@ -64,46 +63,34 @@
         /**
          * create filter for each frequency
          */
-        createFilters = function (number) {
+        createFilters = function () {
 
-            delayEchoNodes.push(context.createDelay());
-            gainEchoNodes.push(context.createGain());
-            delayEchoNodes[0].delayTime.value = 0.05;
-            gainEchoNodes[0].gain.value = 0.6;
-            gainEchoNodes[0].connect(delayEchoNodes[0]);
-
-            for(let i= 1; i<number; i++) {
-                delayEchoNodes.push(context.createDelay());
-                gainEchoNodes.push(context.createGain());
-                delayEchoNodes[i].delayTime.value = 0.05;
-                gainEchoNodes[i].gain.value = 0.7;
-                gainEchoNodes[i].connect(delayEchoNodes[i]);
-                gainEchoNodes[i-1].connect(gainEchoNodes[i]);
-                delayEchoNodes[i].connect(delayEchoNodes[i-1]);
-
-            }
+            delayReverbNode .delayTime.value = 0.3;
+            gainReverbNode .gain.value = 0.6;
+            gainReverbNode.connect(delayReverbNode );
+            delayReverbNode.connect(gainReverbNode );
         },
 
 
         /**
          * main function
          */
-        echo = function (param) {
+        reverberation = function (param) {
 
             if (validateParam(param)){
                 createContext(param);
                 var container = $(param.container);
                 let input =createInput(container);
                 console.log(input.id);
-                createFilters(7);
+                createFilters();
                 initEvent(input, param.source, param.output);
                 //return context;
 
             }
         };
 
-    echo.context = context;
+    reverberation.context = context;
 
-    window.echo = echo;
+    window.reverberation = reverberation;
 
 }());

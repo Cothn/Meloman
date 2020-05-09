@@ -42,12 +42,7 @@
     <div class="selectors"></div><br>
     <div class="selectors_label"></div>
 </div>
-<div id="effects">
-    <input type="checkbox" id="echoEffect" >Echo<Br>
-    <input type="checkbox" id="reverbEffect" >Reverberation<Br>
-    <input type="checkbox" id="chorusEffect" >Chorus<Br>
-    <input type="checkbox" id="flangerEffect" >Flanger<Br>
-    <input type="checkbox" id="phazaEffect" >Phaza<Br>
+<div class="effects">
 </div>
 
 <audio src="/music/2020-5-5_12-52-35-342_408bd7390e4405b91a6b767e3800af5753bf8c93.mp3" controls class="audio" id="audio"></audio>
@@ -67,6 +62,7 @@
     }, false);
 
 </script>
+
 <script type="text/javascript" src="/scripts/equalizer.js"></script>
 <script type="text/javascript" src="/scripts/visualizer.js"></script>
 <script>
@@ -91,8 +87,9 @@
         next_node: visualizer,
         container: '.selectors'
     });
+</script>
 
-
+<script>
     var audio = document.getElementById('audio');
     if (!audio) {
         throw new TypeError(' there\'s no element that match selector' +
@@ -101,9 +98,7 @@
 
     var source = context.createMediaElementSource(audio);
 
-    source.connect(equalizerInput);
-
-
+  //  source.connect(equalizerInput);
 
 </script>
 
@@ -116,178 +111,63 @@
         endpoint: 'audio2'
     });
 </script>
+<script type="text/javascript" src="/scripts/echo.js"></script>
 <script>
 
-    //echo
-    let delayEchoNodes = [],
-        gainEchoNodes = [];
-
-
-    delayEchoNodes.push(context.createDelay());
-    gainEchoNodes.push(context.createGain());
-    delayEchoNodes[0].delayTime.value = 0.05;
-    gainEchoNodes[0].gain.value = 0.6;
-    gainEchoNodes[0].connect(delayEchoNodes[0]);
-
-    for(let i= 1; i<7; i++) {
-        delayEchoNodes.push(context.createDelay());
-        gainEchoNodes.push(context.createGain());
-        delayEchoNodes[i].delayTime.value = 0.05;
-        gainEchoNodes[i].gain.value = 0.7;
-        gainEchoNodes[i].connect(delayEchoNodes[i]);
-        gainEchoNodes[i-1].connect(gainEchoNodes[i]);
-        delayEchoNodes[i].connect(delayEchoNodes[i-1]);
-
-    }
-    document.getElementById('echoEffect').addEventListener('change', function() {
-        if(this.checked) {
-
-            source.connect(gainEchoNodes[0]);
-            delayEchoNodes[0].connect(equalizerInput);
-        }
-        else{
-            source.disconnect(gainEchoNodes[0]);
-            delayEchoNodes[0].disconnect(equalizerInput);
-        }
+    echo({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
     });
+
+
+</script>
+<script type="text/javascript" src="/scripts/chorus.js"></script>
+<script>
+
+    chorus({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
+    });
+
 
 </script>
 
+<script type="text/javascript" src="/scripts/flanger.js"></script>
 <script>
-    //reverberation
-    let delayReverbNode = context.createDelay();
-    let gainReverbNode  = context.createGain();
-    delayReverbNode .delayTime.value = 0.3;
-    gainReverbNode .gain.value = 0.6;
-    gainReverbNode.connect(delayReverbNode );
-    delayReverbNode.connect(gainReverbNode );
-    document.getElementById('reverbEffect').addEventListener('change', function() {
-        if(this.checked) {
 
-            source.connect(gainReverbNode );
-            gainReverbNode .connect(equalizerInput);
-        }
-        else{
-            source.disconnect(gainReverbNode);
-
-            gainReverbNode .disconnect(equalizerInput);
-        }
+    flanger({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
     });
 
+
 </script>
+<script type="text/javascript" src="/scripts/reverberation.js"></script>
 <script>
-    //chorus
-    //echo
-    let delayChorusNodes = [],
-        gainChorusNodes = [],
-        chorusFilter =[];
 
-
-
-    delayChorusNodes.push(context.createDelay());
-    gainChorusNodes.push(context.createGain());
-    delayChorusNodes[0].delayTime.value = 0.06;
-    gainChorusNodes[0].gain.value = 0.7;
-    gainChorusNodes[0].connect(delayChorusNodes[0]);
-    chorusFilter.push(context.createBiquadFilter());
-
-    for(let i= 1; i<10; i++) {
-        delayChorusNodes.push(context.createDelay());
-        gainChorusNodes.push(context.createGain());
-        delayChorusNodes[i].delayTime.value = 0.03;
-        gainChorusNodes[i].gain.value = 0.8;
-        gainChorusNodes[i].connect(delayChorusNodes[i]);
-
-        delayChorusNodes[i].connect(delayChorusNodes[i-1]);
-        chorusFilter.push(context.createBiquadFilter());
-        chorusFilter[i].type = 'peaking';
-        chorusFilter[i].frequency.value = 800;
-        chorusFilter[i].gain.value = Math.random() * (3 +3) - 3;
-        chorusFilter[i].Q.value = 0.9;
-        gainChorusNodes[i-1].connect(chorusFilter[i]);
-        chorusFilter[i].connect(gainChorusNodes[i]);
-
-    }
-    document.getElementById('chorusEffect').addEventListener('change', function() {
-        if(this.checked) {
-
-            source.connect(gainChorusNodes[0]);
-            delayChorusNodes[0].connect(equalizerInput);
-        }
-        else{
-            source.disconnect(gainChorusNodes[0]);
-            delayChorusNodes[0].disconnect(equalizerInput);
-        }
+    reverberation({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
     });
 
-</script>
-<script>
-    //echo
-    let delayFlagerNodes = [],
-        gainFlagerNodes = [];
-
-
-    delayFlagerNodes.push(context.createDelay());
-    gainFlagerNodes.push(context.createGain());
-    delayFlagerNodes[0].delayTime.value = 0.05;
-    gainFlagerNodes[0].gain.value = 0.9;
-    gainFlagerNodes[0].connect(delayFlagerNodes[0]);
-
-    for(let i= 1; i<7; i++) {
-        delayFlagerNodes.push(context.createDelay());
-        gainFlagerNodes.push(context.createGain());
-        delayFlagerNodes[i].delayTime.value = Math.random() * (0.20 - 0.05) + 0.05;
-        gainFlagerNodes[i].gain.value = 0.8;
-        gainFlagerNodes[i].connect(delayFlagerNodes[i]);
-        gainFlagerNodes[i-1].connect(gainFlagerNodes[i]);
-        delayFlagerNodes[i].connect(delayFlagerNodes[0]);
-
-    }
-    document.getElementById('flangerEffect').addEventListener('change', function() {
-        if(this.checked) {
-
-            source.connect(gainFlagerNodes[0]);
-            delayFlagerNodes[0].connect(equalizerInput);
-        }
-        else{
-            source.disconnect(gainFlagerNodes[0]);
-            delayFlagerNodes[0].disconnect(equalizerInput);
-        }
-    });
 
 </script>
+<script type="text/javascript" src="/scripts/phase.js"></script>
 <script>
-    //phaza
-    let delayPhazaNodes = [],
-        gainPhazaNodes = [];
 
-
-    delayPhazaNodes.push(context.createDelay());
-    gainPhazaNodes.push(context.createGain());
-    delayPhazaNodes[0].delayTime.value = 0.00001;
-    gainPhazaNodes[0].gain.value = 0.9;
-    gainPhazaNodes[0].connect(delayPhazaNodes[0]);
-
-    for(let i= 1; i<7; i++) {
-        delayPhazaNodes.push(context.createDelay());
-        gainPhazaNodes.push(context.createGain());
-        delayPhazaNodes[i].delayTime.value = Math.random() * (0.00005 + 0.00001) - 0.00001;
-        gainPhazaNodes[i].gain.value = 1;
-        gainPhazaNodes[i].connect(delayPhazaNodes[i]);
-        gainPhazaNodes[i-1].connect(gainPhazaNodes[i]);
-        delayPhazaNodes[i].connect(delayPhazaNodes[0]);
-
-    }
-    document.getElementById('phazaEffect').addEventListener('change', function() {
-        if(this.checked) {
-
-            source.connect(gainPhazaNodes[0]);
-            delayPhazaNodes[0].connect(equalizerInput);
-        }
-        else{
-            source.disconnect(gainPhazaNodes[0]);
-            delayPhazaNodes[0].disconnect(equalizerInput);
-        }
+    phase({
+        context: context,
+        container: '.effects',
+        source: source,
+        output: equalizerInput
     });
 
 </script>

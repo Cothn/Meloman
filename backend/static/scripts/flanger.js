@@ -2,15 +2,16 @@
 
     var context = null,
         //audio = null,
-        delayEchoNodes = [],
-        gainEchoNodes = [],
+        delayFlangerNodes = [],
+        gainFlangerNodes = [],
+        timeId,
 
 
         $ = document.querySelector.bind(document),
         createContext = function (param) {
             context = param.context;
-            delayEchoNodes = [];
-                gainEchoNodes = [];
+            delayFlangerNodes = [];
+                gainFlangerNodes = [];
         },
         /**
          * creates number input elements
@@ -19,9 +20,9 @@
             var node, label;
 
             node = document.createElement('input');
-            node.id = "echoEffect";
+            node.id = "flangerEffect";
             node.type = "checkbox";
-            label = document.createTextNode("Echo");
+            label = document.createTextNode("Flanger");
             container.appendChild(node);
             container.appendChild(label);
             label = document.createElement('br');
@@ -49,12 +50,14 @@
             input.addEventListener('change', function() {
                 if(this.checked) {
 
-                    source.connect(gainEchoNodes[0]);
-                    delayEchoNodes[0].connect(output);
+                    source.connect(gainFlangerNodes[0]);
+                    delayFlangerNodes[0].connect(output);
+                    timeId = setInterval(updateDelayTime, 2000);
                 }
                 else{
-                    source.disconnect(gainEchoNodes[0]);
-                    delayEchoNodes[0].disconnect(output);
+                    source.disconnect(gainFlangerNodes[0]);
+                    delayFlangerNodes[0].disconnect(output);
+                    clearInterval(timeId);
                 }
             });
         },
@@ -66,29 +69,34 @@
          */
         createFilters = function (number) {
 
-            delayEchoNodes.push(context.createDelay());
-            gainEchoNodes.push(context.createGain());
-            delayEchoNodes[0].delayTime.value = 0.05;
-            gainEchoNodes[0].gain.value = 0.6;
-            gainEchoNodes[0].connect(delayEchoNodes[0]);
+            delayFlangerNodes.push(context.createDelay());
+            gainFlangerNodes.push(context.createGain());
+            delayFlangerNodes[0].delayTime.value = 0.05;
+            gainFlangerNodes[0].gain.value = 0.9;
+            gainFlangerNodes[0].connect(delayFlangerNodes[0]);
 
             for(let i= 1; i<number; i++) {
-                delayEchoNodes.push(context.createDelay());
-                gainEchoNodes.push(context.createGain());
-                delayEchoNodes[i].delayTime.value = 0.05;
-                gainEchoNodes[i].gain.value = 0.7;
-                gainEchoNodes[i].connect(delayEchoNodes[i]);
-                gainEchoNodes[i-1].connect(gainEchoNodes[i]);
-                delayEchoNodes[i].connect(delayEchoNodes[i-1]);
+                delayFlangerNodes.push(context.createDelay());
+                gainFlangerNodes.push(context.createGain());
+                delayFlangerNodes[i].delayTime.value = Math.random() * (0.20 - 0.05) + 0.05;
+                gainFlangerNodes[i].gain.value = 0.8;
+                gainFlangerNodes[i].connect(delayFlangerNodes[i]);
+                gainFlangerNodes[i-1].connect(gainFlangerNodes[i]);
+                delayFlangerNodes[i].connect(delayFlangerNodes[0]);
 
             }
         },
 
+        updateDelayTime = function () {
+            delayFlangerNodes.forEach(value => {
+                value.delayTime.value = Math.random() * (0.20 - 0.05) + 0.05;
+            })
+        },
 
         /**
          * main function
          */
-        echo = function (param) {
+        flanger = function (param) {
 
             if (validateParam(param)){
                 createContext(param);
@@ -102,8 +110,8 @@
             }
         };
 
-    echo.context = context;
+    flanger.context = context;
 
-    window.echo = echo;
+    window.flanger = flanger;
 
 }());
