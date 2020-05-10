@@ -24,6 +24,10 @@ userRouter.get("/create_playlist", userController.createPlaylist);
 
 userRouter.get("/added_playlists", userController.addedPlaylists);
 
+userRouter.get("/create_post", userController.createPost);
+
+userRouter.get("/user_page", userController.userPage);
+
 userRouter.get("/equalizer", userController.equalizer);
 
 module.exports = userRouter;

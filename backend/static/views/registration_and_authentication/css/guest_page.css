@@ -168,6 +168,7 @@ hr {
 	font-size: 1.5vw;
 	padding-left: 1%;
 	color: black;
+	cursor: pointer;
 }
 
 .body-post-content-block {
@@ -194,6 +195,7 @@ hr {
 	padding: 0px;
 	margin: 0px;
 	font-size: 1.5vw;
+	cursor: pointer;
 }
 
 .body-playlist-tracks-block {
@@ -422,6 +424,7 @@ hr {
 
 .body-post-single-comment-username {
 	font-size: 1vw;
+	cursor: pointer;
 }
 
 .body-post-single-comment-textarea {
