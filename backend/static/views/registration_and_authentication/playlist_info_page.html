@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create playlist</title>
+	<title>Playlist info</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -28,7 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/create_playlist_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/added_playlists_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -36,25 +36,22 @@
 		}
 		.limiter {
 			width: 65%;
-			min-height: 45vmin;
+			min-height: 30vmin;
 			margin: 0 auto;
 		}
-		.container-login100 {
-			min-height: 100vh;
-			display: flex;
-			flex-direction: column;
-			flex-wrap: wrap;
-			padding: 0px;
-			justify-content: flex-start;
-			align-items: center;
+		.body-main {
+			padding-bottom: 1%;
 		}
-		.body-playlist-block {
-			width: 100%;
+		.hr-body-start {
+			margin-top: 1%;
+		}		
+		.hr-body-end {
+			margin-bottom: 3%;
 		}
 	</style>
 
 </head>
-<body onload="onCreatePlaylistPageLoad('choose-playlist-tracks-list-label')">
+<body onload="onAddedPlaylistsLoad('main-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -68,7 +65,6 @@
 				<div class="vl-header" style="flex-grow:1;"></div>
 				
 				<div class="header-subpart" style="flex-grow:2;">
-					<!-- <button class="header-search-btn"></button> -->
 					<a class="header-search-link">
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
 					</a>
@@ -103,203 +99,12 @@
 		</div>
 	</header>
 	
-	<div class="limiter body-main first">
-		<div class="body-playlist-create-header-block">
-			<p><b>Playlist creation:</b></p>
-		</div>
-		<div class="body-playlist-create-block">
-			<div class="write-playlist-title-block">
-				<label for="write-playlist-title" class="body-playlist-create-labels">Input playlist name:</label>
-				<input required id="write-playlist-title" class="write-playlist-title" type="text" placeholder="Playlist name">
-			</div>
-			
-			<div class="choose-playlist-tracks-block">
-				<label id="choose-playlist-tracks-list-label" for="choose-playlist-tracks-list" class="body-playlist-create-labels">Choose tracks:</label>
-			</div>
-			
-			<div class="body-playlist-create-buttons">
-				<button class="login100-form-btn btn playlist-create-btn" onclick="onCreatePlaylistClick('write-playlist-title')">Create playlist</button>
-			</div>
+	<div id="main-block" class="limiter body-main first">
+		<div class="body-added-playlists-header-block">
+			<p><b>Playlist info</b></p>
 		</div>
 		
-		<div>
-			<button class="login100-form-btn btn playlist-show-result-btn" onclick="changeVisibility('test-playlist')">Check result lookout</button>
-		</div>
-	</div>
-
-	<div id="test-playlist" class="limiter body-main test-playlist" style="display:none;">
-		<div class="body-post-block">
-
-			<hr class="hr-body-start">
-			
-			<div class="body-post-content-block">
-				<div class="v1-body" style="flex-grow:1;"></div>
-				
-				<div class="body-post-content-main-block">
-					<div class="body-playlist-block" style="flex-grow:3;">
-						<a class="body-playlist-name-link">Epic music</a>
-						
-						<div class="body-playlist-tracks-block">
-						
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-							
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-							
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-							
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-							
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-							
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-							
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-							
-							<div class="body-playlist-single-track-block">
-								<div class="body-playlist-single-track-btn">
-									<a class="btn-link">
-										<span class="btn action">
-											<i class="icon track-play-img"></i>
-										</span>
-									</a>
-								</div>
-								
-								<div class="body-playlist-single-track-name-block">
-									<p><b>Земляне</b></p>
-									<p>Трава у дома</p>
-								</div>
-								
-								<div class="body-playlist-single-track-duration-block">
-									<p>4:28</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<hr class="hr-body-end">
-			
-		</div>
+		
 	</div>
 
 	<div class="footer-block">
@@ -350,8 +155,10 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/create_playlist_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/added_playlists_page_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
+	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
+	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>
 
 </body>
 </html>

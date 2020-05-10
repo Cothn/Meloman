@@ -141,9 +141,11 @@ hr {
 }
 .hr-body-start {
 	height: 0.2vw;
+	background-color: #900090;	
 }
 .hr-body-end {
-	height: 0.2vw;
+	height: 0.3vw;
+	background-color: #660066;	
 }
 
 
@@ -195,6 +197,7 @@ hr {
 	padding: 0px;
 	margin: 0px;
 	font-size: 1.5vw;
+	color: black;
 	cursor: pointer;
 }
 
@@ -415,7 +418,7 @@ hr {
 
 .body-post-comments-block {
 	min-height: 5vw;
-	max-height: 10vw;
+	max-height: 18vw;
 	padding: 0.1% 1% 0.5% 1%;	
 	overflow: auto;			
 }
@@ -429,7 +432,8 @@ hr {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: flex-start;		
+	align-items: flex-start;	
+	padding-left: 2%;
 }
 
 .body-post-single-comment-block p {
@@ -450,14 +454,35 @@ hr {
 	font-size: 0.8vw;
 }
 
-	
-	
-.main-player {
+
+.footer-block {
+	width: 65%;	
+	height: 5%;
 	position: fixed;
 	bottom: 0;
 	left: 17.5%;
-	width: 65%;
-	height: 6%;
 	z-index: 10;
+	display: flex;
+	flex-direction: row;
+}	
+
+.footer-main-player-block {
+	width: 97%;
+}
+	
+.main-player {
+	width: 100%;
 	border-radius: 0px;
+}
+
+
+.footer-equalizer-link-block {
+	width: 3%;
+}
+
+.equalizer-image {
+	width: 100%;
+	height: 100%;
+	background-color: #F5F5F5;
+	cursor: pointer;
 }

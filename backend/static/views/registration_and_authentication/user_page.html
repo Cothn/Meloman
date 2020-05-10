@@ -44,7 +44,7 @@
 	</style>
 
 </head>
-<body onload="onUserPageLoad('user-main-block')">
+<body onload="onUserPageLoad('user-main-block', 'body-user-main-track', 'body-user-quick-buttons-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -58,7 +58,6 @@
 				<div class="vl-header" style="flex-grow:1;"></div>
 				
 				<div class="header-subpart" style="flex-grow:2;">
-					<!-- <button class="header-search-btn"></button> -->
 					<a class="header-search-link">
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
 					</a>
@@ -75,7 +74,7 @@
 				<div class="header-subpart" style="flex-grow:2;">
 				
 					<div class="header-username-block" style="flex-grow:2;">
-						<a class="header-username">COVID-19</a>
+						<a id="header-username" class="header-username" href="/view/user/user_page">My profile</a>
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
@@ -99,47 +98,45 @@
 				<div>
 					<a id="body-user-about-username" class="body-user-about-username">COVID-19</a>
 					
-					<a>
+					<a id="body-user-edit-link">
 						<img class="body-user-edit-btn" src="/views/registration_and_authentication/images/icons/baseline_edit_black_18dp.png" title="Edit account...">
 					</a>
 				</div>
 				
 				<div>
-					<p class="body-user-about-name-surname">Jesse Heisenberg</p>
+					<p id="body-user-about-name-surname" class="body-user-about-name-surname">Jesse Heisenberg</p>
 				</div>
 			</div>
 			<div class="body-user-main-track-block" style="flex-grow:2;">
-				<div class="body-user-main-track-info">
-					<p><b>Земляне</b><pre> - </pre></p>
-					<p>Трава у дома</p>
+				<div id="body-user-main-track-info" class="body-user-main-track-info">
 				</div>
 				
-				<audio controls id="body-user-main-track" class="body-user-main-track"></audio>
+				<audio controls loop id="body-user-main-track" class="body-user-main-track"></audio>
 			</div>
 		</div>
 		
-		<div class="body-user-quick-buttons-block">
-			<button class="login100-form-btn body-user-quick-btn">
+		<div id="body-user-quick-buttons-block" class="body-user-quick-buttons-block" style="display: none;">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/favorites_playlists')">
 				Favorites playlists
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/added_playlists')">
 				Added playlists
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/added_tracks')">
 				Added tracks
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/create_post')">
 				Create post
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn">
-				Add playlist
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/create_playlist')">
+				Create playlist
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/add_track')">
 				Add track
 			</button>			
 		</div>		
@@ -147,9 +144,17 @@
 	
 	<div hidden id="element-for-post-order"></div>
 
-	<div>
-		<audio controls id="main-player" class="main-player">
-		</audio>
+	<div class="footer-block">
+		<div class="footer-main-player-block">
+			<audio controls id="main-player" class="main-player">
+			</audio>
+		</div>
+		
+		<div class="footer-equalizer-link-block">
+			<a id="footer-equalizer-link" onclick="onEqualizerImageClick()">
+				<img class="equalizer-image" src="/views/registration_and_authentication/images/icons/baseline_equalizer_black_18dp.png" title="Redirect to equalizer page">
+			</a>			
+		</div>
 	</div>	
 
 	<script>
@@ -157,6 +162,7 @@
 	    audio.volume = 0.4;
 	
 		audio.addEventListener('play', (event) => {
+			document.getElementById("body-user-main-track").pause();
 			onAudioPlay('main-player');
 		});		
 	
@@ -167,10 +173,28 @@
 
 	<script>
 	    var audio = document.getElementById("body-user-main-track");
-	    audio.volume = 0.4;  
+	    audio.volume = 0.4; 
+
+		audio.addEventListener('play', (event) => {
+			document.getElementById("main-player").pause();
+		});			
 	</script>
 
-	<div id="dropDownSelect1"></div>
+	<script>
+		function onEqualizerImageClick() {
+			var currMainPlayerSrc = document.getElementById("main-player").src
+			document.getElementById("footer-equalizer-link").href = "/view/user/equalizer" + `?track_src=${currMainPlayerSrc}`;
+		}
+	</script>
+
+	
+	
+	
+	<script>
+		function onUserHotBtnClick(locationURL) {
+			location.href = locationURL;
+		}
+	</script>	
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>

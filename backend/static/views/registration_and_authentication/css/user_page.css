@@ -7,6 +7,7 @@
 .header-username {
 	font-size: 1vw;
 	color: #117AE7;
+	cursor: pointer;
 }
 
 .header-sign_out-block {

@@ -77,7 +77,7 @@
 				<div class="header-subpart" style="flex-grow:2;">
 				
 					<div class="header-username-block" style="flex-grow:2;">
-						<a class="header-username">COVID-19</a>
+						<a id="header-username" class="header-username" href="/view/user/user_page">My profile</a>
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
@@ -127,26 +127,48 @@
 		</div>
 	</div>
 
-	<div>
-		<audio controls id="main-player" class="main-player">
-		</audio>
+	<div class="footer-block">
+		<div class="footer-main-player-block">
+			<audio controls id="main-player" class="main-player">
+			</audio>
+		</div>
+		
+		<div class="footer-equalizer-link-block">
+			<a id="footer-equalizer-link" onclick="onEqualizerImageClick()">
+				<img class="equalizer-image" src="/views/registration_and_authentication/images/icons/baseline_equalizer_black_18dp.png" title="Redirect to equalizer page">
+			</a>			
+		</div>
 	</div>	
 
 	<script>
 	    var audio = document.getElementById("main-player");
-	    audio.volume = 0.4; 
+	    audio.volume = 0.4;
+	
+		audio.addEventListener('play', (event) => {
+			onAudioPlay('main-player');
+		});		
+	
+		audio.addEventListener('pause', (event) => {
+			onAudioPause('main-player');			
+		});		  
 	</script>
 
 	<script>
+		function onEqualizerImageClick() {
+			var currMainPlayerSrc = document.getElementById("main-player").src
+			document.getElementById("footer-equalizer-link").href = "/view/user/equalizer" + `?track_src=${currMainPlayerSrc}`;
+		}
+	</script>
 
+
+
+	<script>
 		document.getElementById('body-add-track-input-file').addEventListener('change', function (e) {
 			var url = URL.createObjectURL(e.target.files[0]);
 
 			document.getElementById('main-player').src = url;
-		}, false);
-
+		}, false);	
 	</script>
-
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>

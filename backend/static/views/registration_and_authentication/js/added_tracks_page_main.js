@@ -20,7 +20,7 @@ function onAddedTracksPageLoad(afterWhichDivId) {
 		redirect: 'follow'
 	};
 
-	fetch("http://localhost:3000/api/track", requestOptions)
+	fetch("http://localhost:3000/api/track/my", requestOptions)
 		.then(async response => {
 			var result = await response.json();
 			if (response.ok)

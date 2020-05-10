@@ -1,9 +1,14 @@
 
+const HEADER_USERNAME_LINK_ID = "header-username";
+const BODY_USER_EDIT_LINK_ID = "body-user-edit-link";
 const MAIN_PLAYER_ID = "main-player";
 
 const TEST_URL = "audio/test.mp3"
 
+
 const USER_ABOUT_USERNAME_LINK_ID = "body-user-about-username";
+const USER_ABOUT_NAME_SURNAME_LINK_ID = "body-user-about-name-surname";
+const USER_MAIN_TRACK_INFO_BLOCK_ID = "body-user-main-track-info";
 
 const TRACK_URL_DATA_NAME = "data-trackURL";
 const TRACK_IS_LAST_DATA_NAME = "data-isLast";
@@ -33,7 +38,7 @@ const LIKES_AMOUNT_I_ID_POSTFIX = "-likes-amount";
 const FAVORITES_HOT_BUTTON_ID_POSTFIX = "-favorites-btn"; // post1-favorites-btn
 const COMMENT_HOT_BUTTON_ID_POSTFIX = "-comment-btn"; // post1-comment-btn
 
-const WRITE_COMMENT_BLOCK_ID_POSTFIX = "-write-comment-block";
+const WRITE_COMMENT_BLOCK_ID_POSTFIX = "-write-comment-block"; //post1-write-comment-block
 const WRITE_COMMENT_TEXT_ID_POSTFIX = "-write-comment-text"; // post1-write-comment-text
 const WRITE_COMMENT_BTN_ID_POSTFIX = "-write-comment-btn"; // post1-write-comment-btn
 
@@ -53,7 +58,81 @@ const TRACK_TITLE_SEPARATOR = " - ";
 var allPostsInfo;
 
 
-function onUserPageLoad(afterWhichDivId) {
+
+function onUserPageLoad(afterWhichDivId, userPlayerId, userQuickButtonsBlockId) {
+
+	var urlParams = new URLSearchParams(window.location.search);
+	var compareUserId = urlParams.get('user_id');	
+
+	var currUserToken = getCookie("userToken");	
+
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/user/me", requestOptions)
+		.then(async response => {
+			var resultUser = await response.json();
+			if (response.ok)
+			{
+				if (resultUser.length == 0) {
+					alert("No user with such id!");
+					window.location.href = '/view/user';
+				}
+				
+				var userIdForPosts = compareUserId;
+				
+				if (resultUser.id == compareUserId || compareUserId == null || compareUserId == "") {
+					
+					userIdForPosts = resultUser.id;
+					
+					changeVisibility(userQuickButtonsBlockId, "block");
+					
+					document.getElementById(USER_ABOUT_USERNAME_LINK_ID).innerHTML = resultUser.nickname;
+					
+					var userName;
+					var userSurname;
+					
+					if (resultUser.name == null) {
+						userName = "";
+					}
+					else {
+						userName = resultUser.name;
+					}
+					
+					if (resultUser.surname == null) {
+						userSurname = "";
+					}
+					else {
+						userSurname = resultUser.surname;
+					}				
+					
+					document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML = userName + " " + userSurname;
+					
+					if (resultUser.music_avatar_id != null) {
+						fillUserMainTrackBlock(userPlayerId, resultUser.music_avatar_id, USER_MAIN_TRACK_INFO_BLOCK_ID);
+					}					
+				}
+				else {
+					fillUserAboutBlock(compareUserId, userPlayerId);
+				}
+				
+				loadAllUserPosts(userIdForPosts, afterWhichDivId);
+			}				
+			else
+			{
+				alert(resultUser.message);
+			}
+		})
+		.catch(error => console.log('error', error));
+}
+
+
+function fillUserAboutBlock(userId, userPlayerId) {
 	
 	var currUserToken = getCookie("userToken");	
 
@@ -65,7 +144,122 @@ function onUserPageLoad(afterWhichDivId) {
 		redirect: 'follow'
 	};
 
-	fetch("http://localhost:3000/api/post/my", requestOptions)
+	fetch("http://localhost:3000/api/user" + `?user_id=${userId}`, requestOptions)
+		.then(async response => {
+			var resultUser = await response.json();
+			if (response.ok)
+			{	
+
+				resultUser = resultUser[0];
+
+				document.getElementById(USER_ABOUT_USERNAME_LINK_ID).innerHTML = resultUser.nickname;
+				document.getElementById(BODY_USER_EDIT_LINK_ID).setAttribute("hidden", "hidden");
+		
+				var userName;
+				var userSurname;
+				
+				if (resultUser.name == null) {
+					userName = "";
+				}
+				else {
+					userName = resultUser.name;
+				}
+				
+				if (resultUser.surname == null) {
+					userSurname = "";
+				}
+				else {
+					userSurname = resultUser.surname;
+				}				
+				
+				document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML = userName + " " + userSurname;	
+
+				if (resultUser.music_avatar_id != null) {
+					fillUserMainTrackBlock(userPlayerId, resultUser.music_avatar_id, USER_MAIN_TRACK_INFO_BLOCK_ID);
+				}		
+			}				
+			else
+			{
+				alert(resultUser.message);
+			}
+		})
+		.catch(error => console.log('error', error));		
+}
+
+
+
+function fillUserMainTrackBlock(userPlayerElementId, currTrackId, userMainTrackInfoBlockElementId) {
+	
+	var currUserToken = getCookie("userToken");		
+
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/track" + `?id=${currTrackId}`, requestOptions)
+		.then(async response => {
+			var resultTrackInfo = await response.json();
+			if (response.ok)
+			{
+				resultTrackInfo = resultTrackInfo[0];
+				
+				document.getElementById(userPlayerElementId).src = resultTrackInfo.music_url;
+				document.getElementById(userPlayerElementId).play();
+				
+				var currTrackTitle = resultTrackInfo.title;
+				
+				var arrayOfStrings = currTrackTitle.split(TRACK_TITLE_SEPARATOR);
+				
+				var currTrackAuthor = arrayOfStrings[0];
+				var currTrackName = arrayOfStrings[1];
+				
+				p_main_track_info_author = document.createElement('p');
+				p_main_track_info_author.setAttribute("style", "display: flex; flex-direction: row;");
+				
+					b_main_track_info_author = document.createElement('b');
+					b_main_track_info_author.innerHTML = currTrackAuthor;
+					
+					pre_main_track_info_author = document.createElement('pre');
+					pre_main_track_info_author.innerHTML = " - ";
+					
+				p_main_track_info_author.insertAdjacentElement('beforeend', b_main_track_info_author);	
+				p_main_track_info_author.insertAdjacentElement('beforeend', pre_main_track_info_author);	
+				
+				
+				p_main_track_info_name = document.createElement('p');
+				p_main_track_info_name.innerHTML = currTrackName;
+				
+				
+				document.getElementById(userMainTrackInfoBlockElementId).insertAdjacentElement('beforeend', p_main_track_info_author);
+				document.getElementById(userMainTrackInfoBlockElementId).insertAdjacentElement('beforeend', p_main_track_info_name);				
+			}
+			else
+			{
+				alert(resultTrackInfo.message);
+			}
+		})
+		.catch(error => console.log('error', error));			
+}
+
+
+
+function loadAllUserPosts(userId, afterWhichDivId) {
+	
+	var currUserToken = getCookie("userToken");	
+
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/post" + `?author_id=${userId}`, requestOptions)
 		.then(async response => {
 			var resultPosts = await response.json();
 			if (response.ok)
@@ -177,6 +371,7 @@ function makePlaylistBlock(postNumber, currPost, currPlaylist) {
 								var a_playlist_name_link = document.createElement('a');
 								a_playlist_name_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_PLAYLIST_TITLE_PLAYLIST_ID_POSTFIX; 
 								a_playlist_name_link.className = "body-playlist-name-link";
+								a_playlist_name_link.setAttribute("href", `/view/user/playlist_info?playlist_id=${currPlaylist.id}`);
 								a_playlist_name_link.setAttribute(POST_PLAYLIST_TITLE_PLAYLIST_ID_DATA_NAME, currPlaylist.id);
 								
 									fillPlaylistTitleBlock(a_playlist_name_link, currPlaylist.title, currPlaylist.author_id);
@@ -273,6 +468,7 @@ function fillUsernameBlock(currUsernameElement, userId, postNumber) {
 				a_post_username_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_USERNAME_AUTHOR_ID_POSTFIX;
 				a_post_username_link.className = "body-post-username-link";
 				a_post_username_link.innerHTML = resultUserInfo.nickname;
+/* 				a_post_username_link.setAttribute("href", `/view/user/user_page?user_id=${resultUserInfo.id}`); */
 				a_post_username_link.setAttribute(POST_USERNAME_AUTHOR_ID_DATA_NAME, resultUserInfo.id);
 	
 				currUsernameElement.insertAdjacentElement('beforeend', a_post_username_link);				
@@ -580,7 +776,7 @@ function fillPostButtonsBlock(currPostButtonsElement, postNumber, currPostId, cu
 						button_write_comment_btn.innerHTML = "Comment";
 	
 						button_write_comment_btn.onclick = function() {
-							onWriteCommentAddSuccess(this.id, this.getAttribute(POST_COMMENT_BTN_POST_ID_DATA_NAME));		
+							onWriteCommentBtnClick(this.id, this.getAttribute(POST_COMMENT_BTN_POST_ID_DATA_NAME));		
 						}
 	
 					div_post_write_comment_btn_block.insertAdjacentElement('beforeend', button_write_comment_btn);
@@ -652,7 +848,7 @@ function changeFavoritesButtonIcon(currFavoritesIconElement, currPlaylistId, cur
 		},
 		redirect: 'follow'
 	};
-		console.log("changeFavoritesButtonIcon start");	
+
 	fetch("http://localhost:3000/api/playlist/favorite" + "/my", requestOptions)
 		.then(async response => {
 			var resultFavoritesInfo = await response.json();
@@ -691,7 +887,7 @@ function changeFavoritesButtonIcon(currFavoritesIconElement, currPlaylistId, cur
 function fillPostCommentsBlock(currPostCommentsElement, currPostId) {
 	
 	var currUserToken = getCookie("userToken");		
-console.log("fillPostCommentAuthorLink start");
+
 	var requestOptions = {
 		method: 'GET',
 		headers: {
@@ -703,9 +899,7 @@ console.log("fillPostCommentAuthorLink start");
 		.then(async response => {
 			var resultCommentsInfo = await response.json();
 			if (response.ok)
-			{
-console.log("fillPostCommentAuthorLink enter");	
-console.log(resultCommentsInfo);			
+			{		
 				let a_post_comments_header = document.createElement('a');
 				a_post_comments_header.className = "body-post-comments-header";
 				a_post_comments_header.innerHTML = "Comments:";

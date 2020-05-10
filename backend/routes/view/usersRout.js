@@ -22,7 +22,11 @@ userRouter.get("/added_tracks", userController.addedTracks);
 
 userRouter.get("/create_playlist", userController.createPlaylist);
 
+userRouter.get("/playlist_info", userController.playlistInfo);
+
 userRouter.get("/added_playlists", userController.addedPlaylists);
+
+userRouter.get("/favorites_playlists", userController.favoritesPlaylists);
 
 userRouter.get("/create_post", userController.createPost);
 
