@@ -36,7 +36,7 @@
 		}
 		.limiter {
 			width: 65%;
-			min-height: 30vmin;
+			min-height: 50vmin;
 			margin: 0 auto;
 		}
 		.body-main {
@@ -161,7 +161,7 @@
 	</div>
 
 	<div>
-		<audio controls loop id="main-player" class="main-player">
+		<audio controls loop id="main-player" class="main-player" hidden>
 		</audio>
 	</div>
 	<script>
@@ -188,6 +188,9 @@
 			let search_label = document.getElementById('write-extended-search-text-label');
 			genre_selector.hidden = true;
 			genre_checkbox.hidden = true;
+			audio.hidden = true;
+			audio.pause();
+			audio.src ="";
 			track_list.hidden = true;
 			switch (this.value) {
 				case "user":
@@ -216,7 +219,7 @@
 	<script>
 
 		document.getElementById('searchBtn').addEventListener('click', function (e) {
-			audio.removeAttribute(PREVIOUS_TRACK_ID_DATA_NAME);
+
 			let search_text = document.getElementById("write-extended-search-text").value;
 			let track_list = document.getElementById('find-track-list');
 			switch (searchType.value) {
@@ -231,13 +234,14 @@
 					break;
 				case "track":
 
-
+					audio.removeAttribute(PREVIOUS_TRACK_ID_DATA_NAME);
 					let param = {
 						title: search_text,
 						genre: document.getElementById('filter-by-genre').checked
 					};
 					onTracksSearch("body-playlist-block", param)
 					track_list.hidden = false;
+					audio.hidden = false;
 					break;
 			}
 		}, false);
