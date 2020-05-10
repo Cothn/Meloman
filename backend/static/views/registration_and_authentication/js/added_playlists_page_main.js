@@ -187,7 +187,7 @@ function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrack
 							var span_btn_link = document.createElement('span');
 							span_btn_link.className = "btn action";
 				
-								var i_btn_link = document.createElement('span');
+								var i_btn_link = document.createElement('i');
 								i_btn_link.className = "icon track-play-img";
 								
 							span_btn_link.insertAdjacentElement('beforeend', i_btn_link);	

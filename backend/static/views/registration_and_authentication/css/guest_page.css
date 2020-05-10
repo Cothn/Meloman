@@ -330,7 +330,7 @@ hr {
 
 
 .body-post-buttons-block {
-	min-height: 3.2vw;
+	min-height: 3.5vw;
 	padding-top: 0.5%;
 	padding-left: 1%;
 	display: flex;
@@ -376,12 +376,27 @@ hr {
 .post-like-btn {
 	background-image: url(../images/icons/baseline_favorite_border_black_18dp.png);
 }
+
+.post-not-liked-btn {
+	background-image: url(../images/icons/baseline_favorite_border_black_18dp.png);
+}
+
+.post-liked-btn {
+	background-image: url(../images/icons/baseline_favorite_black_18dp.png);
+}
+
+.post-not-favorites-btn {
+	background-image: url(../images/icons/baseline_star_border_black_18dp.png);
+}
+
+.post-favorites-btn {
+	background-image: url(../images/icons/baseline_star_black_18dp.png);
+}
+
 .post-comment-btn {
 	background-image: url(../images/icons/baseline_comment_black_18dp.png);
 }	
-.post-favorites-btn {
-	background-image: url(../images/icons/baseline_star_border_black_18dp.png);
-}
+
 
 .body-post-buttons-block p {
 	font-size: 1vw;
