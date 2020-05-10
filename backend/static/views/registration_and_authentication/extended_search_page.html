@@ -235,6 +235,8 @@
 				case "track":
 
 					audio.removeAttribute(PREVIOUS_TRACK_ID_DATA_NAME);
+					audio.pause();
+					audio.src ="";
 					let param = {
 						title: search_text,
 						genre: document.getElementById('filter-by-genre').checked
