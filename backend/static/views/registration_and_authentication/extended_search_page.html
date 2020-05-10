@@ -40,12 +40,12 @@
 			margin: 0 auto;
 		}
 		.body-main {
-			padding-bottom: 1%;
+			padding-bottom: 4%;
 		}
 	</style>
 
 </head>
-<body>
+<body onload="onSearchPageLoad('choose-track-genre-list-label')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -98,35 +98,154 @@
 		<div class="body-extended-search-header-block">
 			<p><b>Extended search:</b></p>
 		</div>
-		<form class="body-extended-search-block">
-			<div class="write-extended-search-text-block">
-				<label for="write-extended-search-text" class="body-extended-search-labels">Input extended search text:</label>
-				<input required id="write-extended-search-text" class="write-extended-search-text" type="text" placeholder="Search text">
-			</div>
-			
+
+		<div class="body-extended-search-block">
 			<div class="choose-extended-search-type-block">
-				<label for="choose-extended-search-type-list" class="body-extended-search-labels">Choose tracks:</label>
+				<label for="choose-extended-search-type-list" class="body-extended-search-labels">Choose search element type:</label>
 				<select required size="1" id="choose-extended-search-type-list" class="choose-extended-search-type-list">
 					<option value="user">Find user</option>
-					<option value="user">Find playlist</option>
-					<option value="user">Find track</option>
+					<option value="playlist">Find playlist</option>
+					<option value="post">Find post</option>
+					<option value="track">Find track</option>
 				</select>
 			</div>
-					
-			<div class="body-extended-search-buttons">
-				<button class="login100-form-btn btn extended-search-btn">Extended search</button>
+
+			<div class="write-extended-search-text-block">
+				<label id="write-extended-search-text-label" for="write-extended-search-text" class="body-extended-search-labels">Input nick name:</label>
+				<input id="write-extended-search-text" class="write-extended-search-text" type="text" placeholder="Search by nickname">
 			</div>
-		</form>
+
+			<div id="filter-track-by-genre-block" class="choose-extended-search-type-block" hidden>
+				<label  for="filter-by-genre" class="body-extended-search-labels">filter by genre</label>
+				<input type="checkbox" id="filter-by-genre"><br>
+			</div>
+			<div id="choose-track-genre-block" class="choose-extended-search-type-block" hidden>
+				<label id="choose-track-genre-list-label" for="choose-track-genre-list" class="body-extended-search-labels">Choose track genre:  </label>
+
+			</div>
+
+
+
+			<div class="body-extended-search-buttons">
+				<button id="searchBtn" class="login100-form-btn btn extended-search-btn">Extended search</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="find-track-list" class="limiter body-main first" hidden>
+		<div id="body-added-tracks-header-block" class="body-added-tracks-header-block">
+			<p><b>Finded tracks</b></p>
+		</div>
+
+		<div id="body-post-block" class="body-post-block">
+
+			<hr class="hr-body-start">
+
+			<div class="body-post-content-block">
+				<div class="v1-body" style="flex-grow:1;"></div>
+
+				<div class="body-post-content-main-block">
+					<div id="body-playlist-block" class="body-playlist-block" style="flex-grow:3;">
+
+						<div id="body-playlist-tracks-block" class="body-playlist-tracks-block">
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<hr class="hr-body-end">
+
+		</div>
 	</div>
 
 	<div>
-		<audio controls class="body-player">
+		<audio controls loop id="main-player" class="main-player">
 		</audio>
-	</div>	
+	</div>
+	<script>
+		var audio = document.getElementById("main-player");
+		audio.volume = 0.4;
 
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
+		audio.addEventListener('play', (event) => {
+			onAudioPlay('main-player');
+		});
+
+		audio.addEventListener('pause', (event) => {
+			onAudioPause('main-player');
+		});
+	</script>
+
+	<script>
+		var searchType = document.getElementById('choose-extended-search-type-list');
+		searchType.addEventListener('change', function (e) {
+			let genre_selector = document.getElementById('choose-track-genre-block');
+			let genre_checkbox = document.getElementById('filter-track-by-genre-block');
+			let track_list = document.getElementById('find-track-list');
+
+			let search_input = document.getElementById('write-extended-search-text');
+			let search_label = document.getElementById('write-extended-search-text-label');
+			genre_selector.hidden = true;
+			genre_checkbox.hidden = true;
+			track_list.hidden = true;
+			switch (this.value) {
+				case "user":
+					search_input.setAttribute('placeholder', 'Search by nick name');
+					search_label.innerHTML="Input nick name:";
+					break;
+				case "playlist":
+					search_input.setAttribute('placeholder', 'Search by title');
+					search_label.innerHTML="Input title:";
+					break;
+				case "post":
+					search_input.setAttribute('placeholder', 'Search by post text');
+					search_label.innerHTML="Input text:";
+					break;
+				case "track":
+					search_input.setAttribute('placeholder', 'Search by title');
+					search_label.innerHTML="Input title:";
+					genre_selector.hidden = false;
+					genre_checkbox.hidden = false;
+
+					break;
+			}
+		}, false);
+
+	</script>
+	<script>
+
+		document.getElementById('searchBtn').addEventListener('click', function (e) {
+			audio.removeAttribute(PREVIOUS_TRACK_ID_DATA_NAME);
+			let search_text = document.getElementById("write-extended-search-text").value;
+			let track_list = document.getElementById('find-track-list');
+			switch (searchType.value) {
+				case "user":
+
+					break;
+				case "playlist":
+
+					break;
+				case "post":
+
+					break;
+				case "track":
+
+
+					let param = {
+						title: search_text,
+						genre: document.getElementById('filter-by-genre').checked
+					};
+					onTracksSearch("body-playlist-block", param)
+					track_list.hidden = false;
+					break;
+			}
+		}, false);
+
+
+	</script>
+
+	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
@@ -141,8 +260,10 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-<!-- 	<script src="js/add_track_page_main.js"></script> -->
-	<script src="js/changeVisibility.js"></script>
-
-</body>
+	<script src="/views/registration_and_authentication/js/extended_search_main.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
+<!--===============================================================================================-->
+	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
+	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script></body>
 </html>
