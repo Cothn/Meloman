@@ -65,6 +65,7 @@ function onSearchPageLoad(afterWhichElementId) {
 				document.getElementById(afterWhichElementId).insertAdjacentElement('afterend', select_choose_track_genre_list);
 				
 				fillPlaylistForAddingTracksBlock();
+				findByQuery();
 			}
 			else
 			{
@@ -130,6 +131,18 @@ function onChosenPlaylistForAddingTrack(selectId) {
 }
 
 
+function findByQuery() {
+
+		var urlParams = new URLSearchParams(window.location.search);
+		var searchText = urlParams.get('search_text');
+
+		if (searchText != null) {
+			console.log("Entered");
+			document.getElementById('write-extended-search-text').value = searchText;
+			document.getElementById('searchBtn').click();
+		}
+
+}
 
 
 function onTracksSearch(postDivId, param) {
