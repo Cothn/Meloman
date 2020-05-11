@@ -692,7 +692,7 @@ function onUsersSearch(postDivId, param) {
 
 					var a_user_nickname = document.createElement('a');
 					a_user_nickname.className = "body-users-search-username-link";
-					a_user_nickname.href = "/view/user/user_page?user_id=" + currUserId;
+					a_user_nickname.href = "/view/user?user_id=" + currUserId;
 					a_user_nickname.innerHTML = `<b>${currUserNick}</b>`;
 					a_user_nickname.setAttribute("style", "padding-left: 2%;");
 

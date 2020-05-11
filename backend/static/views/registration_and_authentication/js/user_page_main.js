@@ -212,20 +212,20 @@ function fillUserMainTrackBlock(userPlayerElementId, currTrackId, userMainTrackI
 				var currTrackAuthor = arrayOfStrings[0];
 				var currTrackName = arrayOfStrings[1];
 				
-				p_main_track_info_author = document.createElement('p');
+				let p_main_track_info_author = document.createElement('p');
 				p_main_track_info_author.setAttribute("style", "display: flex; flex-direction: row;");
 				
-					b_main_track_info_author = document.createElement('b');
+					let b_main_track_info_author = document.createElement('b');
 					b_main_track_info_author.innerHTML = currTrackAuthor;
 					
-					pre_main_track_info_author = document.createElement('pre');
+					let pre_main_track_info_author = document.createElement('pre');
 					pre_main_track_info_author.innerHTML = " - ";
 					
 				p_main_track_info_author.insertAdjacentElement('beforeend', b_main_track_info_author);	
 				p_main_track_info_author.insertAdjacentElement('beforeend', pre_main_track_info_author);	
 				
 				
-				p_main_track_info_name = document.createElement('p');
+				let p_main_track_info_name = document.createElement('p');
 				p_main_track_info_name.innerHTML = currTrackName;
 				
 				
@@ -366,7 +366,7 @@ function makePlaylistBlock(postNumber, currPost, currPlaylist) {
 								var a_playlist_name_link = document.createElement('a');
 								a_playlist_name_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_PLAYLIST_TITLE_PLAYLIST_ID_POSTFIX; 
 								a_playlist_name_link.className = "body-playlist-name-link";
-								a_playlist_name_link.setAttribute("href", `/view/user/playlist_info?playlist_id=${currPlaylist.id}`);
+								a_playlist_name_link.setAttribute("href", `/view/playlist/info?playlist_id=${currPlaylist.id}`);
 								a_playlist_name_link.setAttribute(POST_PLAYLIST_TITLE_PLAYLIST_ID_DATA_NAME, currPlaylist.id);
 								
 									fillPlaylistTitleBlock(a_playlist_name_link, currPlaylist.title, currPlaylist.author_id);
@@ -463,7 +463,7 @@ function fillUsernameBlock(currUsernameElement, userId, postNumber) {
 				a_post_username_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_USERNAME_AUTHOR_ID_POSTFIX;
 				a_post_username_link.className = "body-post-username-link";
 				a_post_username_link.innerHTML = resultUserInfo.nickname;
-/* 				a_post_username_link.setAttribute("href", `/view/user/user_page?user_id=${resultUserInfo.id}`); */
+/* 				a_post_username_link.setAttribute("href", `/view/user?user_id=${resultUserInfo.id}`); */
 				a_post_username_link.setAttribute(POST_USERNAME_AUTHOR_ID_DATA_NAME, resultUserInfo.id);
 	
 				currUsernameElement.insertAdjacentElement('beforeend', a_post_username_link);				
