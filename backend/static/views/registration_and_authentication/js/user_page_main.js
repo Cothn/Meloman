@@ -366,7 +366,7 @@ function makePlaylistBlock(postNumber, currPost, currPlaylist) {
 								var a_playlist_name_link = document.createElement('a');
 								a_playlist_name_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_PLAYLIST_TITLE_PLAYLIST_ID_POSTFIX; 
 								a_playlist_name_link.className = "body-playlist-name-link";
-								a_playlist_name_link.setAttribute("href", `/view/user/playlist_info?playlist_id=${currPlaylist.id}`);
+								a_playlist_name_link.setAttribute("href", `/view/playlist/info?playlist_id=${currPlaylist.id}`);
 								a_playlist_name_link.setAttribute(POST_PLAYLIST_TITLE_PLAYLIST_ID_DATA_NAME, currPlaylist.id);
 								
 									fillPlaylistTitleBlock(a_playlist_name_link, currPlaylist.title, currPlaylist.author_id);
@@ -463,7 +463,7 @@ function fillUsernameBlock(currUsernameElement, userId, postNumber) {
 				a_post_username_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_USERNAME_AUTHOR_ID_POSTFIX;
 				a_post_username_link.className = "body-post-username-link";
 				a_post_username_link.innerHTML = resultUserInfo.nickname;
-/* 				a_post_username_link.setAttribute("href", `/view/user/user_page?user_id=${resultUserInfo.id}`); */
+/* 				a_post_username_link.setAttribute("href", `/view/user?user_id=${resultUserInfo.id}`); */
 				a_post_username_link.setAttribute(POST_USERNAME_AUTHOR_ID_DATA_NAME, resultUserInfo.id);
 	
 				currUsernameElement.insertAdjacentElement('beforeend', a_post_username_link);				

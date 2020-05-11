@@ -6,7 +6,7 @@ var userRouter = express.Router();
 /* GET users listing. *///1
 userRouter.get('/users', userController.showUsers);
 
-userRouter.get("/create", userController.createUser);
+userRouter.get("/registration", userController.createUser);
 
 userRouter.get("/", userController.userPage);
 

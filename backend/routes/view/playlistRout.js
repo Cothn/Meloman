@@ -5,7 +5,7 @@ var playlistRouter = express.Router();
 
 playlistRouter.get("/create", playlistController.createPlaylist);
 
-playlistRouter.get("/playlist_info", playlistController.playlistInfo);
+playlistRouter.get("/info", playlistController.playlistInfo);
 
 playlistRouter.get("/added", playlistController.addedPlaylists);
 
