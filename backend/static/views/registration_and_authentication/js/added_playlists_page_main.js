@@ -86,6 +86,7 @@ function makePlaylistBlock(postNumber, currPlaylist, afterWhichDivId) {
 							
 								var a_playlist_name_link = document.createElement('a');
 								a_playlist_name_link.className = "body-playlist-name-link";
+								a_playlist_name_link.setAttribute("href", "info?playlist_id=" + currPlaylist.id);
 								a_playlist_name_link.innerHTML = currPlaylist.title;
 								
 							div_playlist_block.insertAdjacentElement('beforeend', a_playlist_name_link);	
