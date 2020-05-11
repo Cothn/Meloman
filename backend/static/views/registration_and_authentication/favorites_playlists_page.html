@@ -36,16 +36,19 @@
 		}
 		.limiter {
 			width: 65%;
-			min-height: 30vmin;
+			min-height: 10vmin;
 			margin: 0 auto;
 		}
 		.body-main {
-			padding-bottom: 1%;
+			padding-bottom: 3%;
+		}
+		.hr-body-end {
+			margin-bottom: 3%;
 		}
 	</style>
 
 </head>
-<body>
+<body onload="onFavoritesPlaylistsLoad('main-favorites-playlists-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -93,10 +96,13 @@
 		</div>
 	</header>
 	
-	<div class="limiter body-main first">
+	<div id="main-body-my-playlists-header-block" class="limiter body-main first">
 		<div class="body-my-playlists-header-block">
 			<p><b>Favorites playlists</b></p>
 		</div>
+	</div>
+
+	<div id="main-favorites-playlists-block" class="limiter body-main">
 	</div>
 
 	<div class="footer-block">
@@ -147,8 +153,10 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="js/favorites_playlists_page_main.js"></script>
-	<script src="js/changeVisibility.js"></script>
+	<script src="/views/registration_and_authentication/js/favorites_playlists_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
+	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
+	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script></body>	
 
 </body>
 </html>

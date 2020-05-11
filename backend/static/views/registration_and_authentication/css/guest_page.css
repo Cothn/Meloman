@@ -281,6 +281,13 @@ hr {
 	background-size: 0.5vw 0.5vw;
 }
 
+.body-playlist-single-track-btn .btn.action .track-delete-img {
+	background-image: url(../images/icons/baseline_remove_black_18dp.png);
+	width: 0.5vw;
+	height: 0.5vw;
+	background-size: 0.5vw 0.5vw;
+}
+
 
 .body-playlist-single-track-name-block {
 	width: 120%;
