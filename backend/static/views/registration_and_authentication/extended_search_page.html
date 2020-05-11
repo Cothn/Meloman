@@ -105,7 +105,6 @@
 				<select required size="1" id="choose-extended-search-type-list" class="choose-extended-search-type-list">
 					<option value="user">Find user</option>
 					<option value="playlist">Find playlist</option>
-					<option value="post">Find post</option>
 					<option value="track">Find track</option>
 				</select>
 			</div>
@@ -170,6 +169,8 @@
 
 	</div>
 
+	
+
 	<div>
 		<audio controls loop id="main-player" class="main-player" hidden>
 		</audio>
@@ -214,10 +215,6 @@
 					search_input.setAttribute('placeholder', 'Search by title');
 					search_label.innerHTML="Input title:";
 					break;
-				case "post":
-					search_input.setAttribute('placeholder', 'Search by post text');
-					search_label.innerHTML="Input text:";
-					break;
 				case "track":
 					search_input.setAttribute('placeholder', 'Search by title');
 					search_label.innerHTML="Input title:";
@@ -241,7 +238,9 @@
 			let play_list = document.getElementById("palylists-main-block");
 			switch (searchType.value) {
 				case "user":
-
+					param = {
+						nickname: search_text
+					};
 					break;
 				case "playlist":
 					param = {
@@ -250,9 +249,6 @@
 					onPlaylistSearch("palylists-main-block", param);
 					play_list.hidden = false;
 					audio.hidden = false;
-					break;
-				case "post":
-
 					break;
 				case "track":
 
