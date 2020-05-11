@@ -672,6 +672,7 @@ function onUsersSearch(postDivId, param) {
 				for (let userCount = 0; userCount < result.length; userCount++) {
 					//console.log(result[userCount]);
 
+					var currUserId = result[userCount].id;
 					var currUserNick = result[userCount].nickname;
 					var currUserName = result[userCount].name;
 					var currUserSurname = result[userCount].surname;
@@ -689,18 +690,26 @@ function onUsersSearch(postDivId, param) {
 					div_user_block.id = currDivUserBlockId;
 					div_user_block.className = "body-post-block";
 
+					var a_user_nickname = document.createElement('a');
+					a_user_nickname.className = "body-users-search-username-link";
+					a_user_nickname.href = "/view/user/user_page?user_id=" + currUserId;
+					a_user_nickname.innerHTML = `<b>${currUserNick}</b>`;
+					a_user_nickname.setAttribute("style", "padding-left: 2%;");
 
-					var p_user_nickname = document.createElement('p');
-					p_user_nickname.innerHTML = `<b>${currUserNick}</b>`;
+					var hr_body_first = document.createElement('hr');
+					hr_body_first.className = "hr-body";
 
 					var p_user_name = document.createElement('pre');
-					p_user_name.innerHTML = `${currUserName}`;
+					p_user_name.innerHTML = "Name: " + `${currUserName}`;
+					p_user_name.setAttribute("style", "margin-top: 1%; margin-left: 1%");
 
 					var p_user_surname = document.createElement('pre');
-					p_user_surname.innerHTML = `${currUserSurname}`;
+					p_user_surname.innerHTML = "Surname: " + `${currUserSurname}`;
+					p_user_surname.setAttribute("style", "margin-left: 1%");
 
 					var p_user_email = document.createElement('p');
-					p_user_email.innerHTML = `<b>${currUserEmail}</b>`;
+					p_user_email.innerHTML = "Email: " + `<b>${currUserEmail}</b>`;
+					p_user_email.setAttribute("style", "margin-left: 1%; margin-bottom: 1%;");					
 
 
 					var hr_post_block_end = document.createElement('hr');
@@ -710,8 +719,8 @@ function onUsersSearch(postDivId, param) {
 					hr_post_block_start.className = "hr-body-start";
 
 					div_user_block.insertAdjacentElement('beforeend', hr_post_block_start);
-					div_user_block.insertAdjacentElement('beforeend', p_user_nickname);
-
+					div_user_block.insertAdjacentElement('beforeend', a_user_nickname);
+					div_user_block.insertAdjacentElement('beforeend', hr_body_first);
 					div_user_block.insertAdjacentElement('beforeend', p_user_name);
 
 
