@@ -40,7 +40,7 @@
                 var result = await response.json();
                 if (response.ok)
                 {
-                    window.location.href = '/view/user';
+                    window.location.href = '/view/authenticate';
                 }
                 else
                 {
