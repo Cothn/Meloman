@@ -13,7 +13,7 @@ function onCreatePostPageLoad(afterWhichElementId) {
 		redirect: 'follow'
 	};
 
-	fetch("http://localhost:3000/api/playlist", requestOptions)
+	fetch("http://localhost:3000/api/playlist/my", requestOptions)
 		.then(async response => {
 			var result = await response.json();
 			if (response.ok) {

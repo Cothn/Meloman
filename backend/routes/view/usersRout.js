@@ -32,6 +32,8 @@ userRouter.get("/create_post", userController.createPost);
 
 userRouter.get("/user_page", userController.userPage);
 
+userRouter.get("/edit_profile", userController.editProfile);
+
 userRouter.get("/equalizer", userController.equalizer);
 
 module.exports = userRouter;

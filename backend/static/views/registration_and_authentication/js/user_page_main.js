@@ -79,11 +79,6 @@ function onUserPageLoad(afterWhichDivId, userPlayerId, userQuickButtonsBlockId) 
 			var resultUser = await response.json();
 			if (response.ok)
 			{
-				if (resultUser.length == 0) {
-					alert("No user with such id!");
-					window.location.href = '/view/user';
-				}
-				
 				var userIdForPosts = compareUserId;
 				
 				if (resultUser.id == compareUserId || compareUserId == null || compareUserId == "") {
@@ -996,7 +991,7 @@ function onLikeBtnClick(btnId, currPostId, didLike) {
 function addUserLikeToPost(currBtnId, currPostId) {
 
 	currPostId = parseInt(currPostId);
-console.log(currPostId);
+
 	var currUserToken = getCookie("userToken");	
 
 	var raw = `{\"post_id\": ${currPostId}}`;
@@ -1015,7 +1010,7 @@ console.log(currPostId);
 		.then(async response => {
 			if (response.ok)
 			{		
-		console.log("SUccessful like adding");		
+
 				var currBtnElementChildrens = document.getElementById(currBtnId).children;
 				var childrenChildrens = currBtnElementChildrens[0].children;
 				childrenChildrens[0].classList.add(LIKED_ICON_CLASSNAME_ADD);
