@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Added tracks</title>
+	<title>Playlist info</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -28,7 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/added_tracks_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/added_playlists_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -40,16 +40,18 @@
 			margin: 0 auto;
 		}
 		.body-main {
-			padding-bottom: 3%;
-		}
-		.body-playlist-tracks-block {
-			max-height: none;
 			padding-bottom: 1%;
+		}
+		.hr-body-start {
+			margin-top: 1%;
+		}		
+		.hr-body-end {
+			margin-bottom: 3%;
 		}
 	</style>
 
 </head>
-<body onload="onAddedTracksPageLoad('body-playlist-tracks-block')">
+<body onload="onAddedPlaylistsLoad('main-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -97,30 +99,12 @@
 		</div>
 	</header>
 	
-	<div class="limiter body-main first">
-		<div id="body-added-tracks-header-block" class="body-added-tracks-header-block">
-			<p><b>Added tracks</b></p>
+	<div id="main-block" class="limiter body-main first">
+		<div class="body-added-playlists-header-block">
+			<p><b>Playlist info</b></p>
 		</div>
 		
-		<div id="body-post-block" class="body-post-block">
-
-			<hr class="hr-body-start">
-			
-			<div class="body-post-content-block">
-				<div class="v1-body" style="flex-grow:1;"></div>
-				
-				<div class="body-post-content-main-block">
-					<div class="body-playlist-block" style="flex-grow:3;">
-						<div id="body-playlist-tracks-block" class="body-playlist-tracks-block">
 		
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<hr class="hr-body-end">
-			
-		</div>		
 	</div>
 
 	<div class="footer-block">
@@ -155,7 +139,6 @@
 			document.getElementById("footer-equalizer-link").href = "/view/user/equalizer" + `?track_src=${currMainPlayerSrc}`;
 		}
 	</script>
-
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -172,10 +155,10 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/added_tracks_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/added_playlists_page_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
 	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
 	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>
-	
+
 </body>
 </html>

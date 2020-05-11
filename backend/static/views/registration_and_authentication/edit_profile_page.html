@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Added tracks</title>
+	<title>Edit profile</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -28,7 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/added_tracks_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/edit_profile_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -42,14 +42,19 @@
 		.body-main {
 			padding-bottom: 3%;
 		}
-		.body-playlist-tracks-block {
-			max-height: none;
-			padding-bottom: 1%;
+		.wrap-input100 {
+			width: 94%;
+			height: 6.5vmin;
+			background-color: white;
+		}	
+		.wrap-input100 .input100 {
+			padding-left: 2%;
+			font-size: 2vmin;
 		}
 	</style>
 
 </head>
-<body onload="onAddedTracksPageLoad('body-playlist-tracks-block')">
+<body onload="onEditProfileLoad('choose-user-main-track-list-label', 'main-player')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -98,29 +103,49 @@
 	</header>
 	
 	<div class="limiter body-main first">
-		<div id="body-added-tracks-header-block" class="body-added-tracks-header-block">
-			<p><b>Added tracks</b></p>
+		<div class="body-edit-user-header-block">
+			<p><b>Edit profile:</b></p>
 		</div>
 		
-		<div id="body-post-block" class="body-post-block">
-
-			<hr class="hr-body-start">
-			
-			<div class="body-post-content-block">
-				<div class="v1-body" style="flex-grow:1;"></div>
-				
-				<div class="body-post-content-main-block">
-					<div class="body-playlist-block" style="flex-grow:3;">
-						<div id="body-playlist-tracks-block" class="body-playlist-tracks-block">
-		
-						</div>
-					</div>
-				</div>
+		<div class="body-edit-user-block validate-form">
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+				<input class="input100" type="text" id="username" name="username" placeholder="Username">
+				<span class="focus-input100"></span>
 			</div>
 			
-			<hr class="hr-body-end">
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Email is required">
+				<input class="input100" type="text" id="email" name="email" placeholder="Email">
+				<span class="focus-input100"></span>
+			</div>
 			
-		</div>		
+			<div class="wrap-input100 m-b-16" data-validate = "First name is required">
+				<input class="input100" type="text" id="first-name" name="first-name" placeholder="First name">
+				<span class="focus-input100"></span>
+			</div>
+			
+			<div class="wrap-input100 m-b-16" data-validate = "Last name is required">
+				<input class="input100" type="text" id="last-name" name="last-name" placeholder="Last name">
+				<span class="focus-input100"></span>
+			</div>			
+			
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+				<input class="input100" type="password" id="password" name="password" placeholder="Password">
+				<span class="focus-input100"></span>
+			</div>
+					
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Confirm of password is required">
+				<input class="input100" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password">
+				<span class="focus-input100"></span>
+			</div>					
+				
+			<div class="choose-user-main-track-block">
+				<label id="choose-user-main-track-list-label" class="body-user-main-track-labels">Choose main track:</label>				
+			</div>
+				
+			<div class="body-edit-user-buttons">
+				<button id="edit-profile-btn" class="login100-form-btn btn edit-user-btn">Edit profile</button>
+			</div>
+		</div>
 	</div>
 
 	<div class="footer-block">
@@ -155,7 +180,6 @@
 			document.getElementById("footer-equalizer-link").href = "/view/user/equalizer" + `?track_src=${currMainPlayerSrc}`;
 		}
 	</script>
-
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -172,10 +196,10 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/added_tracks_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/edit_profile_page_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
 	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
 	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>
-	
+
 </body>
 </html>

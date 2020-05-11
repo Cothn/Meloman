@@ -20,12 +20,11 @@ function onAddedTracksPageLoad(afterWhichDivId) {
 		redirect: 'follow'
 	};
 
-	fetch("http://localhost:3000/api/track", requestOptions)
+	fetch("http://localhost:3000/api/track/my", requestOptions)
 		.then(async response => {
 			var result = await response.json();
 			if (response.ok)
 			{
-				var audioElement = document.createElement('audio');
 				var postCount = 1;
 				
 				for (let trackCount = 0; trackCount < result.length; trackCount++) {
@@ -79,7 +78,7 @@ function onAddedTracksPageLoad(afterWhichDivId) {
 								var span_btn_link = document.createElement('span');
 								span_btn_link.className = "btn action";
 					
-									var i_btn_link = document.createElement('span');
+									var i_btn_link = document.createElement('i');
 									i_btn_link.className = "icon track-play-img";
 									
 								span_btn_link.insertAdjacentElement('beforeend', i_btn_link);	

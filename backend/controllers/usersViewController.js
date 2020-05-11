@@ -32,8 +32,28 @@ exports.createPlaylist = function(request, response){
     response.status(200).sendFile( 'registration_and_authentication/create_playlist_page.html', {root: root_path});
 };
 
+exports.playlistInfo = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/playlist_info_page.html', {root: root_path});
+};
+
 exports.addedPlaylists = function(request, response){
     response.status(200).sendFile( 'registration_and_authentication/added_playlists_page.html', {root: root_path});
+};
+
+exports.favoritesPlaylists = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/favorites_playlists_page.html', {root: root_path});
+};
+
+exports.createPost = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/create_post_page.html', {root: root_path});
+};
+
+exports.userPage = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/user_page.html', {root: root_path});
+};
+
+exports.editProfile = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/edit_profile_page.html', {root: root_path});
 };
 
 exports.equalizer = function(request, response){

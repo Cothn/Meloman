@@ -22,7 +22,7 @@ function onAddedPlaylistsLoad(afterWhichDivId) {
 		redirect: 'follow'
 	};
 
-	fetch("http://localhost:3000/api/playlist/my", requestOptions)
+	fetch("http://localhost:3000/api/playlist", requestOptions)
 		.then(async response => {
 			var resultPlaylist = await response.json();
 			if (response.ok)

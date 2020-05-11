@@ -60,7 +60,7 @@ function onCreatePlaylistClick(inputPlaylistNameId) {
     var options = selectTrackList && selectTrackList.options;
     var opt;
 
-    for (var i=0, iLen=options.length; i<iLen; i++) {
+    for (var i = 0, iLen = options.length; i < iLen; i++) {
 		opt = options[i];
 
 		if (opt.selected) {
