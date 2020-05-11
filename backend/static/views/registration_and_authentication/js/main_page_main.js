@@ -58,8 +58,11 @@ const TRACK_TITLE_SEPARATOR = " - ";
 var allPostsInfo;
 
 
-function onGuestPageLoad(afterWhichDivId) {
+
+function onMainPageLoad(afterWhichDivId) {
 	
+	var currUserToken = getCookie("userToken");	
+
 	var requestOptions = {
 		method: 'GET',
 		redirect: 'follow'
@@ -99,8 +102,13 @@ function onGuestPageLoad(afterWhichDivId) {
 
 function makePostBlock(postCount, currPostItem) {
 	
+	var currUserToken = getCookie("userToken");	
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -123,8 +131,13 @@ function makePostBlock(postCount, currPostItem) {
 
 function makePlaylistBlock(postNumber, currPost, currPlaylist) {
 	
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -167,6 +180,7 @@ function makePlaylistBlock(postNumber, currPost, currPlaylist) {
 								var a_playlist_name_link = document.createElement('a');
 								a_playlist_name_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_PLAYLIST_TITLE_PLAYLIST_ID_POSTFIX; 
 								a_playlist_name_link.className = "body-playlist-name-link";
+								a_playlist_name_link.setAttribute("href", `/view/playlist/info?playlist_id=${currPlaylist.id}`);
 								a_playlist_name_link.setAttribute(POST_PLAYLIST_TITLE_PLAYLIST_ID_DATA_NAME, currPlaylist.id);
 								
 									fillPlaylistTitleBlock(a_playlist_name_link, currPlaylist.title, currPlaylist.author_id);
@@ -204,10 +218,7 @@ function makePlaylistBlock(postNumber, currPost, currPlaylist) {
 					var div_post_buttons_block = document.createElement('div');
 					div_post_buttons_block.className = "body-post-buttons-block";
 					
-						p_post_bittons_denied_text = document.createElement('p');
-						p_post_bittons_denied_text.innerHTML = "You need to register and sign in to enable hot buttons: like, favorites, comment.";
-						
-					div_post_buttons_block.insertAdjacentElement('beforeend', p_post_bittons_denied_text);
+						fillPostButtonsBlock(div_post_buttons_block, postNumber, currPost.id, currPlaylist.id);
 					
 					var hr_post_block_body_third = document.createElement('hr');
 					hr_post_block_body_third.className = "hr-body";					
@@ -245,8 +256,13 @@ function makePlaylistBlock(postNumber, currPost, currPlaylist) {
 
 function fillUsernameBlock(currUsernameElement, userId, postNumber) {
 
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -261,6 +277,7 @@ function fillUsernameBlock(currUsernameElement, userId, postNumber) {
 				a_post_username_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_USERNAME_AUTHOR_ID_POSTFIX;
 				a_post_username_link.className = "body-post-username-link";
 				a_post_username_link.innerHTML = resultUserInfo.nickname;
+/* 				a_post_username_link.setAttribute("href", `/view/user?user_id=${resultUserInfo.id}`); */
 				a_post_username_link.setAttribute(POST_USERNAME_AUTHOR_ID_DATA_NAME, resultUserInfo.id);
 	
 				currUsernameElement.insertAdjacentElement('beforeend', a_post_username_link);				
@@ -278,8 +295,13 @@ function fillUsernameBlock(currUsernameElement, userId, postNumber) {
 
 function fillPlaylistTitleBlock(currPlaylistElement, title, userId) {
 
+	var currUserToken = getCookie("userToken");		
+	
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -305,8 +327,13 @@ function fillPlaylistTitleBlock(currPlaylistElement, title, userId) {
 
 function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrackId) {
 	
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -435,8 +462,13 @@ function fillPostTextBlock(currPostTextElement, postText) {
 
 function fillPostButtonsBlock(currPostButtonsElement, postNumber, currPostId, currPlaylistId) {
 	
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -579,8 +611,13 @@ function fillPostButtonsBlock(currPostButtonsElement, postNumber, currPostId, cu
 
 function changeLikeButtonIcon(currLikeIconElement, currPostId, currLikeBtnElement) {
 
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 	fetch("http://localhost:3000/api/like_in_post" + `/${currPostId}` + "/my", requestOptions)
@@ -611,8 +648,13 @@ function changeLikeButtonIcon(currLikeIconElement, currPostId, currLikeBtnElemen
 
 function changeFavoritesButtonIcon(currFavoritesIconElement, currPlaylistId, currFavoritesBtnElement) {
 
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -653,8 +695,13 @@ function changeFavoritesButtonIcon(currFavoritesIconElement, currPlaylistId, cur
 
 function fillPostCommentsBlock(currPostCommentsElement, currPostId) {
 	
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 	fetch("http://localhost:3000/api/comment" + `?post_id=${currPostId}`, requestOptions)
@@ -715,8 +762,13 @@ function fillPostCommentsBlock(currPostCommentsElement, currPostId) {
 
 function fillPostCommentAuthorLink(currPostCommentAuthorLinkElement, currAuthorId) {
 
+	var currUserToken = getCookie("userToken");		
+
 	var requestOptions = {
 		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -754,10 +806,16 @@ function addUserLikeToPost(currBtnId, currPostId) {
 
 	currPostId = parseInt(currPostId);
 
+	var currUserToken = getCookie("userToken");	
+
 	var raw = `{\"post_id\": ${currPostId}}`;
 
 	var requestOptions = {
 		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		body: raw,
 		redirect: 'follow'
 	};
@@ -789,8 +847,13 @@ function deleteUserLikeFromPost(currBtnId, currPostId) {
 
 	currPostId = parseInt(currPostId);
 
+	var currUserToken = getCookie("userToken");	
+
 	var requestOptions = {
 		method: 'DELETE',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -840,11 +903,16 @@ function addUserFavoritesToPlaylist(currBtnId, currPlaylistId) {
 	currPlaylistId = parseInt(currPlaylistId);
 console.log("addUserFavoritesToPlaylist start");
 console.log(currPlaylistId);
+	var currUserToken = getCookie("userToken");	
 
 	var raw = `{\"playlist_id\": ${currPlaylistId}}`;
 
 	var requestOptions = {
 		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		body: raw,
 		redirect: 'follow'
 	};
@@ -874,9 +942,14 @@ console.log(currPlaylistId);
 function deleteUserFavoritesFromPlaylist(currBtnId, currPlaylistId) {
 
 	currPlaylistId = parseInt(currPlaylistId);
+console.log(currPlaylistId);
+	var currUserToken = getCookie("userToken");	
 
 	var requestOptions = {
 		method: 'DELETE',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		redirect: 'follow'
 	};
 
@@ -923,10 +996,16 @@ function onWriteCommentBtnClick(btnId, currPostId) {
 		return;
 	}
 
+	var currUserToken = getCookie("userToken");		
+
 	var raw = `{\"post_id\": ${currPostId},\"text\": \"${commentText}\"}`;
 
 	var requestOptions = {
 		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'Authorization':`Bearer ${currUserToken}`
+		},
 		body: raw,
 		redirect: 'follow'
 	};
