@@ -88,7 +88,7 @@
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
-						<button class="login100-form-btn header-button">
+						<button  id="signOutBtn"  class="login100-form-btn header-button">
 							Sign out
 						</button>
 					</div>
@@ -107,10 +107,15 @@
 			document.getElementById("header-search-link").setAttribute('href', "/view/extended_search?search_text="+this.value);
 		});
 	</script>
-	
+
+	<script>
+		document.getElementById("signOutBtn").addEventListener("click", function (eve) {
+			document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/view;";
+			window.location.href= "/view/authenticate";
+		});
+	</script>
 	<div id="first-block" class="limiter first-block"></div>
 		
-
 	<div class="footer-block">
 		<div class="footer-main-player-block">
 			<audio controls id="main-player" class="main-player">
