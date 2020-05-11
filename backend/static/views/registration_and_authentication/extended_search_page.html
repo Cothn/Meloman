@@ -160,6 +160,16 @@
 		</div>
 	</div>
 
+	<div id="palylists-main-block" class="limiter body-main first" hidden>
+		<div class="body-added-playlists-header-block">
+			<p><b>find playlists</b></p>
+		</div>
+		<div id="palylists-block" class="body-main" hidden>
+
+		</div>
+
+	</div>
+
 	<div>
 		<audio controls loop id="main-player" class="main-player" hidden>
 		</audio>
@@ -192,6 +202,9 @@
 			audio.pause();
 			audio.src ="";
 			track_list.hidden = true;
+
+			let play_list = document.getElementById("palylists-main-block");
+			play_list.hidden = true;
 			switch (this.value) {
 				case "user":
 					search_input.setAttribute('placeholder', 'Search by nick name');
@@ -219,25 +232,32 @@
 	<script>
 
 		document.getElementById('searchBtn').addEventListener('click', function (e) {
-
+			audio.removeAttribute(PREVIOUS_TRACK_ID_DATA_NAME);
+			audio.pause();
+			audio.src ="";
+			let param = {};
 			let search_text = document.getElementById("write-extended-search-text").value;
 			let track_list = document.getElementById('find-track-list');
+			let play_list = document.getElementById("palylists-main-block");
 			switch (searchType.value) {
 				case "user":
 
 					break;
 				case "playlist":
-
+					param = {
+						title: search_text
+					};
+					onPlaylistSearch("palylists-main-block", param);
+					play_list.hidden = false;
+					audio.hidden = false;
 					break;
 				case "post":
 
 					break;
 				case "track":
 
-					audio.removeAttribute(PREVIOUS_TRACK_ID_DATA_NAME);
-					audio.pause();
-					audio.src ="";
-					let param = {
+
+					param = {
 						title: search_text,
 						genre: document.getElementById('filter-by-genre').checked
 					};
