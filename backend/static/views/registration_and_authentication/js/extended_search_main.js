@@ -536,14 +536,14 @@ function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrack
 					a_track_add_link.setAttribute(ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME, currTrackTitle);
 					
 					a_track_add_link.onclick = function() {
-						onTrackDeleteBtnClick(this.getAttribute(ADD_TRACK_BTN_TRACK_ID_DATA_NAME), this.getAttribute(ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME));
+						onTrackAddBtnClick(this.getAttribute(ADD_TRACK_BTN_TRACK_ID_DATA_NAME), this.getAttribute(ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME));
 					}
 					
 						var span_track_add_btn = document.createElement('span');
 						span_track_add_btn.className = "btn action";
 						
 							var icon_track_add_btn = document.createElement('i');
-							icon_track_add_btn.className = "icon track-delete-img";
+							icon_track_add_btn.className = "icon track-add-img";
 
 						span_track_add_btn.insertAdjacentElement('beforeend', icon_track_add_btn);
 						
@@ -692,7 +692,7 @@ function onUsersSearch(postDivId, param) {
 
 					var a_user_nickname = document.createElement('a');
 					a_user_nickname.className = "body-users-search-username-link";
-					a_user_nickname.href = "/view/user/user_page?user_id=" + currUserId;
+					a_user_nickname.href = "/view/user?user_id=" + currUserId;
 					a_user_nickname.innerHTML = `<b>${currUserNick}</b>`;
 					a_user_nickname.setAttribute("style", "padding-left: 2%;");
 

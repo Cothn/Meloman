@@ -190,7 +190,7 @@ console.log(input);
             .then(async response => {
                 if (response.ok)
                 {				
-                    window.location.href = '/view/user/user_page';
+                    window.location.href = '/view/user';
                 }
                 else
                 {

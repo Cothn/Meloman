@@ -74,7 +74,7 @@
 				<div class="header-subpart" style="flex-grow:2;">
 				
 					<div class="header-username-block" style="flex-grow:2;">
-						<a id="header-username" class="header-username" href="/view/user/user_page">My profile</a>
+						<a id="header-username" class="header-username" href="/view/user">My profile</a>
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
@@ -116,27 +116,27 @@
 		</div>
 		
 		<div id="body-user-quick-buttons-block" class="body-user-quick-buttons-block" style="display: none;">
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/favorites_playlists')">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/favorites')">
 				Favorites playlists
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/added_playlists')">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/added')">
 				Added playlists
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/added_tracks')">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/track/added')">
 				Added tracks
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/create_post')">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/post/create_post')">
 				Create post
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/create_playlist')">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/create')">
 				Create playlist
 			</button>
 			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/user/add_track')">
+			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/track/add')">
 				Add track
 			</button>			
 		</div>		
@@ -183,7 +183,7 @@
 	<script>
 		function onEqualizerImageClick() {
 			var currMainPlayerSrc = document.getElementById("main-player").src
-			document.getElementById("footer-equalizer-link").href = "/view/user/equalizer" + `?track_src=${currMainPlayerSrc}`;
+			document.getElementById("footer-equalizer-link").href = "/view/equalizer" + `?track_src=${currMainPlayerSrc}`;
 		}
 	</script>
 
