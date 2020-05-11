@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create post</title>
+	<title>Edit profile</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -25,9 +25,10 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/create_post_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/edit_profile_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -35,13 +36,25 @@
 		}
 		.limiter {
 			width: 65%;
-			min-height: 43vmin;
+			min-height: 30vmin;
 			margin: 0 auto;
+		}
+		.body-main {
+			padding-bottom: 3%;
+		}
+		.wrap-input100 {
+			width: 94%;
+			height: 6.5vmin;
+			background-color: white;
+		}	
+		.wrap-input100 .input100 {
+			padding-left: 2%;
+			font-size: 2vmin;
 		}
 	</style>
 
 </head>
-<body onload="onCreatePostPageLoad('choose-post-playlist-list-label')">
+<body onload="onEditProfileLoad('choose-user-main-track-list-label', 'main-player')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -76,7 +89,7 @@
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
-						<button id="signOutBtn" class="login100-form-btn header-button">
+						<button  id="signOutBtn" class="login100-form-btn header-button">
 							Sign out
 						</button>
 					</div>
@@ -104,25 +117,49 @@
 	</script>
 	
 	<div class="limiter body-main first">
-		<div class="body-post-create-header-block">
-			<p><b>Post creation:</b></p>
+		<div class="body-edit-user-header-block">
+			<p><b>Edit profile:</b></p>
 		</div>
 		
-		<div class="body-post-create-block">
-			<div id="choose-post-playlist-block" class="choose-post-playlist-block">
-				<label id="choose-post-playlist-list-label" for="choose-post-playlist-list" class="body-post-create-labels">Choose playlist:</label>
+		<div class="body-edit-user-block validate-form">
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+				<input class="input100" type="text" id="username" name="username" placeholder="Username">
+				<span class="focus-input100"></span>
 			</div>
 			
-			<div class="write-post-text-block">
-				<label for="write-post-text-textarea" class="body-post-create-labels">Write post text:</label>
-				<textarea required id="write-post-text-textarea" class="write-post-text-textarea">Some text to test post text text in textarea.</textarea>
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Email is required">
+				<input class="input100" type="text" id="email" name="email" placeholder="Email">
+				<span class="focus-input100"></span>
 			</div>
 			
-			<div class="body-post-create-buttons">
-				<button class="login100-form-btn btn post-create-btn" onclick="onCreatePostClick('write-post-text-textarea')">Create post</button>
+			<div class="wrap-input100 m-b-16" data-validate = "First name is required">
+				<input class="input100" type="text" id="first-name" name="first-name" placeholder="First name">
+				<span class="focus-input100"></span>
+			</div>
+			
+			<div class="wrap-input100 m-b-16" data-validate = "Last name is required">
+				<input class="input100" type="text" id="last-name" name="last-name" placeholder="Last name">
+				<span class="focus-input100"></span>
+			</div>			
+			
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+				<input class="input100" type="password" id="password" name="password" placeholder="Password">
+				<span class="focus-input100"></span>
+			</div>
+					
+			<div class="wrap-input100 validate-input m-b-16" data-validate = "Confirm of password is required">
+				<input class="input100" type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password">
+				<span class="focus-input100"></span>
+			</div>					
+				
+			<div class="choose-user-main-track-block">
+				<label id="choose-user-main-track-list-label" class="body-user-main-track-labels">Choose main track:</label>				
+			</div>
+				
+			<div class="body-edit-user-buttons">
+				<button id="edit-profile-btn" class="login100-form-btn btn edit-user-btn">Edit profile</button>
 			</div>
 		</div>
-
 	</div>
 
 	<div class="footer-block">
@@ -153,11 +190,10 @@
 
 	<script>
 		function onEqualizerImageClick() {
-			var currMainPlayerSrc = document.getElementById("main-player").src
+			var currMainPlayerSrc = document.getElementById("main-player").src;
 			document.getElementById("footer-equalizer-link").href = "/view/equalizer" + `?track_src=${currMainPlayerSrc}`;
 		}
 	</script>
-
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -174,7 +210,7 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/create_post_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/edit_profile_page_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
 	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
 	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>

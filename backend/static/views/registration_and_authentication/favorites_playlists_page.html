@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create post</title>
+	<title>Favorites playlists</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -25,9 +25,10 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
-	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/create_post_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/my_playlists_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -35,13 +36,19 @@
 		}
 		.limiter {
 			width: 65%;
-			min-height: 43vmin;
+			min-height: 10vmin;
 			margin: 0 auto;
+		}
+		.body-main {
+			padding-bottom: 3%;
+		}
+		.hr-body-end {
+			margin-bottom: 3%;
 		}
 	</style>
 
 </head>
-<body onload="onCreatePostPageLoad('choose-post-playlist-list-label')">
+<body onload="onFavoritesPlaylistsLoad('main-favorites-playlists-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -76,7 +83,7 @@
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
-						<button id="signOutBtn" class="login100-form-btn header-button">
+						<button  id="signOutBtn" class="login100-form-btn header-button">
 							Sign out
 						</button>
 					</div>
@@ -103,26 +110,13 @@
 		});
 	</script>
 	
-	<div class="limiter body-main first">
-		<div class="body-post-create-header-block">
-			<p><b>Post creation:</b></p>
+	<div id="main-body-my-playlists-header-block" class="limiter body-main first">
+		<div class="body-my-playlists-header-block">
+			<p><b>Favorites playlists</b></p>
 		</div>
-		
-		<div class="body-post-create-block">
-			<div id="choose-post-playlist-block" class="choose-post-playlist-block">
-				<label id="choose-post-playlist-list-label" for="choose-post-playlist-list" class="body-post-create-labels">Choose playlist:</label>
-			</div>
-			
-			<div class="write-post-text-block">
-				<label for="write-post-text-textarea" class="body-post-create-labels">Write post text:</label>
-				<textarea required id="write-post-text-textarea" class="write-post-text-textarea">Some text to test post text text in textarea.</textarea>
-			</div>
-			
-			<div class="body-post-create-buttons">
-				<button class="login100-form-btn btn post-create-btn" onclick="onCreatePostClick('write-post-text-textarea')">Create post</button>
-			</div>
-		</div>
+	</div>
 
+	<div id="main-favorites-playlists-block" class="limiter body-main">
 	</div>
 
 	<div class="footer-block">
@@ -157,7 +151,6 @@
 			document.getElementById("footer-equalizer-link").href = "/view/equalizer" + `?track_src=${currMainPlayerSrc}`;
 		}
 	</script>
-
 	
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -174,10 +167,10 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/create_post_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/favorites_playlists_page_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
 	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
-	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>
+	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script></body>	
 
 </body>
 </html>

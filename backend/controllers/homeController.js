@@ -2,6 +2,7 @@ const mysql = require("mysql2");
 const mySqlConfig = require("../configs/mysqlconfig");
 const logger = require('../configs/logger4jsInit')
 
+
 exports.index = function(request, response) {
 
     var connection = mysql.createConnection(mySqlConfig.config);
@@ -24,3 +25,4 @@ exports.index = function(request, response) {
 
     response.send("Hallo Admin!");
 }
+

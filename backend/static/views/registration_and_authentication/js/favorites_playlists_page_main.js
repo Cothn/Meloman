@@ -8,9 +8,23 @@ const MAIN_PLAYER_ID = "main-player";
 
 const TRACK_TITLE_SEPARATOR = " - ";
 
+const POST_ID_PREFIX = "post";
+const PLAYLIST_ID_PREFIX = "playlist";
+const TRACK_ID_PREFIX = "track";
+const COMMENT_ID_PREFIX = "comment";
+
+const POST_FAVORITES_BTN_PLAYLIST_ID_DATA_NAME = "data-playlistId";
+const POST_FAVORITES_BTN_DID_FAVORITE_DATA_NAME = "data-didFavorite";
+
+const FAVORITES_HOT_BUTTON_ID_POSTFIX = "-favorites-btn"; // post1-favorites-btn
+
+const NOT_FAVORITES_ICON_CLASSNAME_ADD = "post-not-favorites-btn";
+const FAVORITES_ICON_CLASSNAME_ADD = "post-favorites-btn";
+
+
 var trackCounterId = [];
 
-function onAddedPlaylistsLoad(afterWhichDivId) {
+function onFavoritesPlaylistsLoad(afterWhichDivId) {
 	
 	var currUserToken = getCookie("userToken");	
 
@@ -22,7 +36,7 @@ function onAddedPlaylistsLoad(afterWhichDivId) {
 		redirect: 'follow'
 	};
 
-	fetch("http://localhost:3000/api/playlist/my", requestOptions)
+	fetch("http://localhost:3000/api/playlist/favorite/my", requestOptions)
 		.then(async response => {
 			var resultPlaylist = await response.json();
 			if (response.ok)
@@ -84,12 +98,43 @@ function makePlaylistBlock(postNumber, currPlaylist, afterWhichDivId) {
 							div_playlist_block.className = "body-playlist-block";
 							div_playlist_block.setAttribute("style", "flex-grow:3;");
 							
-								var a_playlist_name_link = document.createElement('a');
-								a_playlist_name_link.className = "body-playlist-name-link";
-								a_playlist_name_link.setAttribute("href", "info?playlist_id=" + currPlaylist.id);
-								a_playlist_name_link.innerHTML = currPlaylist.title;
+								var div_playlist_header_block = document.createElement('div');
+								div_playlist_header_block.setAttribute("style", "display: flex; flex-direction: row;");							
+							
+									var a_playlist_name_link = document.createElement('a');
+									a_playlist_name_link.className = "body-playlist-name-link";
+									a_playlist_name_link.innerHTML = currPlaylist.title;
 								
-							div_playlist_block.insertAdjacentElement('beforeend', a_playlist_name_link);	
+
+									let div_post_hot_button_favorites_block = document.createElement('div');
+									div_post_hot_button_favorites_block.className = "body-post-hot-button-block";
+									div_post_hot_button_favorites_block.setAttribute("style", "margin-left: 2%;");
+							
+										let a_post_hot_button_favorites_btn = document.createElement('a');
+										a_post_hot_button_favorites_btn.id = POST_ID_PREFIX + (postNumber + 1).toString() + FAVORITES_HOT_BUTTON_ID_POSTFIX;
+										a_post_hot_button_favorites_btn.setAttribute(POST_FAVORITES_BTN_PLAYLIST_ID_DATA_NAME, currPlaylist.id);
+
+										a_post_hot_button_favorites_btn.onclick = function() {
+											onFavoritesBtnClick(this.id, this.getAttribute(POST_FAVORITES_BTN_PLAYLIST_ID_DATA_NAME), this.getAttribute(POST_FAVORITES_BTN_DID_FAVORITE_DATA_NAME));		
+										}
+
+											let span_favorites_btn = document.createElement('span');
+											span_favorites_btn.className = "btn action";
+										
+												let icon_favorites_btn = document.createElement('i');
+												
+													changeFavoritesButtonIcon(icon_favorites_btn, currPlaylist.id, a_post_hot_button_favorites_btn);
+												
+											span_favorites_btn.insertAdjacentElement('beforeend', icon_favorites_btn);
+											
+										a_post_hot_button_favorites_btn.insertAdjacentElement('beforeend', span_favorites_btn);
+										
+									div_post_hot_button_favorites_block.insertAdjacentElement('beforeend', a_post_hot_button_favorites_btn);
+								
+								div_playlist_header_block.insertAdjacentElement('beforeend', a_playlist_name_link);	
+								div_playlist_header_block.insertAdjacentElement('beforeend', div_post_hot_button_favorites_block);								
+/* adsasdasdasdasdasdasdsad */
+							div_playlist_block.insertAdjacentElement('beforeend', div_playlist_header_block);	
 								
 								for (let trackCount = 0; trackCount < resultTracks.length; trackCount++) {
 								
@@ -236,6 +281,143 @@ function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrack
 		})
 		.catch(error => console.log('error', error));
 }
+
+
+
+function changeFavoritesButtonIcon(currFavoritesIconElement, currPlaylistId, currFavoritesBtnElement) {
+
+	var currUserToken = getCookie("userToken");		
+
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/playlist/favorite" + "/my", requestOptions)
+		.then(async response => {
+			var resultFavoritesInfo = await response.json();
+			if (response.ok)
+			{		
+				let doesItFavorite = false;
+				
+				for (let i = 0; i < resultFavoritesInfo.length; i++) {
+					if (resultFavoritesInfo[i].id == currPlaylistId) {
+						doesItFavorite = true;
+					}
+				}
+				
+				if (!doesItFavorite){
+					currFavoritesIconElement.className = "icon " + NOT_FAVORITES_ICON_CLASSNAME_ADD;
+					
+					currFavoritesBtnElement.setAttribute(POST_FAVORITES_BTN_DID_FAVORITE_DATA_NAME, false);
+				}
+				else {
+					currFavoritesIconElement.className = "icon " + FAVORITES_ICON_CLASSNAME_ADD;		
+
+					currFavoritesBtnElement.setAttribute(POST_FAVORITES_BTN_DID_FAVORITE_DATA_NAME, true);					
+				}
+			}
+			else
+			{
+				alert(resultFavoritesInfo.message);
+			}
+		})
+		.catch(error => console.log('error', error));	
+}
+
+
+
+function onFavoritesBtnClick(btnId, currPlaylistId, didFavorite) {
+
+	if (didFavorite == "false") {
+		addUserFavoritesToPlaylist(btnId, currPlaylistId);
+	}
+	else if (didFavorite == "true") {
+		deleteUserFavoritesFromPlaylist(btnId, currPlaylistId);
+	}
+}
+
+
+function addUserFavoritesToPlaylist(currBtnId, currPlaylistId) {
+
+	currPlaylistId = parseInt(currPlaylistId);
+console.log("addUserFavoritesToPlaylist start");
+console.log(currPlaylistId);
+	var currUserToken = getCookie("userToken");	
+
+	var raw = `{\"playlist_id\": ${currPlaylistId}}`;
+
+	var requestOptions = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		body: raw,
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/playlist/favorite", requestOptions)
+		.then(async response => {
+			if (response.ok)
+			{		
+		console.log("SUccessful favorite adding");		
+				var currBtnElementChildrens = document.getElementById(currBtnId).children;
+				var childrenChildrens = currBtnElementChildrens[0].children;
+				childrenChildrens[0].classList.add(FAVORITES_ICON_CLASSNAME_ADD);
+				childrenChildrens[0].classList.remove(NOT_FAVORITES_ICON_CLASSNAME_ADD);
+				
+				document.getElementById(currBtnId).setAttribute(POST_FAVORITES_BTN_DID_FAVORITE_DATA_NAME, true);
+			}
+			else
+			{
+				var resultFavoriteAdd = await response.json();				
+				alert(resultFavoriteAdd.message);
+			}
+		})
+		.catch(error => console.log('error', error));	
+}
+
+
+function deleteUserFavoritesFromPlaylist(currBtnId, currPlaylistId) {
+
+	currPlaylistId = parseInt(currPlaylistId);
+console.log(currPlaylistId);
+	var currUserToken = getCookie("userToken");	
+
+	var requestOptions = {
+		method: 'DELETE',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/playlist/favorite" + `/${currPlaylistId}`, requestOptions)
+		.then(async response => {
+			if (response.ok)
+			{		
+		console.log("SUccessful favorite delete");
+				var currBtnElementChildrens = document.getElementById(currBtnId).children;
+				var childrenChildrens = currBtnElementChildrens[0].children;
+				childrenChildrens[0].classList.add(NOT_FAVORITES_ICON_CLASSNAME_ADD);
+				childrenChildrens[0].classList.remove(FAVORITES_ICON_CLASSNAME_ADD);
+				
+				document.getElementById(currBtnId).setAttribute(POST_FAVORITES_BTN_DID_FAVORITE_DATA_NAME, false);
+			}
+			else
+			{
+				var resultFavoriteDelete = await response.json();				
+				alert(resultFavoriteDelete.message);
+			}
+		})
+		.catch(error => console.log('error', error));	
+}
+
+
 
 
 function getCookie(name) {

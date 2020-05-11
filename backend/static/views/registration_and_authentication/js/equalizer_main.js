@@ -33,6 +33,15 @@ function onEqualizerPageLoad(afterWhichElementId, playerId) {
 					   select_choose_playlist_tracks_list.insertAdjacentElement('beforeend', newOption);
 					}
 					
+				var urlParams = new URLSearchParams(window.location.search);
+				var trackUrl = urlParams.get('track_src');
+
+				if (trackUrl != null && trackUrl != "") {
+					console.log("Entered");
+					document.getElementById(playerId).src = trackUrl;
+					document.getElementById(playerId).play();
+				}
+					
 				select_choose_playlist_tracks_list.onchange = function() {
 					startMusic(playerId);
 				};					

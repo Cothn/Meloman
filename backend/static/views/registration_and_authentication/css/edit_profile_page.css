@@ -46,6 +46,33 @@
 }
 
 
+.body-user-main-track-labels {
+	min-width: 15%;
+	max-width: 20%;
+	margin-right: 1%;
+	font-size: 2vmin;
+	font-style: italic;	
+}
+
+
+.choose-user-main-track-block {
+	width: 100%;
+	min-height: 1vmin;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;	
+	align-items: flex-start;
+	padding-bottom: 2%;	
+}
+
+.choose-user-main-track-list {
+	min-width: 40%;
+	max-width: 70%;
+	font-size: 1.8vmin;	
+	padding-top: 1%;
+	padding-left: 1%;
+}
+
 .test-playlist {
 	padding-top: 0%;
 }

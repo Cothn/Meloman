@@ -18,7 +18,7 @@
 	align-items: flex-start;
 }
 
-.choose-playlist-block {
+.choose-post-playlist-block {
 	width: 100%;
 	min-height: 1vmin;
 	display: flex;
@@ -36,11 +36,11 @@
 	font-style: italic;
 }
 
-.choose-playlist-list {
-	min-width: 20%;
+.choose-post-playlist-list {
+	min-width: 30%;
 	max-width: 50%;
 	min-height: 3vmin;
-	max-height: 4vmin;
+	max-height: 20vmin;
 	font-size: 2vmin;
 }
 

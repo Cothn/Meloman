@@ -69,14 +69,14 @@
             delayEchoNodes.push(context.createDelay());
             gainEchoNodes.push(context.createGain());
             delayEchoNodes[0].delayTime.value = 0.05;
-            gainEchoNodes[0].gain.value = 0.6;
+            gainEchoNodes[0].gain.value = 0.7;
             gainEchoNodes[0].connect(delayEchoNodes[0]);
 
             for(let i= 1; i<number; i++) {
                 delayEchoNodes.push(context.createDelay());
                 gainEchoNodes.push(context.createGain());
                 delayEchoNodes[i].delayTime.value = 0.05;
-                gainEchoNodes[i].gain.value = 0.7;
+                gainEchoNodes[i].gain.value = 0.6;
                 gainEchoNodes[i].connect(delayEchoNodes[i]);
                 gainEchoNodes[i-1].connect(gainEchoNodes[i]);
                 delayEchoNodes[i].connect(delayEchoNodes[i-1]);

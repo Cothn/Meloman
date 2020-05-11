@@ -24,7 +24,6 @@
 		var raw = `{\"nickname\": \"${userNickname}\",\"email\": \"${userEmail}\",\"password\": \"${userPassword}\"}`
 
 		if (!check) {
-			alert("Wrong input")
 			return check
  		}
  		
@@ -40,7 +39,7 @@
                 var result = await response.json();
                 if (response.ok)
                 {
-                    window.location.href = '/view/user';
+                    window.location.href = '/view/authenticate';
                 }
                 else
                 {
