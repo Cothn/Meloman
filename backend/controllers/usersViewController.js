@@ -56,6 +56,10 @@ exports.editProfile = function(request, response){
     response.status(200).sendFile( 'registration_and_authentication/edit_profile_page.html', {root: root_path});
 };
 
+exports.extendedSearch = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/extended_search_page.html', {root: root_path});
+};
+
 exports.equalizer = function(request, response){
     response.status(200).sendFile( 'registration_and_authentication/equalizer_page.html', {root: root_path});
 };

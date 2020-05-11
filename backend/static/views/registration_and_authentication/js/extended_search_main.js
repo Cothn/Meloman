@@ -4,14 +4,29 @@ const TEST_URL = "audio/test.mp3"
 const TRACK_URL_DATA_NAME = "data-trackURL";
 const TRACK_IS_LAST_DATA_NAME = "data-isLast";
 const TRACK_NEXT_TRACK_DATA_NAME = "data-nextTrackId";
+
 const MAIN_PLAYER_ID = "main-player";
+const MAIN_BODY_FOR_ADDING_TRACK_BLOCK = "main-body-playlists-for-adding-track-block";
 
 const TRACK_TITLE_SEPARATOR = " - ";
 
 
 const SELECT_GENRE_ID_NAME = "choose-track-genre-list";
 
+const SELECT_PLAYLIST_FOR_ADDING_TRACKS_ID_NAME = "choose-playlist-for-adding-track-list";
+const IN_WHICH_SELECT_PLAYLISTS_FOR_ADDING_TRACKS_DIV_ID_NAME = "choose-playlist-for-adding-track-block"
 
+const CHOSEN_PLAYLIST_TITLE_LABEL_ID_NAME = "chosen-playlist-title-label";
+const CHOSEN_PLAYLIST_TITLE_TEXT_ID_NAME = "chosen-playlist-title-text";
+
+const CHOSEN_TRACK_TITLE_LABEL_ID_NAME = "chosen-track-title-label";
+const CHOSEN_TRACK_TITLE_TEXT_ID_NAME = "chosen-track-title-text";
+
+const ADD_TRACK_BTN_TRACK_ID_DATA_NAME = "data-trackId";
+const ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME = "data-trackTitle"; 
+
+const CHOSEN_TRACK_TITLE_TEXT_TRACK_ID_DATA_NAME = "data-trackId";
+const CHOSEN_TRACK_TITLE_TEXT_TRACK_TITLE_DATA_NAME = "data-trackTitle";
 
 function onSearchPageLoad(afterWhichElementId) {
 
@@ -37,9 +52,6 @@ function onSearchPageLoad(afterWhichElementId) {
 				select_choose_track_genre_list.setAttribute("required", "required");
 				select_choose_track_genre_list.setAttribute("size", "1");
 
-
-
-
 				for(let item of result)
 				{
 					var newOption = document.createElement("option");
@@ -51,6 +63,8 @@ function onSearchPageLoad(afterWhichElementId) {
 
 
 				document.getElementById(afterWhichElementId).insertAdjacentElement('afterend', select_choose_track_genre_list);
+				
+				fillPlaylistForAddingTracksBlock();
 			}
 			else
 			{
@@ -59,6 +73,63 @@ function onSearchPageLoad(afterWhichElementId) {
 		})
 		.catch(error => console.log('error', error));
 }
+
+
+function fillPlaylistForAddingTracksBlock() {
+	
+	var currUserToken = getCookie("userToken");
+	
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/playlist/my", requestOptions)
+		.then(async response => {
+			var result = await response.json();
+			if (response.ok) {
+				
+				let select_choose_playlist_for_adding_track_list = document.createElement('select');
+				select_choose_playlist_for_adding_track_list.id = SELECT_PLAYLIST_FOR_ADDING_TRACKS_ID_NAME;
+				select_choose_playlist_for_adding_track_list.className = SELECT_PLAYLIST_FOR_ADDING_TRACKS_ID_NAME;
+				select_choose_playlist_for_adding_track_list.setAttribute("size", "28");
+				
+				select_choose_playlist_for_adding_track_list.onchange = function () {
+					onChosenPlaylistForAddingTrack(this.id);
+				}
+				
+					for (let item of result)
+					{
+					   var newOption = document.createElement("option");
+					   newOption.value = item.id;
+					   newOption.innerHTML = item.title;
+
+					   select_choose_playlist_for_adding_track_list.insertAdjacentElement('beforeend', newOption);
+					}
+					
+				document.getElementById(IN_WHICH_SELECT_PLAYLISTS_FOR_ADDING_TRACKS_DIV_ID_NAME).insertAdjacentElement('beforeend', select_choose_playlist_for_adding_track_list);
+			}
+			else
+			{
+				alert(result.message);
+			}
+		})
+		.catch(error => console.log('error', error));	
+}
+
+function onChosenPlaylistForAddingTrack(selectId) {
+	
+	let select_choose_playlist_for_adding_track_list = document.getElementById(selectId);
+	let chosenPlaylistTitle = select_choose_playlist_for_adding_track_list.options[select_choose_playlist_for_adding_track_list.selectedIndex].innerHTML;	
+	
+	document.getElementById(CHOSEN_PLAYLIST_TITLE_TEXT_ID_NAME).innerHTML = chosenPlaylistTitle;	
+
+}
+
+
 
 
 function onTracksSearch(postDivId, param) {
@@ -101,6 +172,7 @@ function onTracksSearch(postDivId, param) {
 				for (let trackCount = 0; trackCount < result.length; trackCount++) {
 					//console.log(result[trackCount]);
 					
+					var currTrackId = result[trackCount].id
 					var currTrackTitle = result[trackCount].title;
 					var currTrackURL = result[trackCount].music_url;
 					var currTrackDuration = parseInt(result[trackCount].duration);
@@ -172,6 +244,32 @@ function onTracksSearch(postDivId, param) {
 						div_track_title_block.insertAdjacentElement('beforeend', p_track_name);
 
 
+						var div_track_add_block = document.createElement('div');
+						div_track_add_block.className = "body-playlist-single-track-btn track-add-block";
+						div_track_add_block.setAttribute("style", "margin-right: 3%;")
+						
+							var a_track_add_link = document.createElement('a');
+							a_track_add_link.className = "btn-link";
+							a_track_add_link.setAttribute(ADD_TRACK_BTN_TRACK_ID_DATA_NAME, currTrackId);
+							a_track_add_link.setAttribute(ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME, currTrackTitle);
+							
+							a_track_add_link.onclick = function() {
+								onTrackAddBtnClick(this.getAttribute(ADD_TRACK_BTN_TRACK_ID_DATA_NAME), this.getAttribute(ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME));
+							}
+							
+								var span_track_add_btn = document.createElement('span');
+								span_track_add_btn.className = "btn action";
+								
+									var icon_track_add_btn = document.createElement('i');
+									icon_track_add_btn.className = "icon track-add-img";
+
+								span_track_add_btn.insertAdjacentElement('beforeend', icon_track_add_btn);
+								
+							a_track_add_link.insertAdjacentElement('beforeend', span_track_add_btn);
+							
+						div_track_add_block.insertAdjacentElement('beforeend', a_track_add_link);
+
+
 						var div_track_duration_block = document.createElement('div');
 						div_track_duration_block.className = "body-playlist-single-track-duration-block";
 						
@@ -183,6 +281,7 @@ function onTracksSearch(postDivId, param) {
 
 					div_track_block.insertAdjacentElement('beforeend', div_track_btn_block);
 					div_track_block.insertAdjacentElement('beforeend', div_track_title_block);
+					div_track_block.insertAdjacentElement('beforeend', div_track_add_block);
 					div_track_block.insertAdjacentElement('beforeend', div_track_duration_block);
 
 
@@ -355,6 +454,7 @@ function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrack
 			{
 				resultTrackInfo = resultTrackInfo[0];
 
+				var currTrackId = resultTrackInfo.id;
 				var currTrackTitle = resultTrackInfo.title;
 				var currTrackURL = resultTrackInfo.music_url;
 				var currTrackDuration = parseInt(resultTrackInfo.duration);
@@ -424,10 +524,37 @@ function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrack
 
 				div_track_title_block.insertAdjacentElement('beforeend', p_track_author);
 				div_track_title_block.insertAdjacentElement('beforeend', p_track_name);
+				
+
+				var div_track_add_block = document.createElement('div');
+				div_track_add_block.className = "body-playlist-single-track-btn track-add-block";
+				div_track_add_block.setAttribute("style", "margin-right: 3%;")
+				
+					var a_track_add_link = document.createElement('a');
+					a_track_add_link.className = "btn-link";
+					a_track_add_link.setAttribute(ADD_TRACK_BTN_TRACK_ID_DATA_NAME, currTrackId);
+					a_track_add_link.setAttribute(ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME, currTrackTitle);
+					
+					a_track_add_link.onclick = function() {
+						onTrackAddBtnClick(this.getAttribute(ADD_TRACK_BTN_TRACK_ID_DATA_NAME), this.getAttribute(ADD_TRACK_BTN_TRACK_TITLE_DATA_NAME));
+					}
+					
+						var span_track_add_btn = document.createElement('span');
+						span_track_add_btn.className = "btn action";
+						
+							var icon_track_add_btn = document.createElement('i');
+							icon_track_add_btn.className = "icon track-add-img";
+
+						span_track_add_btn.insertAdjacentElement('beforeend', icon_track_add_btn);
+						
+					a_track_add_link.insertAdjacentElement('beforeend', span_track_add_btn);
+					
+				div_track_add_block.insertAdjacentElement('beforeend', a_track_add_link);
 
 
 				var div_track_duration_block = document.createElement('div');
 				div_track_duration_block.className = "body-playlist-single-track-duration-block";
+				div_track_duration_block.setAttribute("style", "margin-left: 0px;");
 
 				var p_track_duration = document.createElement('p');
 				p_track_duration.innerHTML = `${minutes}:${second}`;
@@ -437,6 +564,7 @@ function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrack
 
 				div_track_block.insertAdjacentElement('beforeend', div_track_btn_block);
 				div_track_block.insertAdjacentElement('beforeend', div_track_title_block);
+				div_track_block.insertAdjacentElement('beforeend', div_track_add_block);
 				div_track_block.insertAdjacentElement('beforeend', div_track_duration_block);
 
 
@@ -453,6 +581,61 @@ function fillTrackBlock(currPlaylistElement, postNumber, tracksAmount, currTrack
 }
 
 
+
+function onTrackAddBtnClick(trackId, trackTitle) {
+	
+	var chosenTrackElement = document.getElementById(CHOSEN_TRACK_TITLE_TEXT_ID_NAME);
+	
+	chosenTrackElement.setAttribute(CHOSEN_TRACK_TITLE_TEXT_TRACK_ID_DATA_NAME, trackId);
+	chosenTrackElement.innerHTML = trackTitle;	
+	
+	document.getElementById(MAIN_BODY_FOR_ADDING_TRACK_BLOCK).style.display = "block";
+}
+
+
+
+
+function onAddingTrackBtnClick() {
+
+	let select_choose_playlist_for_adding_track_list = document.getElementById(SELECT_PLAYLIST_FOR_ADDING_TRACKS_ID_NAME);
+	let currPlaylistId = select_choose_playlist_for_adding_track_list.options[select_choose_playlist_for_adding_track_list.selectedIndex].value;	
+	var currTrackId = document.getElementById(CHOSEN_TRACK_TITLE_TEXT_ID_NAME).getAttribute(CHOSEN_TRACK_TITLE_TEXT_TRACK_ID_DATA_NAME);
+
+	var raw = `{\"tracks\": [${currTrackId}]}`;
+			
+	var currUserToken = getCookie("userToken");		
+			
+	var requestOptions = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		body: raw,
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/playlist/tracks" + `/${currPlaylistId}`, requestOptions)
+		.then(async response => {
+			if (response.ok)
+			{
+				alert("Track added!");
+			}
+			else
+			{
+				var resultTrackAdding = await response.json();
+				alert(resultTrackAdding.message);
+			}
+		})
+		.catch(error => console.log('error', error));				
+}
+
+
+
+function onCancelAddingTrackBtnClick() {
+	
+	document.getElementById(MAIN_BODY_FOR_ADDING_TRACK_BLOCK).style.display = "none";
+}
 
 
 
