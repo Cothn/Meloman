@@ -11,13 +11,15 @@ router.use('/track', trackRout);
 var playlistRout = require('./playlistRout');
 router.use('/playlist', playlistRout);
 
-router.get('/', userController.getMain);
+
 
 var otherRout = require('./otherRout');
 router.use('/', otherRout);
 
 router.get('/authenticate', userController.authenticateUser);
 
+router.get('/', userController.getMain);
+router.get('/guest', userController.getGuest);
 
 
 module.exports = router;
