@@ -51,7 +51,7 @@
 			<div class="header-content-main">
 			
 				<div class="header-subpart header-main-logo-img" style="flex-grow:2;">
-					<a class="header-main-logo-link">
+					<a class="header-main-logo-link" href="/view">
 						<img class="main-logo" src="/views/registration_and_authentication/images/logo/music_people_logo_cut.png">
 					</a>
 				</div>
@@ -63,7 +63,7 @@
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
 					</a>
 
-					<input id="header-search-field" class="header-search-field" type="search" name="search-field" placeholder="Search music">
+					<input id="header-search-field" class="header-search-field" type="search" name="search-field" placeholder="Search user">
 
 					<a class="header-search-link" href="/view/extended_search">
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_more_horiz_white_18dp.png" href="/view/extended_search" title="Redirect to exntended search page">
@@ -93,17 +93,20 @@
 			
 		</div>
 	</header>
+	
 	<script>
 		document.getElementById("header-search-field").addEventListener("change", function (eve) {
 			document.getElementById("header-search-link").setAttribute('href', "/view/extended_search?search_text="+this.value);
 		});
 	</script>
+	
 	<script>
 		document.getElementById("signOutBtn").addEventListener("click", function (eve) {
 			document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/view;";
 			window.location.href= "/view/authenticate";
 		});
 	</script>
+	
 	<div class="limiter body-main first">
 		<div class="body-equalizer-header-block">
 			<p><b>Equalizer:</b></p>

@@ -56,7 +56,7 @@
 		<div class="header-content">
 			<div class="header-content-main">
 				<div class="header-subpart header-main-logo-img" style="flex-grow:2;">
-					<a class="header-main-logo-link">
+					<a class="header-main-logo-link" href="/view">
 						<img class="main-logo" src="/views/registration_and_authentication/images/logo/music_people_logo_cut.png">
 					</a>
 				</div>
@@ -68,7 +68,7 @@
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
 					</a>
 					
-					<input class="header-search-field" type="search" name="search-field" placeholder="Search music">
+					<input class="header-search-field" type="search" name="search-field" placeholder="Search user">
 					
 					<a class="header-search-link">
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_more_horiz_white_18dp.png" title="Redirect to exntended search page">
@@ -78,11 +78,11 @@
 				<div class="vl-header" style="flex-grow:1;"></div>
 				
 				<div class="header-subpart" style="flex-grow:2;">
-					<button class="login100-form-btn header-button">
+					<button id="register-btn" class="login100-form-btn header-button">
 						Register
 					</button>
 					
-					<button class="login100-form-btn header-button">
+					<button id="sign-in-btn" class="login100-form-btn header-button">
 						Sign in
 					</button>
 				</div>
@@ -92,6 +92,18 @@
 			
 		</div>
 	</header>
+	
+	<script>
+		document.getElementById("register-btn").addEventListener("click", function (eve) {
+			window.location.href= "/view/user/registration";
+		});
+	</script>
+
+	<script>
+		document.getElementById("sign-in-btn").addEventListener("click", function (eve) {
+			window.location.href= "/view/authenticate";
+		});
+	</script>	
 	
 	<div id="first-block" class="limiter first-block"></div>
 		

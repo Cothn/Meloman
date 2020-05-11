@@ -305,7 +305,7 @@ function fillUsernameBlock(currUsernameElement, userId, postNumber) {
 				a_post_username_link.id = POST_ID_PREFIX + (postNumber + 1).toString() + POST_USERNAME_AUTHOR_ID_POSTFIX;
 				a_post_username_link.className = "body-post-username-link";
 				a_post_username_link.innerHTML = resultUserInfo.nickname;
-/* 				a_post_username_link.setAttribute("href", `/view/user?user_id=${resultUserInfo.id}`); */
+				a_post_username_link.setAttribute("href", `/view/user?user_id=${resultUserInfo.id}`);
 				a_post_username_link.setAttribute(POST_USERNAME_AUTHOR_ID_DATA_NAME, resultUserInfo.id);
 	
 				currUsernameElement.insertAdjacentElement('beforeend', a_post_username_link);				

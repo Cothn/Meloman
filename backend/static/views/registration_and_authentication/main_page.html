@@ -59,7 +59,7 @@
 			<div class="header-content-main">
 			
 				<div class="header-subpart header-main-logo-img" style="flex-grow:2;">
-					<a class="header-main-logo-link">
+					<a class="header-main-logo-link" href="/view">
 						<img class="main-logo" src="/views/registration_and_authentication/images/logo/music_people_logo_cut.png">
 					</a>
 				</div>
@@ -71,7 +71,7 @@
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
 					</a>
 
-					<input id="header-search-field" class="header-search-field" type="search" name="search-field" placeholder="Search music">
+					<input id="header-search-field" class="header-search-field" type="search" name="search-field" placeholder="Search user">
 
 					<a class="header-search-link" href="/view/extended_search">
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_more_horiz_white_18dp.png" href="/view/extended_search" title="Redirect to exntended search page">
@@ -84,7 +84,7 @@
 				<div class="header-subpart" style="flex-grow:2;">
 				
 					<div class="header-username-block" style="flex-grow:2;">
-						<a class="header-username">COVID-19</a>
+						<a id="header-username" class="header-username" href="/view/user">My profile</a>
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
@@ -124,7 +124,7 @@
 		</div>
 		
 		<div class="footer-equalizer-link-block">
-			<a id="footer-equalizer-link">
+			<a id="footer-equalizer-link" onclick="onEqualizerImageClick()">
 				<img class="equalizer-image" src="/views/registration_and_authentication/images/icons/baseline_equalizer_black_18dp.png" title="Redirect to equalizer page">
 			</a>			
 		</div>
@@ -146,7 +146,7 @@
 	<script>
 		function onEqualizerImageClick() {
 			var currMainPlayerSrc = document.getElementById("main-player").src
-			document.getElementById("footer-equalizer-link").href = "/view/user/equalizer" + `?track_src=${currMainPlayerSrc}`;
+			document.getElementById("footer-equalizer-link").href = "/view/equalizer" + `?track_src=${currMainPlayerSrc}`;
 		}
 	</script>
 	

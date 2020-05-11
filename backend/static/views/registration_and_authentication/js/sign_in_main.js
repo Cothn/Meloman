@@ -23,7 +23,6 @@
 		var raw = `{\"email\": \"${userEmail}\",\"password\": \"${userPassword}\"}`
 
 		if (!check) {
-			alert("Wrong input")
 			return check
  		}
  		
