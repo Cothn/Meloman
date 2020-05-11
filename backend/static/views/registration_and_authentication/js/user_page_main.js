@@ -1032,7 +1032,7 @@ function addUserLikeToPost(currBtnId, currPostId) {
 function deleteUserLikeFromPost(currBtnId, currPostId) {
 
 	currPostId = parseInt(currPostId);
-console.log(currPostId);
+
 	var currUserToken = getCookie("userToken");	
 
 	var requestOptions = {
@@ -1047,7 +1047,7 @@ console.log(currPostId);
 		.then(async response => {
 			if (response.ok)
 			{		
-		console.log("SUccessful like delete");
+
 				var currBtnElementChildrens = document.getElementById(currBtnId).children;
 				var childrenChildrens = currBtnElementChildrens[0].children;
 				childrenChildrens[0].classList.add(NOT_LIKED_ICON_CLASSNAME_ADD);
