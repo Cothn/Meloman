@@ -61,18 +61,19 @@
 				</div>
 				
 				<div class="vl-header" style="flex-grow:1;"></div>
-				
+
 				<div class="header-subpart" style="flex-grow:2;">
-					<a class="header-search-link">
+					<a class="header-search-link" id="header-search-link">
 						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
 					</a>
-					
-					<input class="header-search-field" type="search" name="search-field" placeholder="Search music">
-					
-					<a class="header-search-link">
-						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_more_horiz_white_18dp.png" title="Redirect to exntended search page">
+
+					<input id="header-search-field" class="header-search-field" type="search" name="search-field" placeholder="Search music">
+
+					<a class="header-search-link" href="/view/extended_search">
+						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_more_horiz_white_18dp.png" href="/view/extended_search" title="Redirect to exntended search page">
 					</a>
 				</div>
+
 				
 				<div class="vl-header" style="flex-grow:1;"></div>
 				
@@ -96,7 +97,11 @@
 			
 		</div>
 	</header>
-	
+	<script>
+		document.getElementById("header-search-field").addEventListener("change", function (eve) {
+			document.getElementById("header-search-link").setAttribute('href', "/view/extended_search?search_text="+this.value);
+		});
+	</script>
 	<div class="limiter body-main first">
 		<div id="body-added-tracks-header-block" class="body-added-tracks-header-block">
 			<p><b>Added tracks</b></p>
