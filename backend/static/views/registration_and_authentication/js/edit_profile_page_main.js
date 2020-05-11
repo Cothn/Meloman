@@ -77,12 +77,12 @@ function fillInputs(playerId) {
 				
 				if (resultUser.music_avatar_id !== undefined && resultUser.music_avatar_id != null) {
 				
-					currSelectTracks = document.getElementById(selectUserMainTrackIdName);
+					let currSelectTracks = document.getElementById(selectUserMainTrackIdName);
 					
 					for (var item of currSelectTracks.children) {
 						if (item.value == resultUser.music_avatar_id) {
 							item.setAttribute("selected", "selected");
-							
+
 							document.getElementById(playerId).src = item.getAttribute(CHOOSE_PLAYLIST_TRACKS_OPTION_TRACK_URL_DATA_NAME);
 							document.getElementById(playerId).play();
 						}
@@ -103,8 +103,8 @@ function startMusic(playerId) {
 	var playerElement = document.getElementById(playerId);
 	
 	var selectTrackElement = document.getElementById(selectUserMainTrackIdName);
-	var newTrackUrl = selectTrackElement.options[selectTrackElement.selectedIndex].value;
-	
+	var newTrackUrl = selectTrackElement.options[selectTrackElement.selectedIndex].getAttribute(CHOOSE_PLAYLIST_TRACKS_OPTION_TRACK_URL_DATA_NAME);
+	console.log(newTrackUrl);
 	playerElement.src = newTrackUrl;
 	playerElement.play();
 }
