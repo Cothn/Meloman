@@ -7,6 +7,7 @@ const PRIVATE_KEY = require("../configs/token_key").private_key;
 const expirationTime = 36000;
 var jwt = require('jsonwebtoken');
 
+
 exports.getUserMe = function (request, response){
     var id = request.currentUser.user_id;
     if((request.currentUser.role_id < 2) && (request.query.id)){

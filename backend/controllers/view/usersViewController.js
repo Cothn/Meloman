@@ -23,3 +23,11 @@ exports.userPage = function(request, response){
 exports.editProfile = function(request, response){
     response.status(200).sendFile( 'registration_and_authentication/edit_profile_page.html', {root: root_path});
 };
+
+exports.getMain = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/main_page.html', {root: root_path});
+};
+
+exports.getGuest = function(request, response){
+    response.status(200).sendFile( 'registration_and_authentication/guest_page.html', {root: root_path});
+};
