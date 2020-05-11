@@ -638,6 +638,100 @@ function onCancelAddingTrackBtnClick() {
 }
 
 
+function onUsersSearch(postDivId, param) {
+
+	let afterWhichDivId = "users-block";
+	document.getElementById(afterWhichDivId).remove();
+	let trackBlock = document.createElement("div");
+	trackBlock.id = afterWhichDivId ;
+	trackBlock.class = afterWhichDivId ;
+	document.getElementById(postDivId).insertAdjacentElement('beforeend', trackBlock);
+
+	var currUserToken = getCookie("userToken");
+	let raw ="";
+	if(param.nickname != "")
+	{
+		raw += `?nickname=${param.nickname}`;
+	}
+
+
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/user"+raw, requestOptions)
+		.then(async response => {
+			var result = await response.json();
+			if (response.ok)
+			{
+
+				for (let userCount = 0; userCount < result.length; userCount++) {
+					//console.log(result[userCount]);
+
+					var currUserNick = result[userCount].nickname;
+					var currUserName = result[userCount].name;
+					var currUserSurname = result[userCount].surname;
+					var currUserEmail = result[userCount].email;
+					if (!currUserName) {
+						currUserName="";
+					}
+					if (!currUserSurname) {
+						currUserSurname="";
+					}
+
+					var currDivUserBlockId = "user" + (userCount + 1).toString() + "-" + "block";
+
+					var div_user_block = document.createElement('div');
+					div_user_block.id = currDivUserBlockId;
+					div_user_block.className = "body-post-block";
+
+
+					var p_user_nickname = document.createElement('p');
+					p_user_nickname.innerHTML = `<b>${currUserNick}</b>`;
+
+					var p_user_name = document.createElement('pre');
+					p_user_name.innerHTML = `${currUserName}`;
+
+					var p_user_surname = document.createElement('pre');
+					p_user_surname.innerHTML = `${currUserSurname}`;
+
+					var p_user_email = document.createElement('p');
+					p_user_email.innerHTML = `<b>${currUserEmail}</b>`;
+
+
+					var hr_post_block_end = document.createElement('hr');
+					hr_post_block_end.className = "hr-body-end";
+
+					var hr_post_block_start = document.createElement('hr');
+					hr_post_block_start.className = "hr-body-start";
+
+					div_user_block.insertAdjacentElement('beforeend', hr_post_block_start);
+					div_user_block.insertAdjacentElement('beforeend', p_user_nickname);
+
+					div_user_block.insertAdjacentElement('beforeend', p_user_name);
+
+
+					div_user_block.insertAdjacentElement('beforeend', p_user_surname);
+					div_user_block.insertAdjacentElement('beforeend', p_user_email);
+					div_user_block.insertAdjacentElement('beforeend', hr_post_block_end);
+
+
+					document.getElementById(afterWhichDivId).insertAdjacentElement('beforeend', div_user_block);
+
+				}
+			}
+			else
+			{
+				alert(result.message);
+			}
+		})
+		.catch(error => console.log('error', error));
+}
+
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;

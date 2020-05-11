@@ -198,13 +198,21 @@
 		<div class="body-added-playlists-header-block">
 			<p class="finded-header"><b>Finded playlists:</b></p>
 		</div>
-		<div id="palylists-block" class="body-main" hidden>
+		<div id="palylists-block" class="body-main">
 
 		</div>
 
 	</div>
 
-	
+	<div id="users-main-block" class="limiter body-main first" hidden>
+		<div class="body-added-playlists-header-block">
+			<p><b>find users</b></p>
+		</div>
+		<div id="users-block" class="body-post-block">
+
+		</div>
+
+	</div>
 
 	<div class="footer-block">
 		<div class="footer-main-player-block">
@@ -246,6 +254,7 @@
 			let genre_checkbox = document.getElementById('filter-track-by-genre-block');
 			let track_list = document.getElementById('find-track-list');
 
+
 			let search_input = document.getElementById('write-extended-search-text');
 			let search_label = document.getElementById('write-extended-search-text-label');
 			genre_selector.hidden = true;
@@ -257,10 +266,13 @@
 
 			let play_list = document.getElementById("palylists-main-block");
 			play_list.hidden = true;
+
+			let users_list = document.getElementById("users-main-block");
+			users_list.hidden = true;
 			switch (this.value) {
 				case "user":
 					search_input.setAttribute('placeholder', 'Search by nick name');
-					search_label.innerHTML="Input nick name:";
+					search_label.innerHTML="Input nickname:";
 					break;
 				case "playlist":
 					search_input.setAttribute('placeholder', 'Search by title');
@@ -288,11 +300,14 @@
 			let search_text = document.getElementById("write-extended-search-text").value;
 			let track_list = document.getElementById('find-track-list');
 			let play_list = document.getElementById("palylists-main-block");
+			let users_list = document.getElementById("users-main-block");
 			switch (searchType.value) {
 				case "user":
 					param = {
 						nickname: search_text
 					};
+					onUsersSearch("users-main-block", param)
+					users_list.hidden = false;
 					break;
 				case "playlist":
 					param = {

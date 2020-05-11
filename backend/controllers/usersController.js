@@ -4,7 +4,7 @@ const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
 const bcrypt = require('bcrypt');
 const PRIVATE_KEY = require("../configs/token_key").private_key;
-const expirationTime = 3600;
+const expirationTime = 36000;
 var jwt = require('jsonwebtoken');
 
 exports.getUserMe = function (request, response){
