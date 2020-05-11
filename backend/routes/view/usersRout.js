@@ -34,6 +34,8 @@ userRouter.get("/user_page", userController.userPage);
 
 userRouter.get("/edit_profile", userController.editProfile);
 
+userRouter.get("/extended_search", userController.extendedSearch);
+
 userRouter.get("/equalizer", userController.equalizer);
 
 module.exports = userRouter;

@@ -5,42 +5,51 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="/views/registration_and_authentication/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/guest_page.css">
-	<link rel="stylesheet" type="text/css" href="css/main_page.css">	
-	<link rel="stylesheet" type="text/css" href="css/user_page.css">
-	<link rel="stylesheet" type="text/css" href="css/extended_search_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">	
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/extended_search_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
-			background: url(images/background/main_background.jpeg) repeat;
+			background: url(/views/registration_and_authentication/images/background/main_background.jpeg) repeat;
 		}
 		.limiter {
 			width: 65%;
-			min-height: 50vmin;
+			min-height: 30vmin;
 			margin: 0 auto;
 		}
 		.body-main {
 			padding-bottom: 4%;
+		}
+		.hr-body-end {
+			margin-bottom: 3%;
+		}
+		.finded-header b {
+			color: black;
+			font-size: 4vmin;
+			padding-left: 3%;
+			padding-bottom: 1%;
 		}
 	</style>
 
@@ -52,7 +61,7 @@
 			
 				<div class="header-subpart header-main-logo-img" style="flex-grow:2;">
 					<a class="header-main-logo-link">
-						<img class="main-logo" src="images/logo/music_people_logo_cut.png">
+						<img class="main-logo" src="/views/registration_and_authentication/images/logo/music_people_logo_cut.png">
 					</a>
 				</div>
 				
@@ -61,13 +70,13 @@
 				<div class="header-subpart" style="flex-grow:2;">
 					<!-- <button class="header-search-btn"></button> -->
 					<a class="header-search-link">
-						<img class="header-search-img" src="images/icons/baseline_search_white_18dp.png" title="Search...">
+						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_search_white_18dp.png" title="Search...">
 					</a>
 					
 					<input class="header-search-field" type="search" name="search-field" placeholder="Search music">
 					
 					<a class="header-search-link">
-						<img class="header-search-img" src="images/icons/baseline_more_horiz_white_18dp.png" title="Redirect to exntended search page">
+						<img class="header-search-img" src="/views/registration_and_authentication/images/icons/baseline_more_horiz_white_18dp.png" title="Redirect to exntended search page">
 					</a>
 				</div>
 				
@@ -76,7 +85,7 @@
 				<div class="header-subpart" style="flex-grow:2;">
 				
 					<div class="header-username-block" style="flex-grow:2;">
-						<a class="header-username">COVID-19</a>
+						<a id="header-username" class="header-username" href="/view/user/user_page">My profile</a>
 					</div>
 					
 					<div class="header-sign_out-block" style="flex-grow:2;">
@@ -131,9 +140,35 @@
 		</div>
 	</div>
 
-	<div id="find-track-list" class="limiter body-main first" hidden>
+	<div id="main-body-playlists-for-adding-track-block" class="main-body-playlists-for-adding-track-block" style="display: none;">
+		<div id="body-playlists-for-adding-track-block" class="body-playlists-for-adding-track-block">
+			<div id="choose-playlist-for-adding-track-block" class="choose-playlist-for-adding-track-block">
+			</div>
+			
+			<div id="chosen-playlist-for-adding-track-block" class="chosen-for-adding-track-block">
+				<label id="chosen-playlist-title-label" for="chosen-playlist-title" class="labels-for-chosen-for-adding-track">For:</label>
+				<p id="chosen-playlist-title-text">Epic music</p>
+			</div>
+
+			<div id="chosen-track-for-adding-track-block" class="chosen-for-adding-track-block">
+				<label id="chosen-track-title-label" for="chosen-track-title" class="labels-for-chosen-for-adding-track">Add:</label>
+				<p id="chosen-track-title-text">Земляне - Трава у дома</p>
+			</div>
+
+			<div class="body-playlists-for-adding-track-btn-block btn-for-adding-first">
+				<button id="btn-for-adding-chosen-track" class="login100-form-btn btn body-playlists-for-adding-track-btn" onclick="onAddingTrackBtnClick()">Add track</button>				
+			</div>
+			
+			<div class="body-playlists-for-adding-track-btn-block">
+				<button id="btn-to-cancel-adding-chosen-track" class="login100-form-btn btn body-playlists-for-adding-track-btn" onclick="onCancelAddingTrackBtnClick()">Cancel</button>				
+			</div>			
+		</div>
+	</div>
+
+
+	<div id="find-track-list" class="limiter body-main" hidden>
 		<div id="body-added-tracks-header-block" class="body-added-tracks-header-block">
-			<p><b>Finded tracks</b></p>
+			<p class="finded-header"><b>Finded tracks:</b></p>
 		</div>
 
 		<div id="body-post-block" class="body-post-block">
@@ -159,9 +194,9 @@
 		</div>
 	</div>
 
-	<div id="palylists-main-block" class="limiter body-main first" hidden>
+	<div id="palylists-main-block" class="limiter body-main" hidden>
 		<div class="body-added-playlists-header-block">
-			<p><b>find playlists</b></p>
+			<p class="finded-header"><b>Finded playlists:</b></p>
 		</div>
 		<div id="palylists-block" class="body-main" hidden>
 
@@ -171,22 +206,38 @@
 
 	
 
-	<div>
-		<audio controls loop id="main-player" class="main-player" hidden>
-		</audio>
-	</div>
-	<script>
-		var audio = document.getElementById("main-player");
-		audio.volume = 0.4;
+	<div class="footer-block">
+		<div class="footer-main-player-block">
+			<audio controls id="main-player" class="main-player">
+			</audio>
+		</div>
+		
+		<div class="footer-equalizer-link-block">
+			<a id="footer-equalizer-link" onclick="onEqualizerImageClick()">
+				<img class="equalizer-image" src="/views/registration_and_authentication/images/icons/baseline_equalizer_black_18dp.png" title="Redirect to equalizer page">
+			</a>			
+		</div>
+	</div>	
 
+	<script>
+	    var audio = document.getElementById("main-player");
+	    audio.volume = 0.4;
+	
 		audio.addEventListener('play', (event) => {
 			onAudioPlay('main-player');
-		});
-
+		});		
+	
 		audio.addEventListener('pause', (event) => {
-			onAudioPause('main-player');
-		});
+			onAudioPause('main-player');			
+		});		  
 	</script>
+
+	<script>
+		function onEqualizerImageClick() {
+			var currMainPlayerSrc = document.getElementById("main-player").src
+			document.getElementById("footer-equalizer-link").href = "/view/user/equalizer" + `?track_src=${currMainPlayerSrc}`;
+		}
+	</script>	
 
 	<script>
 		var searchType = document.getElementById('choose-extended-search-type-list');
@@ -226,6 +277,7 @@
 		}, false);
 
 	</script>
+	
 	<script>
 
 		document.getElementById('searchBtn').addEventListener('click', function (e) {
@@ -268,19 +320,19 @@
 	</script>
 
 	<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="/views/registration_and_authentication/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="/views/registration_and_authentication/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/views/registration_and_authentication/vendor/bootstrap/js/popper.js"></script>
+	<script src="/views/registration_and_authentication/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="/views/registration_and_authentication/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="/views/registration_and_authentication/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/views/registration_and_authentication/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/js/extended_search_main.js"></script>
 <!--===============================================================================================-->
