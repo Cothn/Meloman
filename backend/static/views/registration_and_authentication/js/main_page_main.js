@@ -60,6 +60,34 @@ var allPostsInfo;
 
 
 function onMainPageLoad(afterWhichDivId) {
+
+	var currUserToken = getCookie("userToken");	
+
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/user/me", requestOptions)
+		.then(async response => {
+			var resultUser = await response.json();
+			if (response.ok)
+			{
+				loadAllPosts(afterWhichDivId);
+			}				
+			else
+			{
+				window.location.href = '/view/guest';
+			}
+		})
+		.catch(error => console.log('error', error));
+}
+
+
+function loadAllPosts(afterWhichDivId) {
 	
 	var currUserToken = getCookie("userToken");	
 
