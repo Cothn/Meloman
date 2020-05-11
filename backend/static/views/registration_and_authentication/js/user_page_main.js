@@ -212,20 +212,20 @@ function fillUserMainTrackBlock(userPlayerElementId, currTrackId, userMainTrackI
 				var currTrackAuthor = arrayOfStrings[0];
 				var currTrackName = arrayOfStrings[1];
 				
-				p_main_track_info_author = document.createElement('p');
+				let p_main_track_info_author = document.createElement('p');
 				p_main_track_info_author.setAttribute("style", "display: flex; flex-direction: row;");
 				
-					b_main_track_info_author = document.createElement('b');
+					let b_main_track_info_author = document.createElement('b');
 					b_main_track_info_author.innerHTML = currTrackAuthor;
 					
-					pre_main_track_info_author = document.createElement('pre');
+					let pre_main_track_info_author = document.createElement('pre');
 					pre_main_track_info_author.innerHTML = " - ";
 					
 				p_main_track_info_author.insertAdjacentElement('beforeend', b_main_track_info_author);	
 				p_main_track_info_author.insertAdjacentElement('beforeend', pre_main_track_info_author);	
 				
 				
-				p_main_track_info_name = document.createElement('p');
+				let p_main_track_info_name = document.createElement('p');
 				p_main_track_info_name.innerHTML = currTrackName;
 				
 				
