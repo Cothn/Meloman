@@ -5,6 +5,7 @@ const MAIN_PLAYER_ID = "main-player";
 
 const TEST_URL = "audio/test.mp3"
 
+const HIDDEN_USERNAME_FIELD_ID = "hidden-username-text";
 
 const USER_ABOUT_USERNAME_LINK_ID = "body-user-about-username";
 const USER_ABOUT_NAME_SURNAME_LINK_ID = "body-user-about-name-surname";
@@ -76,6 +77,8 @@ function onMainPageLoad(afterWhichDivId) {
 			var resultUser = await response.json();
 			if (response.ok)
 			{
+				document.getElementById(HIDDEN_USERNAME_FIELD_ID).innerHTML = resultUser.nickname;
+				
 				loadAllPosts(afterWhichDivId);
 			}				
 			else
@@ -1066,7 +1069,7 @@ function onWriteCommentAddSuccess(currPostIdNumber, newCommentText) {
 		
 			a_post_single_comment_author = document.createElement('div');
 			a_post_single_comment_author.className = "body-post-single-comment-username";
-			a_post_single_comment_author.innerHTML = document.getElementById(USER_ABOUT_USERNAME_LINK_ID).innerHTML;
+			a_post_single_comment_author.innerHTML = document.getElementById(HIDDEN_USERNAME_FIELD_ID).innerHTML;
 			
 		p_post_single_comment_author.insertAdjacentElement('beforeend', a_post_single_comment_author);
 		

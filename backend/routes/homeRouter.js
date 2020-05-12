@@ -9,6 +9,8 @@ router.get('/', function(request, response, next) {
 */
 
 router.get('/home', homeController.index);
-
+router.get('/',function (req, res) {
+    res.redirect('/view');
+})
 
 module.exports = router;

@@ -305,6 +305,7 @@ hr {
 }
 
 .body-playlist-single-track-duration-block {
+	width: 5%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
