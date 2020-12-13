@@ -3,40 +3,36 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
--- -----------------------------------------------------
--- Schema meloman_db1
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `meloman_db1`;
-USE `meloman_db1` ;
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`user_role`
+-- Schema mydb
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`user_role` (
+-- -----------------------------------------------------
+-- Schema meloman_db2
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema meloman_db2
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `meloman_db2`;
+USE `meloman_db2` ;
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`genres`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`genres` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`title` ASC) )
+  UNIQUE INDEX `name_UNIQUE` (`title` ASC) VISIBLE)
 ENGINE = InnoDB
 ;
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`genres`
+-- Table `meloman_db2`.`track`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`genres` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`title` ASC) )
-ENGINE = InnoDB
-;
-
-
--- -----------------------------------------------------
--- Table `meloman_db1`.`track`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`track` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`track` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `music_url` VARCHAR(255) NOT NULL,
@@ -44,26 +40,36 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`track` (
   `genre_id` INT NOT NULL,
   `duration` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_track_users1_idx` (`user_id` ASC) ,
-  INDEX `fk_track_genres1_idx` (`genre_id` ASC) ,
-  UNIQUE INDEX `music_url_UNIQUE` (`music_url` ASC) ,
-  INDEX `name` (`title` ASC) ,
+  UNIQUE INDEX `music_url_UNIQUE` (`music_url` ASC) VISIBLE,
+  INDEX `fk_track_users1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_track_genres1_idx` (`genre_id` ASC) VISIBLE,
+  INDEX `name` (`title` ASC) VISIBLE,
   CONSTRAINT `fk_track_genres1`
     FOREIGN KEY (`genre_id`)
-    REFERENCES `meloman_db1`.`genres` (`id`),
+    REFERENCES `meloman_db2`.`genres` (`id`),
   CONSTRAINT `fk_track_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `meloman_db1`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `meloman_db2`.`users` (`id`))
 ENGINE = InnoDB
 ;
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`users`
+-- Table `meloman_db2`.`user_role`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`user_role` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`title` ASC) VISIBLE)
+ENGINE = InnoDB
+;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL DEFAULT NULL,
   `surname` VARCHAR(255) NULL DEFAULT NULL,
@@ -71,87 +77,83 @@ CREATE TABLE IF NOT EXISTS `meloman_db1`.`users` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `salt` VARCHAR(255) NOT NULL,
-  `role_id` INT NOT NULL DEFAULT 2,
-  `music_avatar_id` INT NULL,
+  `role_id` INT NOT NULL DEFAULT '2',
+  `music_avatar_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_users_user_role1` (`role_id` ASC) ,
-  INDEX `fk_users_track1_idx` (`music_avatar_id` ASC) ,
-  INDEX `nick_name` (`nickname` ASC) ,
-  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) ,
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
-  CONSTRAINT `fk_users_user_role1`
-    FOREIGN KEY (`role_id`)
-    REFERENCES `meloman_db1`.`user_role` (`id`),
+  UNIQUE INDEX `nickname_UNIQUE` (`nickname` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
+  INDEX `fk_users_user_role1` (`role_id` ASC) VISIBLE,
+  INDEX `fk_users_track1_idx` (`music_avatar_id` ASC) VISIBLE,
+  INDEX `nick_name` (`nickname` ASC) VISIBLE,
   CONSTRAINT `fk_users_track1`
     FOREIGN KEY (`music_avatar_id`)
-    REFERENCES `meloman_db1`.`track` (`id`))
+    REFERENCES `meloman_db2`.`track` (`id`),
+  CONSTRAINT `fk_users_user_role1`
+    FOREIGN KEY (`role_id`)
+    REFERENCES `meloman_db2`.`user_role` (`id`))
 ENGINE = InnoDB
 ;
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`playlist`
+-- Table `meloman_db2`.`playlist`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`playlist` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`playlist` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `author_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_playlist_users2_idx` (`author_id` ASC) ,
-  INDEX `title` (`title` ASC) ,
+  INDEX `fk_playlist_users2_idx` (`author_id` ASC) VISIBLE,
+  INDEX `title` (`title` ASC) VISIBLE,
   CONSTRAINT `fk_playlist_users2`
     FOREIGN KEY (`author_id`)
-    REFERENCES `meloman_db1`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `meloman_db2`.`users` (`id`))
 ENGINE = InnoDB
 ;
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`posts`
+-- Table `meloman_db2`.`posts`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`posts` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`posts` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `text` MEDIUMTEXT NULL DEFAULT NULL,
   `author_id` INT NOT NULL,
   `playlist_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_posts_users1_idx` (`author_id` ASC) ,
-  INDEX `fk_posts_playlist1_idx` (`playlist_id` ASC) ,
+  INDEX `fk_posts_users1_idx` (`author_id` ASC) VISIBLE,
+  INDEX `fk_posts_playlist1_idx` (`playlist_id` ASC) VISIBLE,
   CONSTRAINT `fk_posts_playlist1`
     FOREIGN KEY (`playlist_id`)
-    REFERENCES `meloman_db1`.`playlist` (`id`)
+    REFERENCES `meloman_db2`.`playlist` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_posts_users1`
     FOREIGN KEY (`author_id`)
-    REFERENCES `meloman_db1`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `meloman_db2`.`users` (`id`))
 ENGINE = InnoDB
 ;
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`comments`
+-- Table `meloman_db2`.`comments`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`comments` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`comments` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `text` MEDIUMTEXT NOT NULL,
   `author_id` INT NOT NULL,
   `post_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comments_users1_idx` (`author_id` ASC) ,
-  INDEX `fk_comments_posts1_idx` (`post_id` ASC) ,
+  INDEX `fk_comments_users1_idx` (`author_id` ASC) VISIBLE,
+  INDEX `fk_comments_posts1_idx` (`post_id` ASC) VISIBLE,
   CONSTRAINT `fk_comments_posts1`
     FOREIGN KEY (`post_id`)
-    REFERENCES `meloman_db1`.`posts` (`id`)
+    REFERENCES `meloman_db2`.`posts` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_comments_users1`
     FOREIGN KEY (`author_id`)
-    REFERENCES `meloman_db1`.`users` (`id`)
+    REFERENCES `meloman_db2`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -159,21 +161,21 @@ ENGINE = InnoDB
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`likes`
+-- Table `meloman_db2`.`likes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`likes` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`likes` (
   `user_id` INT NOT NULL,
   `post_id` INT NOT NULL,
   PRIMARY KEY (`user_id`, `post_id`),
-  INDEX `fk_likes_posts1_idx` (`post_id` ASC) ,
+  INDEX `fk_likes_posts1_idx` (`post_id` ASC) VISIBLE,
   CONSTRAINT `fk_likes_posts1`
     FOREIGN KEY (`post_id`)
-    REFERENCES `meloman_db1`.`posts` (`id`)
+    REFERENCES `meloman_db2`.`posts` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_likes_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `meloman_db1`.`users` (`id`)
+    REFERENCES `meloman_db2`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
@@ -181,43 +183,448 @@ ENGINE = InnoDB
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`playlist_track`
+-- Table `meloman_db2`.`playlist_track`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`playlist_track` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`playlist_track` (
   `playlist_id` INT NOT NULL,
   `track_id` INT NOT NULL,
   PRIMARY KEY (`playlist_id`, `track_id`),
-  CONSTRAINT `playlist_track_ibfk_2`
-    FOREIGN KEY (`track_id`)
-    REFERENCES `meloman_db1`.`track` (`id`),
+  INDEX `playlist_track_ibfk_2` (`track_id` ASC) VISIBLE,
   CONSTRAINT `playlist_track_ibfk_1`
     FOREIGN KEY (`playlist_id`)
-    REFERENCES `meloman_db1`.`playlist` (`id`)
+    REFERENCES `meloman_db2`.`playlist` (`id`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE,
+  CONSTRAINT `playlist_track_ibfk_2`
+    FOREIGN KEY (`track_id`)
+    REFERENCES `meloman_db2`.`track` (`id`))
 ENGINE = InnoDB
 ;
 
 
 -- -----------------------------------------------------
--- Table `meloman_db1`.`users_playlists`
+-- Table `meloman_db2`.`users_playlists`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `meloman_db1`.`users_playlists` (
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`users_playlists` (
   `playlist_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`playlist_id`, `user_id`),
-  INDEX `fk_playlist_has_users_users1_idx` (`user_id` ASC) ,
-  INDEX `fk_playlist_has_users_playlist1_idx` (`playlist_id` ASC) ,
+  INDEX `fk_playlist_has_users_users1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_playlist_has_users_playlist1_idx` (`playlist_id` ASC) VISIBLE,
   CONSTRAINT `fk_playlist_has_users_playlist1`
     FOREIGN KEY (`playlist_id`)
-    REFERENCES `meloman_db1`.`playlist` (`id`),
+    REFERENCES `meloman_db2`.`playlist` (`id`),
   CONSTRAINT `fk_playlist_has_users_users1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `meloman_db1`.`users` (`id`)
+    REFERENCES `meloman_db2`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 ;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`labels`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`labels` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `title_UNIQUE` (`title` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Albums`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Albums` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `release_date` DATE NOT NULL,
+  `description` MEDIUMTEXT NULL DEFAULT NULL,
+  `label_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Albums_labels1_idx` (`label_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Albums_labels1`
+    FOREIGN KEY (`label_id`)
+    REFERENCES `meloman_db2`.`labels` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`countries`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`countries` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `title_UNIQUE` (`title` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`languages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`languages` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `title_UNIQUE` (`title` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Person_roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Person_roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `title_UNIQUE` (`title` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`persons`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`persons` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `surname` VARCHAR(45) NULL DEFAULT NULL,
+  `nickname` VARCHAR(45) NULL DEFAULT NULL,
+  `birth_date` DATE NOT NULL,
+  `die_date` DATE NULL DEFAULT NULL,
+  `biorgraphy` MEDIUMTEXT NOT NULL,
+  `countrie_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_persons_countries1_idx` (`countrie_id` ASC) VISIBLE,
+  CONSTRAINT `fk_persons_countries1`
+    FOREIGN KEY (`countrie_id`)
+    REFERENCES `meloman_db2`.`countries` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`groups`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`groups` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `birth_date` DATE NOT NULL,
+  `die_date` DATE NULL DEFAULT NULL,
+  `description` MEDIUMTEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Singles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Singles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(45) NOT NULL,
+  `release_date` DATE NOT NULL,
+  `description` MEDIUMTEXT NULL DEFAULT NULL,
+  `track_id` INT NOT NULL,
+  `label_id` INT NOT NULL,
+  `language_id` INT NOT NULL,
+  `groups_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Singles_track1_idx` (`track_id` ASC) VISIBLE,
+  INDEX `fk_Singles_labels1_idx` (`label_id` ASC) VISIBLE,
+  INDEX `fk_Singles_languages1_idx` (`language_id` ASC) VISIBLE,
+  INDEX `fk_Singles_groups1_idx` (`groups_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Singles_track1`
+    FOREIGN KEY (`track_id`)
+    REFERENCES `meloman_db2`.`track` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Singles_labels1`
+    FOREIGN KEY (`label_id`)
+    REFERENCES `meloman_db2`.`labels` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Singles_languages1`
+    FOREIGN KEY (`language_id`)
+    REFERENCES `meloman_db2`.`languages` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Singles_groups1`
+    FOREIGN KEY (`groups_id`)
+    REFERENCES `meloman_db2`.`groups` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`persons_languages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`persons_languages` (
+  `persons_id` INT NOT NULL,
+  `languages_id` INT NOT NULL,
+  PRIMARY KEY (`persons_id`, `languages_id`),
+  INDEX `fk_persons_has_languages_languages1_idx` (`languages_id` ASC) VISIBLE,
+  INDEX `fk_persons_has_languages_persons1_idx` (`persons_id` ASC) VISIBLE,
+  CONSTRAINT `fk_persons_has_languages_persons1`
+    FOREIGN KEY (`persons_id`)
+    REFERENCES `meloman_db2`.`persons` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_persons_has_languages_languages1`
+    FOREIGN KEY (`languages_id`)
+    REFERENCES `meloman_db2`.`languages` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`persons_roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`persons_roles` (
+  `persons_id` INT NOT NULL,
+  `Person_roles_id` INT NOT NULL,
+  PRIMARY KEY (`persons_id`, `Person_roles_id`),
+  INDEX `fk_persons_has_Person_roles_Person_roles1_idx` (`Person_roles_id` ASC) VISIBLE,
+  INDEX `fk_persons_has_Person_roles_persons1_idx` (`persons_id` ASC) VISIBLE,
+  CONSTRAINT `fk_persons_has_Person_roles_persons1`
+    FOREIGN KEY (`persons_id`)
+    REFERENCES `meloman_db2`.`persons` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_persons_has_Person_roles_Person_roles1`
+    FOREIGN KEY (`Person_roles_id`)
+    REFERENCES `meloman_db2`.`Person_roles` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Singles_persons`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Singles_persons` (
+  `Singles_id` INT NOT NULL,
+  `persons_id` INT NOT NULL,
+  PRIMARY KEY (`Singles_id`, `persons_id`),
+  INDEX `fk_Singles_has_persons_persons1_idx` (`persons_id` ASC) VISIBLE,
+  INDEX `fk_Singles_has_persons_Singles1_idx` (`Singles_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Singles_has_persons_Singles1`
+    FOREIGN KEY (`Singles_id`)
+    REFERENCES `meloman_db2`.`Singles` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Singles_has_persons_persons1`
+    FOREIGN KEY (`persons_id`)
+    REFERENCES `meloman_db2`.`persons` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Albums_languages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Albums_languages` (
+  `Albums_id` INT NOT NULL,
+  `languages_id` INT NOT NULL,
+  PRIMARY KEY (`Albums_id`, `languages_id`),
+  INDEX `fk_Albums_has_languages_languages1_idx` (`languages_id` ASC) VISIBLE,
+  INDEX `fk_Albums_has_languages_Albums1_idx` (`Albums_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Albums_has_languages_Albums1`
+    FOREIGN KEY (`Albums_id`)
+    REFERENCES `meloman_db2`.`Albums` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Albums_has_languages_languages1`
+    FOREIGN KEY (`languages_id`)
+    REFERENCES `meloman_db2`.`languages` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Albums_persons`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Albums_persons` (
+  `Albums_id` INT NOT NULL,
+  `persons_id` INT NOT NULL,
+  PRIMARY KEY (`Albums_id`, `persons_id`),
+  INDEX `fk_Albums_has_persons_persons1_idx` (`persons_id` ASC) VISIBLE,
+  INDEX `fk_Albums_has_persons_Albums1_idx` (`Albums_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Albums_has_persons_Albums1`
+    FOREIGN KEY (`Albums_id`)
+    REFERENCES `meloman_db2`.`Albums` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Albums_has_persons_persons1`
+    FOREIGN KEY (`persons_id`)
+    REFERENCES `meloman_db2`.`persons` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Albums_track`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Albums_track` (
+  `Albums_id` INT NOT NULL,
+  `track_id` INT NOT NULL,
+  PRIMARY KEY (`Albums_id`, `track_id`),
+  INDEX `fk_Albums_has_track_track1_idx` (`track_id` ASC) VISIBLE,
+  INDEX `fk_Albums_has_track_Albums1_idx` (`Albums_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Albums_has_track_Albums1`
+    FOREIGN KEY (`Albums_id`)
+    REFERENCES `meloman_db2`.`Albums` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Albums_has_track_track1`
+    FOREIGN KEY (`track_id`)
+    REFERENCES `meloman_db2`.`track` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Albums_genres`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Albums_genres` (
+  `Albums_id` INT NOT NULL,
+  `genres_id` INT NOT NULL,
+  PRIMARY KEY (`Albums_id`, `genres_id`),
+  INDEX `fk_Albums_has_genres_genres1_idx` (`genres_id` ASC) VISIBLE,
+  INDEX `fk_Albums_has_genres_Albums1_idx` (`Albums_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Albums_has_genres_Albums1`
+    FOREIGN KEY (`Albums_id`)
+    REFERENCES `meloman_db2`.`Albums` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Albums_has_genres_genres1`
+    FOREIGN KEY (`genres_id`)
+    REFERENCES `meloman_db2`.`genres` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`Albums_groups`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`Albums_groups` (
+  `Albums_id` INT NOT NULL,
+  `groups_id` INT NOT NULL,
+  PRIMARY KEY (`Albums_id`, `groups_id`),
+  INDEX `fk_Albums_has_groups_groups1_idx` (`groups_id` ASC) VISIBLE,
+  INDEX `fk_Albums_has_groups_Albums1_idx` (`Albums_id` ASC) VISIBLE,
+  CONSTRAINT `fk_Albums_has_groups_Albums1`
+    FOREIGN KEY (`Albums_id`)
+    REFERENCES `meloman_db2`.`Albums` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_Albums_has_groups_groups1`
+    FOREIGN KEY (`groups_id`)
+    REFERENCES `meloman_db2`.`groups` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`groups_genres`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`groups_genres` (
+  `groups_id` INT NOT NULL,
+  `genres_id` INT NOT NULL,
+  PRIMARY KEY (`groups_id`, `genres_id`),
+  INDEX `fk_groups_has_genres_genres1_idx` (`genres_id` ASC) VISIBLE,
+  INDEX `fk_groups_has_genres_groups1_idx` (`groups_id` ASC) VISIBLE,
+  CONSTRAINT `fk_groups_has_genres_groups1`
+    FOREIGN KEY (`groups_id`)
+    REFERENCES `meloman_db2`.`groups` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_groups_has_genres_genres1`
+    FOREIGN KEY (`genres_id`)
+    REFERENCES `meloman_db2`.`genres` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`groups_languages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`groups_languages` (
+  `groups_id` INT NOT NULL,
+  `languages_id` INT NOT NULL,
+  PRIMARY KEY (`groups_id`, `languages_id`),
+  INDEX `fk_groups_has_languages_languages1_idx` (`languages_id` ASC) VISIBLE,
+  INDEX `fk_groups_has_languages_groups1_idx` (`groups_id` ASC) VISIBLE,
+  CONSTRAINT `fk_groups_has_languages_groups1`
+    FOREIGN KEY (`groups_id`)
+    REFERENCES `meloman_db2`.`groups` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_groups_has_languages_languages1`
+    FOREIGN KEY (`languages_id`)
+    REFERENCES `meloman_db2`.`languages` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`groups_labels`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`groups_labels` (
+  `groups_id` INT NOT NULL,
+  `labels_id` INT NOT NULL,
+  PRIMARY KEY (`groups_id`, `labels_id`),
+  INDEX `fk_groups_has_labels_labels1_idx` (`labels_id` ASC) VISIBLE,
+  INDEX `fk_groups_has_labels_groups1_idx` (`groups_id` ASC) VISIBLE,
+  CONSTRAINT `fk_groups_has_labels_groups1`
+    FOREIGN KEY (`groups_id`)
+    REFERENCES `meloman_db2`.`groups` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_groups_has_labels_labels1`
+    FOREIGN KEY (`labels_id`)
+    REFERENCES `meloman_db2`.`labels` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `meloman_db2`.`groups_persons`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `meloman_db2`.`groups_persons` (
+  `groups_id` INT NOT NULL,
+  `persons_id` INT NOT NULL,
+  `date_in` DATE NULL,
+  `date_out` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`groups_id`, `persons_id`),
+  INDEX `fk_groups_has_persons_persons1_idx` (`persons_id` ASC) VISIBLE,
+  INDEX `fk_groups_has_persons_groups1_idx` (`groups_id` ASC) VISIBLE,
+  CONSTRAINT `fk_groups_has_persons_groups1`
+    FOREIGN KEY (`groups_id`)
+    REFERENCES `meloman_db2`.`groups` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_groups_has_persons_persons1`
+    FOREIGN KEY (`persons_id`)
+    REFERENCES `meloman_db2`.`persons` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

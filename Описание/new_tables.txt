@@ -1,0 +1,12 @@
+ Albums(as playlist), Albums_tracks(MM), Albums_Persons(MM), Albums_Languages(MM), Albums_Genres(MM);
+ Groups, Groups_Albums(MM), Groups_Persons(MM)[Groups_Persons_has_Roles(MM)], Groups_genres(MM), Groups_Languages(MM), Groups_Labels(MM);
+ Singles(as playlist)(with field group(N)and/or Author(N), and track, language), Singles_Persons(with field role)(MM)[Singles_Persons_has_Roles(MM)];
+
+ Persons(as user), Persons_Languages(MM), Persons_roles(MM with id)[Persons_roles(MM with id)];
+ Person_roles(types);
+ Languages(types);
+ Countries(types);
+ labels(types);
+
+
+ #Persons_Group_roles(MM)(связь между несколькими ролями и участниками группы),
