@@ -23,4 +23,9 @@ router.use('/like_in_post', postRout);
 var genreRout = require('./genreRout');
 router.use('/genre', genreRout);
 
+var countrieRout = require('./countrieRout');
+router.use('/countrie', countrieRout);
+var personsRout = require('./personsRout');
+router.use('/person', personsRout);
+
 module.exports = router;

@@ -22,4 +22,7 @@ router.get('/', userController.getMain);
 router.get('/guest', userController.getGuest);
 
 
+var personsRout = require('./personsRout');
+router.use('/person', personsRout);
+
 module.exports = router;

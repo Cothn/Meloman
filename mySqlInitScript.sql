@@ -296,7 +296,7 @@ CREATE TABLE IF NOT EXISTS `meloman_db2`.`persons` (
   `nickname` VARCHAR(45) NULL DEFAULT NULL,
   `birth_date` DATE NOT NULL,
   `die_date` DATE NULL DEFAULT NULL,
-  `biorgraphy` MEDIUMTEXT NOT NULL,
+  `biography` MEDIUMTEXT NOT NULL,
   `countrie_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_persons_countries1_idx` (`countrie_id` ASC),
@@ -655,3 +655,24 @@ INSERT INTO genres (title) VALUES ("Dark electro");
 INSERT INTO genres (title) VALUES ("Electro");
 INSERT INTO genres (title) VALUES ("War");
 INSERT INTO genres (title) VALUES ("Fulk music");
+
+INSERT INTO countries (title) VALUES ("Earth");
+INSERT INTO countries (title) VALUES ("Russia");
+INSERT INTO countries (title) VALUES ("United Kingdom");
+INSERT INTO countries (title) VALUES ("United States");
+INSERT INTO countries (title) VALUES ("Germany");
+INSERT INTO countries (title) VALUES ("France");
+INSERT INTO countries (title) VALUES ("Italy");
+INSERT INTO countries (title) VALUES ("Mexico");
+INSERT INTO countries (title) VALUES ("Belarus");
+INSERT INTO countries (title) VALUES ("Romania");
+
+INSERT INTO person_roles (title) VALUES ("musician");
+INSERT INTO person_roles (title) VALUES ("soloist");
+INSERT INTO person_roles (title) VALUES ("guitar player");
+INSERT INTO person_roles (title) VALUES ("bass-guitar player");
+INSERT INTO person_roles (title) VALUES ("pianist");
+INSERT INTO person_roles (title) VALUES ("back-vocalist");
+INSERT INTO person_roles (title) VALUES ("violinist");
+INSERT INTO person_roles (title) VALUES ("drummer");
+INSERT INTO person_roles (title) VALUES ("producer");

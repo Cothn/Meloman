@@ -1,88 +1,23 @@
-const User = require("../models/user.js");
+const Person = require("../models/person.js");
+const Persons_roles = require("../models/persons_roles.js");
 const logger = require('../configs/logger4jsInit');
 const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
-const bcrypt = require('bcrypt');
-const PRIVATE_KEY = require("../configs/token_key").private_key;
-const expirationTime = 36000;
-var jwt = require('jsonwebtoken');
 
 
-exports.getUserMe = function (request, response){
-    var id = request.currentUser.user_id;
-    if((request.currentUser.role_id < 2) && (request.query.id)){
-        id = request.query.id;//  params.id;
-    }
 
-    const connection = mysql.createConnection(mySqlConfig.config);
-    connection.query(User.GET_USER_BY_ID, [id], function(err, data) {
-        if(err) {
-            return response.status(400).send({message: err.message});
-        };
-        logger.debug("get_User_by_id:")
-        logger.debug(  data[0]);
-        if(data.length == 0)
-        {
-            return response.status(400).send({message: "user not found"});
-        }
-        return response.status(200).send(data[0]);
-    });
-    connection.end();
-};
-
-exports.authenticateUser = function (request, response){
-
-    const email = request.body.email;
-    const password = request.body.password;
-    //logger.debug( id);
-    const connection = mysql.createConnection(mySqlConfig.config);
-    connection.query(User.GET_USER_BY_EMAIL, [email], function(err, data) {
-        if(err) {
-            return response.status(400).send({message: err.message});
-        };
-
-        if(data.length == 0)
-        {
-            return response.status(400).send(
-                {message: "email or password incorrect!"});
-        }
-        else
-        {
-            const passwordEntity = bcrypt.hashSync(password, data[0].salt);
-
-            if(passwordEntity != data[0].password)
-            {
-                return response.status(400).send({message: "email or password incorrect!"});
-            }
-            else{
-                logger.debug(data[0]);
-
-                const token = jwt.sign({
-                    user_id :  data[0].id,
-                    user_role: data[0].role_id }, PRIVATE_KEY,
-                    {
-                    algorithm: 'HS256',
-                    expiresIn: expirationTime
-                });
-                return response.status(200).send({token: token, exp: expirationTime});
-            }
-        }
-    });
-    connection.end();
-};
-
-exports.getUsersByQuery = function (request, response){
-    var id= request.query.user_id
+exports.getPersonsByQuery = function (request, response){
+    var id= request.query.person_id;
 
     const nickname = request.query.nickname;
     const name = request.query.name;
     const surname = request.query.surname;
-
+    const countrie_id = request.query.countrie_id;
     const connection = mysql.createConnection(mySqlConfig.config);
 
     if (id){
-        logger.debug(User.GET_ALL_USERS+' WHERE id='+id);
-        connection.query(User.GET_ALL_USERS+' WHERE id='+id, function (err, data) {
+        logger.debug(Person.GET_ALL_PERSONS+' WHERE id='+id);
+        connection.query(Person.GET_ALL_PERSONS+' WHERE id='+id, function (err, data) {
             if(err) {
                 return response.status(400).send({message: err.message});
             };
@@ -92,6 +27,10 @@ exports.getUsersByQuery = function (request, response){
     }
     else {
         var sqlRequest = '';
+        if (countrie_id) {
+            sqlRequest += ' countrie_id = '+countrie_id+'';
+            sqlRequest += ' AND';
+        }
         if (nickname) {
             sqlRequest += ' nickname LIKE \'%'+nickname+'%\'';
             sqlRequest += ' AND';
@@ -111,8 +50,8 @@ exports.getUsersByQuery = function (request, response){
         if (sqlRequest != ''){
             sqlRequest = ' WHERE' + sqlRequest;
         }
-        logger.debug(User.GET_ALL_USERS+sqlRequest);
-        connection.query(User.GET_ALL_USERS+sqlRequest, function (err, data) {
+        logger.debug(Person.GET_ALL_PERSONS+sqlRequest);
+        connection.query(Person.GET_ALL_PERSONS+sqlRequest, function (err, data) {
             if(err) {
                 return response.status(400).send({message: err.message});
             };
@@ -123,55 +62,89 @@ exports.getUsersByQuery = function (request, response){
 
 };
 
-exports.updateUser = function(request, response) {
+exports.getPersonRoles = function (request, response){
+    var id= request.params.id;
+
+    const connection = mysql.createConnection(mySqlConfig.config);
+
+    logger.debug(Persons_roles.GET_ROLES_ID_BY_PERSONS_ID );
+    connection.query(Persons_roles.GET_ROLES_ID_BY_PERSONS_ID , [id], function (err, data) {
+        if(err) {
+            return response.status(400).send({message: err.message});
+        };
+        return response.status(200).send(data);
+    });
+    connection.end();
+};
+
+
+exports.updatePerson = function(request, response) {
     if(!request.body) return response.status(400).send(
         { message: "null request body"});
-    if(!request.body.password) return response.status(400).send(
-        { message: "password must be not null"});
+    //if(!request.body.password) return response.status(400).send(
+    //    { message: "password must be not null"});
 
-    var id = request.currentUser.user_id;
-    if(request.currentUser.role_id < 2) {
-        if(request.body.id) {
-            id = request.body.id;
-        }
-    }
+    const id = request.body.id;
     const name = request.body.name;
     const surname= request.body.surname;
     const nickname = request.body.nickname;
-    const email = request.body.email;
-    const salt= bcrypt.genSaltSync(10);
-    const password = bcrypt.hashSync(request.body.password, salt);
-    const music_avatar_id= request.body.music_avatar_id;
+    const birth_date = request.body.birth_date;
+    const die_date = request.body.die_date;
+    const biography= request.body.biography;
+    var countrie_id= request.body.countrie_id;
+    if(!countrie_id){
+        countrie_id=1;
+    }
+    if (!request.body.person_roles) {
+        return response.status(400).send({message: "field person_roles must be not null"});
+    }
+
 
     const connection = mysql.createConnection(mySqlConfig.config);
-    connection.query(User.UPDATE_USER,
-        [name, surname, nickname, email, password, salt, music_avatar_id,  id], function(err, data) {
+    connection.query(Person.UPDATE_PERSON,
+        [name, surname, nickname, birth_date, die_date, biography, countrie_id,  id], function(err, data) {
             if(err) {
+                connection.end();
                 return response.status(400).send({ message: err.message});
             };
             if(data.affectedRows == 0)
             {
-                return response.status(400).send({ message: "user not found"});
+                return response.status(400).send({ message: "person not found"});
             }
-            //logger.debug( "mess4");
-            //logger.debug(    data);
-            return response.sendStatus(200);
+
+            var sqlParams = [];
+            request.body.person_roles.forEach(role_id => sqlParams = sqlParams.concat([[id, role_id]]));
+            connection.query( Persons_roles.DELETE_PERSONS_ROLES_BY_PERSON_ID, id, function(err, data) {
+                if(err) {
+                    connection.end();
+                    return response.status(400).send({message: "delete error"+err.message});
+                };
+                connection.query( Persons_roles.ADD_PERSONS_ROLES, [sqlParams], function(err, data) {
+                    if(err) {
+
+                        return response.status(400).send({message: err.message});
+                    };
+                    //logger.debug(    data);
+                    return response.sendStatus(200);
+                });
+                connection.end();
+            });
         });
-    connection.end();
+    //connection.end();
     //response.status(200).send('true');
 };
 
-exports.deleteUser = function(request, response){
-    const user_id= request.params.id;
+exports.deletePerson = function(request, response){
+    const person_id= request.params.id;
 
     const connection = mysql.createConnection(mySqlConfig.config);
-    connection.query(User.DELETE_USER_BY_ID, [user_id], function(err, data) {
+    connection.query(Person.DELETE_PERSON_BY_ID, [person_id], function(err, data) {
         if(err) {
             return response.status(400).send({message: err.message});
         };
         if(data.affectedRows == 0)
         {
-            return response.status(400).send({ message: "user not found"});
+            return response.status(400).send({ message: "person not found"});
         }
         return response.sendStatus(200);
     });
@@ -180,24 +153,45 @@ exports.deleteUser = function(request, response){
 
 
 
-exports.registerUser= function(request, response){
+exports.addPerson= function(request, response){
 
     if(!request.body) return response.sendStatus(400);
+    const name = request.body.name;
+    const surname= request.body.surname;
     const nickname = request.body.nickname;
-    const email = request.body.email;
-
-    const salt= bcrypt.genSaltSync(10);
-    const password = bcrypt.hashSync(request.body.password, salt);
-
+    const birth_date = request.body.birth_date;
+    const die_date = request.body.die_date;
+    const biography= request.body.biography;
+    var countrie_id= request.body.countrie_id;
+    if(!countrie_id){
+        countrie_id=1;
+    }
+    if (!request.body.person_roles) {
+        return response.status(400).send({message: "field person_roles must be not null"});
+    }
     const connection = mysql.createConnection(mySqlConfig.config);
-    connection.query( User.ADD_USER,
-        [nickname, email, password, salt], function(err, data) {
+    connection.query( Person.ADD_PERSON,
+        [name, surname, nickname, birth_date, die_date, biography, countrie_id], function(err, data) {
             if(err) {
+                connection.end();
                 return response.status(400).send({message: err.message});
             };
-            return response.status(201).send({insert_id:  data.insertId});
+
+            var sqlParams = [];
+            const person_id = data.insertId;
+            request.body.person_roles.forEach(role_id => sqlParams = sqlParams.concat([[person_id, role_id]]));
+            connection.query( Persons_roles.ADD_PERSONS_ROLES, [sqlParams], function(err, data) {
+                if(err) {
+
+                    return response.status(400).send({message: err.message});
+                };
+                //logger.debug(    data);
+                return response.status(201).send({insert_id:  person_id });
+            });
+            connection.end();
+
 
         });
-    connection.end();
+    //connection.end();
 
 };
