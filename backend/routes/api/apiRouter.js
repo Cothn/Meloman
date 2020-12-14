@@ -27,5 +27,7 @@ var countrieRout = require('./countrieRout');
 router.use('/countrie', countrieRout);
 var personsRout = require('./personsRout');
 router.use('/person', personsRout);
+var languageRout = require('./languageRout');
+router.use('/language', languageRout);
 
 module.exports = router;

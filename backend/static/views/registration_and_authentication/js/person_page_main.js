@@ -11,7 +11,7 @@ const USER_ABOUT_NAME_SURNAME_LINK_ID = "body-user-about-roles";
 const USER_ABOUT_BIOGRAPHY_LINK_ID = "body-user-about-biography";
 const USER_ABOUT_DATE_LINK_ID = "body-user-about-date";
 const USER_ABOUT_NATIONALITY_LINK_ID = "body-user-about-nationality";
-const USER_ABOUT_DATE_LANGUAGES_ID = "body-user-about-languages";
+const USER_ABOUT_LANGUAGES_LINK_ID = "body-user-about-languages";
 
 const TRACK_URL_DATA_NAME = "data-trackURL";
 const TRACK_IS_LAST_DATA_NAME = "data-isLast";
@@ -153,24 +153,24 @@ function fillPersonAboutBlock(personId) {
 					.catch(error => console.log('error', error));
 
 				//languages
-				fetch("http://localhost:3000/api/person/roles/" + `${personId}`, requestOptions)
+				fetch("http://localhost:3000/api/person/languages/" + `${personId}`, requestOptions)
 					.then(async response => {
-						var resultRoles = await response.json();
+						var resultLanguages = await response.json();
 						if (response.ok)
 						{
 
 
-							resultRoles.forEach(personRole =>{
+							resultLanguages.forEach(personLanguage =>{
 
 
-								fetch("http://localhost:3000/api/person/role" + `?id=${personRole.person_roles_id}`, requestOptions)
+								fetch("http://localhost:3000/api/language" + `?id=${personLanguage.languages_id}`, requestOptions)
 									.then(async response => {
-										var resultRole = await response.json();
+										var resultLanguage = await response.json();
 										if (response.ok)
 										{
 											//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML =resultRole[0];
-											document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML +=
-												" "+resultRole[0].title+" |";
+											document.getElementById(USER_ABOUT_LANGUAGES_LINK_ID).innerHTML +=
+												" "+resultLanguage[0].title+" |";
 
 										}
 										else
