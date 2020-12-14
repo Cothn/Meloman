@@ -8,6 +8,8 @@ personRouter.get('/', personController.getPersonsByQuery);
 
 personRouter.get('/roles/:id', personController.getPersonRoles);
 
+personRouter.get('/languages/:id', personController.getPersonLanguages);
+
 personRouter.post('/', authHelper.checkAuth, authHelper.checkAdmin,  personController.addPerson);
 
 personRouter.put('/', authHelper.checkAuth, authHelper.checkAdmin, personController.updatePerson);

@@ -676,3 +676,14 @@ INSERT INTO person_roles (title) VALUES ("back-vocalist");
 INSERT INTO person_roles (title) VALUES ("violinist");
 INSERT INTO person_roles (title) VALUES ("drummer");
 INSERT INTO person_roles (title) VALUES ("producer");
+
+INSERT INTO languages (title) VALUES ("Earth");
+INSERT INTO languages (title) VALUES ("Russia");
+INSERT INTO languages (title) VALUES ("United Kingdom");
+INSERT INTO languages (title) VALUES ("United States");
+INSERT INTO languages (title) VALUES ("Germany");
+INSERT INTO languages (title) VALUES ("France");
+INSERT INTO languages (title) VALUES ("Italy");
+INSERT INTO languages (title) VALUES ("Mexico");
+INSERT INTO languages (title) VALUES ("Belarus");
+INSERT INTO languages (title) VALUES ("Romania");

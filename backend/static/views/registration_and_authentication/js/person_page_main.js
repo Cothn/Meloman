@@ -10,13 +10,14 @@ const USER_ABOUT_USERNAME_LINK_ID = "body-user-about-username";
 const USER_ABOUT_NAME_SURNAME_LINK_ID = "body-user-about-roles";
 const USER_ABOUT_BIOGRAPHY_LINK_ID = "body-user-about-biography";
 const USER_ABOUT_DATE_LINK_ID = "body-user-about-date";
-const USER_MAIN_TRACK_INFO_BLOCK_ID = "body-user-main-track-info";
+const USER_ABOUT_NATIONALITY_LINK_ID = "body-user-about-nationality";
+const USER_ABOUT_DATE_LANGUAGES_ID = "body-user-about-languages";
 
 const TRACK_URL_DATA_NAME = "data-trackURL";
 const TRACK_IS_LAST_DATA_NAME = "data-isLast";
 const TRACK_NEXT_TRACK_DATA_NAME = "data-nextTrackId";
 
-const POST_USERNAME_AUTHOR_ID_DATA_NAME = "data-authorId"
+const POST_USERNAME_AUTHOR_ID_DATA_NAME = "data-authorId";
 
 const POST_PLAYLIST_TITLE_PLAYLIST_ID_DATA_NAME = "data-playlistId";
 
@@ -130,10 +131,66 @@ function fillPersonAboutBlock(personId) {
 					document.getElementById(USER_ABOUT_USERNAME_LINK_ID).innerHTML =
 						resultPerson.name + " " + personSurname;
 				}
-				//test admin
+
 				document.getElementById(BODY_USER_EDIT_LINK_ID).setAttribute("hidden", "hidden");
 
+//nationality
+				fetch("http://localhost:3000/api/countrie" + `?id=${resultPerson.countrie_id}`, requestOptions)
+					.then(async response => {
+						var resultCountrie = await response.json();
+						if (response.ok)
+						{
+							//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML =resultRole[0];
+							document.getElementById(USER_ABOUT_NATIONALITY_LINK_ID).innerHTML +=
+								resultCountrie[0].title + ".";
 
+						}
+						else
+						{
+							alert(resultPerson.message);
+						}
+					})
+					.catch(error => console.log('error', error));
+
+				//languages
+				fetch("http://localhost:3000/api/person/roles/" + `${personId}`, requestOptions)
+					.then(async response => {
+						var resultRoles = await response.json();
+						if (response.ok)
+						{
+
+
+							resultRoles.forEach(personRole =>{
+
+
+								fetch("http://localhost:3000/api/person/role" + `?id=${personRole.person_roles_id}`, requestOptions)
+									.then(async response => {
+										var resultRole = await response.json();
+										if (response.ok)
+										{
+											//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML =resultRole[0];
+											document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML +=
+												" "+resultRole[0].title+" |";
+
+										}
+										else
+										{
+											alert(resultPerson.message);
+										}
+									})
+									.catch(error => console.log('error', error));
+
+							});
+
+						}
+						else
+						{
+							alert(resultPerson.message);
+						}
+					})
+					.catch(error => console.log('error', error));
+
+//roles
 				fetch("http://localhost:3000/api/person/roles/" + `${personId}`, requestOptions)
 					.then(async response => {
 						var resultRoles = await response.json();

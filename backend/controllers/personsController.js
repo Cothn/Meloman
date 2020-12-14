@@ -1,5 +1,6 @@
 const Person = require("../models/person.js");
 const Persons_roles = require("../models/persons_roles.js");
+const Persons_languages = require("../models/persons_languages.js");
 const logger = require('../configs/logger4jsInit');
 const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
@@ -77,6 +78,20 @@ exports.getPersonRoles = function (request, response){
     connection.end();
 };
 
+exports.getPersonLanguages = function (request, response){
+    var id= request.params.id;
+
+    const connection = mysql.createConnection(mySqlConfig.config);
+
+    logger.debug(Persons_languages.GET_LANGUAGES_ID_BY_PERSONS_ID );
+    connection.query(Persons_languages.GET_LANGUAGES_ID_BY_PERSONS_ID , [id], function (err, data) {
+        if(err) {
+            return response.status(400).send({message: err.message});
+        };
+        return response.status(200).send(data);
+    });
+    connection.end();
+};
 
 exports.updatePerson = function(request, response) {
     if(!request.body) return response.status(400).send(
@@ -98,7 +113,9 @@ exports.updatePerson = function(request, response) {
     if (!request.body.person_roles) {
         return response.status(400).send({message: "field person_roles must be not null"});
     }
-
+    if (!request.body.languages) {
+        return response.status(400).send({message: "field languages must be not null"});
+    }
 
     const connection = mysql.createConnection(mySqlConfig.config);
     connection.query(Person.UPDATE_PERSON,
@@ -121,13 +138,29 @@ exports.updatePerson = function(request, response) {
                 };
                 connection.query( Persons_roles.ADD_PERSONS_ROLES, [sqlParams], function(err, data) {
                     if(err) {
-
+                        connection.end();
                         return response.status(400).send({message: err.message});
                     };
+
                     //logger.debug(    data);
-                    return response.sendStatus(200);
+                    var sqlParams = [];
+                    request.body.languages.forEach(language_id => sqlParams = sqlParams.concat([[id, language_id]]));
+                    connection.query( Persons_languages.DELETE_PERSONS_LANGUAGES_BY_PERSON_ID, id, function(err, data) {
+                        if(err) {
+                            connection.end();
+                            return response.status(400).send({message: "delete error"+err.message});
+                        };
+                        connection.query( Persons_languages.ADD_PERSONS_LANGUAGES, [sqlParams], function(err, data) {
+                            if(err) {
+                                return response.status(400).send({message: err.message});
+                            };
+                            //logger.debug(    data);
+                            return response.sendStatus(200);
+                        });
+                        connection.end();
+                    });
                 });
-                connection.end();
+
             });
         });
     //connection.end();
@@ -169,6 +202,9 @@ exports.addPerson= function(request, response){
     if (!request.body.person_roles) {
         return response.status(400).send({message: "field person_roles must be not null"});
     }
+    if (!request.body.languages) {
+        return response.status(400).send({message: "field languages must be not null"});
+    }
     const connection = mysql.createConnection(mySqlConfig.config);
     connection.query( Person.ADD_PERSON,
         [name, surname, nickname, birth_date, die_date, biography, countrie_id], function(err, data) {
@@ -182,13 +218,23 @@ exports.addPerson= function(request, response){
             request.body.person_roles.forEach(role_id => sqlParams = sqlParams.concat([[person_id, role_id]]));
             connection.query( Persons_roles.ADD_PERSONS_ROLES, [sqlParams], function(err, data) {
                 if(err) {
-
+                    connection.end();
                     return response.status(400).send({message: err.message});
                 };
+
                 //logger.debug(    data);
-                return response.status(201).send({insert_id:  person_id });
+                var sqlParams = [];
+                request.body.languages.forEach(language_id => sqlParams = sqlParams.concat([[person_id, language_id]]));
+                connection.query( Persons_languages.ADD_PERSONS_LANGUAGES, [sqlParams], function(err, data) {
+                    if(err) {
+                        return response.status(400).send({message: err.message});
+                    };
+                    //logger.debug(    data);
+                    return response.status(201).send({insert_id:  person_id });
+                });
+                connection.end();
+
             });
-            connection.end();
 
 
         });
