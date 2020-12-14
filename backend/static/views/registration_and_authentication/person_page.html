@@ -44,7 +44,7 @@
 	</style>
 
 </head>
-<body onload="onUserPageLoad('user-main-block', 'body-user-main-track', 'body-user-quick-buttons-block')">
+<body onload="onPersonPageLoad('user-main-block', 'body-user-quick-buttons-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -118,41 +118,27 @@
 				</div>
 				
 				<div>
-					<p id="body-user-about-name-surname" class="body-user-about-name-surname">Jesse Heisenberg</p>
+					<p id="body-user-about-roles" class="body-user-about-name-surname"></p>
 				</div>
-			</div>
-			<div class="body-user-main-track-block" style="flex-grow:2;">
-				<div id="body-user-main-track-info" class="body-user-main-track-info">
+				<div>
+					<p id="body-user-about-date" class="body-user-about-name-surname"></p>
 				</div>
-				
-				<audio controls loop id="body-user-main-track" class="body-user-main-track"></audio>
+				<div>
+					<p id="body-user-about-biography" class="body-user-about-biography"></p>
+				</div>
+
 			</div>
 		</div>
 		
 		<div id="body-user-quick-buttons-block" class="body-user-quick-buttons-block" style="display: none;">
 			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/favorites')">
-				Favorites playlists
+				Person albums
 			</button>
 			
 			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/added')">
-				Added playlists
+				Person singles
 			</button>
-			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/track/added')">
-				Added tracks
-			</button>
-			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/post/create_post')">
-				Create post
-			</button>
-			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/create')">
-				Create playlist
-			</button>
-			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/track/add')">
-				Add track
-			</button>			
+
 		</div>		
 	</div>
 	
@@ -225,7 +211,7 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/user_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/person_page_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
 	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
 	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>

@@ -1,5 +1,5 @@
 var express = require('express');
-const person_roleController = require("../../controllers/person_roleController.js");
+const person_roleController = require("../../controllers/person_rolesController.js");
 var person_roleRouter = express.Router();
 const authHelper = require("../../helpers/authHelper");
 

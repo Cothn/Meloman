@@ -52,6 +52,10 @@
 	font-size: 2vw;
 }
 
+.body-user-about-biography {
+	font-size: 1vw;
+}
+
 .body-user-main-track-block {
 	padding-right: 1%;
 	display: flex;
