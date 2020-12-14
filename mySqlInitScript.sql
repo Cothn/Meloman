@@ -687,3 +687,17 @@ INSERT INTO languages (title) VALUES ("Italy");
 INSERT INTO languages (title) VALUES ("Mexico");
 INSERT INTO languages (title) VALUES ("Belarus");
 INSERT INTO languages (title) VALUES ("Romania");
+
+INSERT INTO labels (title) VALUES ("Hard rock");
+INSERT INTO labels (title) VALUES ("Alternativ rock");
+INSERT INTO labels (title) VALUES ("Fulk rock");
+INSERT INTO labels (title) VALUES ("Rock'n roll");
+INSERT INTO labels (title) VALUES ("Punk rock");
+INSERT INTO labels (title) VALUES ("Classic");
+INSERT INTO labels (title) VALUES ("Disko");
+INSERT INTO labels (title) VALUES ("Dark electro");
+INSERT INTO labels (title) VALUES ("Electro");
+INSERT INTO labels (title) VALUES ("War");
+INSERT INTO labels (title) VALUES ("Fulk music");
+
+

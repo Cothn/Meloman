@@ -567,7 +567,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"name\": \"Лусинэ\",\n        \"birth_date\": \"19830221\",\n        \"biography\": \"Родилась в 1983 году в городе Капан (Армения), позднее переехала с родителями в Серпухов. В детстве училась в музыкальной школе по классу фортепиано. В 2001 году окончила МГТУ «МАМИ» (экономический факультет), в 2006 — МГУКИ (факультет менеджмента и социально-информационных технологий). Музыкальная карьера Геворкян началась в 2003 году, когда она стала участницей рок-группы «Сфера Влияния»[1]. В 2004 году перешла в состав группы «Tracktor Bowling»[1] (на смену ушедшей вокалистки Людмилы «Милы» Дёминой). В 2008 году, вместе с басистом группы Виталием «Витом» Демиденко, основывает рок-группу «Louna»[2], которой они впоследствии уделили основное внимание в связи с творческими разногласиями с другими участниками «Tracktor Bowling».В конце 2012 года группа «Louna» была выдвинута на Премию «Чартова Дюжина» в шести номинациях и впоследствии вышла во второй этап голосования в двух из них — «Альбом» и «Солистка». 24 февраля 2013 года, на основе народного голосования, Лусинэ Геворкян была признана лучшей рок-вокалисткой страны и во время церемонии награждения победителей Премии «Чартова Дюжина» в клубе Stadium Live получила Премию «Лучшая солистка» из рук актёра Никиты Высоцкого[3].Вела мастер-классы по рок-вокалу в музыкальном клубе-школе «МузКласс»\",\n        \"countrie_id\":10,\n        \"person_roles\": [1, 2]\n    }",
+							"raw": "    {\n        \"name\": \"Лусинэ\",\n        \"birth_date\": \"19830221\",\n        \"biography\": \"Родилась в 1983 году в городе Капан (Армения), позднее переехала с родителями в Серпухов. В детстве училась в музыкальной школе по классу фортепиано. В 2001 году окончила МГТУ «МАМИ» (экономический факультет), в 2006 — МГУКИ (факультет менеджмента и социально-информационных технологий). Музыкальная карьера Геворкян началась в 2003 году, когда она стала участницей рок-группы «Сфера Влияния»[1]. В 2004 году перешла в состав группы «Tracktor Bowling»[1] (на смену ушедшей вокалистки Людмилы «Милы» Дёминой). В 2008 году, вместе с басистом группы Виталием «Витом» Демиденко, основывает рок-группу «Louna»[2], которой они впоследствии уделили основное внимание в связи с творческими разногласиями с другими участниками «Tracktor Bowling».В конце 2012 года группа «Louna» была выдвинута на Премию «Чартова Дюжина» в шести номинациях и впоследствии вышла во второй этап голосования в двух из них — «Альбом» и «Солистка». 24 февраля 2013 года, на основе народного голосования, Лусинэ Геворкян была признана лучшей рок-вокалисткой страны и во время церемонии награждения победителей Премии «Чартова Дюжина» в клубе Stadium Live получила Премию «Лучшая солистка» из рук актёра Никиты Высоцкого[3].Вела мастер-классы по рок-вокалу в музыкальном клубе-школе «МузКласс»\",\n        \"countrie_id\":10,\n        \"person_roles\": [1, 2],\n        \"languages\": [1, 2]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -617,7 +617,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n    \t\"id\": 1,\n        \"name\": \"Лусинэ\",\n        \"surname\": \"Геворкян\",        \n        \"nickname\": \"Лу\",   \n        \"birth_date\": \"19830221\",\n        \"biography\": \"Родилась в 1983 году в городе Капан (Армения), позднее переехала с родителями в Серпухов. В детстве училась в музыкальной школе по классу фортепиано. В 2001 году окончила МГТУ «МАМИ» (экономический факультет), в 2006 — МГУКИ (факультет менеджмента и социально-информационных технологий). Музыкальная карьера Геворкян началась в 2003 году, когда она стала участницей рок-группы «Сфера Влияния»[1]. В 2004 году перешла в состав группы «Tracktor Bowling»[1] (на смену ушедшей вокалистки Людмилы «Милы» Дёминой). В 2008 году, вместе с басистом группы Виталием «Витом» Демиденко, основывает рок-группу «Louna»[2], которой они впоследствии уделили основное внимание в связи с творческими разногласиями с другими участниками «Tracktor Bowling».В конце 2012 года группа «Louna» была выдвинута на Премию «Чартова Дюжина» в шести номинациях и впоследствии вышла во второй этап голосования в двух из них — «Альбом» и «Солистка». 24 февраля 2013 года, на основе народного голосования, Лусинэ Геворкян была признана лучшей рок-вокалисткой страны и во время церемонии награждения победителей Премии «Чартова Дюжина» в клубе Stadium Live получила Премию «Лучшая солистка» из рук актёра Никиты Высоцкого[3].Вела мастер-классы по рок-вокалу в музыкальном клубе-школе «МузКласс»\",\n        \"countrie_id\":10,\n        \"person_roles\": [1, 2]\n    }",
+							"raw": "    {\n    \t\"id\": 1,\n        \"name\": \"Лусинэ\",\n        \"surname\": \"Геворкян\",        \n        \"nickname\": \"Лу\",   \n        \"birth_date\": \"19830221\",\n        \"biography\": \"Родилась в 1983 году в городе Капан (Армения), позднее переехала с родителями в Серпухов. В детстве училась в музыкальной школе по классу фортепиано. В 2001 году окончила МГТУ «МАМИ» (экономический факультет), в 2006 — МГУКИ (факультет менеджмента и социально-информационных технологий). Музыкальная карьера Геворкян началась в 2003 году, когда она стала участницей рок-группы «Сфера Влияния»[1]. В 2004 году перешла в состав группы «Tracktor Bowling»[1] (на смену ушедшей вокалистки Людмилы «Милы» Дёминой). В 2008 году, вместе с басистом группы Виталием «Витом» Демиденко, основывает рок-группу «Louna»[2], которой они впоследствии уделили основное внимание в связи с творческими разногласиями с другими участниками «Tracktor Bowling».В конце 2012 года группа «Louna» была выдвинута на Премию «Чартова Дюжина» в шести номинациях и впоследствии вышла во второй этап голосования в двух из них — «Альбом» и «Солистка». 24 февраля 2013 года, на основе народного голосования, Лусинэ Геворкян была признана лучшей рок-вокалисткой страны и во время церемонии награждения победителей Премии «Чартова Дюжина» в клубе Stadium Live получила Премию «Лучшая солистка» из рук актёра Никиты Высоцкого[3].Вела мастер-классы по рок-вокалу в музыкальном клубе-школе «МузКласс»\",\n        \"countrie_id\":10,\n        \"person_roles\": [1, 2],\n        \"languages\": [1, 2]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -679,7 +679,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/person",
+							"raw": "http://localhost:3000/api/person?person_id=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -692,8 +692,7 @@
 							"query": [
 								{
 									"key": "person_id",
-									"value": "1",
-									"disabled": true
+									"value": "1"
 								},
 								{
 									"key": "nickname",
@@ -786,7 +785,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/person/roles/10",
+							"raw": "http://localhost:3000/api/person/roles/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -796,7 +795,44 @@
 								"api",
 								"person",
 								"roles",
-								"10"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/languages/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"languages",
+								"1"
 							]
 						}
 					},
@@ -829,6 +865,397 @@
 							"path": [
 								"view",
 								"person"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Person Copy",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff327092-9dee-4283-8c12-bb53b7892640",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Tracktor Bowling\",\n        \"birth_date\": \"19830221\",\n        \"description\": \"российская рок-группа, играющая в стиле альтернативный метал. Образовалась в 1996 году, однако первый полноценный альбом вышел только через шесть лет — в 2002 году. С тех пор группа выпустила шесть номерных альбомов, один Live-альбом, а также несколько синглов.\",\n        \"countrie_id\":10,\n        \"group_persons\": [1, 10],\n        \"languages\": [1, 2],\n        \"genres\": [1, 2],\n        \"labels\": [1, 2]      \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 1,\n        \"title\": \"Tracktor Bowling\",\n        \"birth_date\": \"19830221\",\n        \"description\": \"российская рок-группа, играющая в стиле альтернативный метал. Образовалась в 1996 году, однако первый полноценный альбом вышел только через шесть лет — в 2002 году. С тех пор группа выпустила шесть номерных альбомов, один Live-альбом, а также несколько синглов.\",\n        \"countrie_id\":10,\n        \"group_persons\": [1, 10],\n        \"languages\": [1, 2],\n        \"genres\": [1, 2],\n        \"labels\": [1, 2]     \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODQyODQwMywiZXhwIjoxNTg4NDMyMDAzfQ.CJdPed9eRIe_mOph55hyuCnEqZQShmtisdEM5wQ9PMk",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group?group_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							],
+							"query": [
+								{
+									"key": "nickname",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "countrie_id",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "group_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/genres/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"genres",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/languages/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"languages",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/persons/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"persons",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/labels/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"labels",
+								"8"
 							]
 						}
 					},

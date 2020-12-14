@@ -29,5 +29,7 @@ var personsRout = require('./personsRout');
 router.use('/person', personsRout);
 var languageRout = require('./languageRout');
 router.use('/language', languageRout);
+var groupRout = require('./groupsRout');
+router.use('/group', groupRout);
 
 module.exports = router;

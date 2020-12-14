@@ -10,6 +10,8 @@ personRouter.get('/roles/:id', personController.getPersonRoles);
 
 personRouter.get('/languages/:id', personController.getPersonLanguages);
 
+personRouter.get('/groups/:id', personController.getPersonGroups);
+
 personRouter.post('/', authHelper.checkAuth, authHelper.checkAdmin,  personController.addPerson);
 
 personRouter.put('/', authHelper.checkAuth, authHelper.checkAdmin, personController.updatePerson);
