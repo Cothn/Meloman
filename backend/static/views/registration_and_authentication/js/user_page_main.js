@@ -1224,7 +1224,9 @@ function onWriteCommentAddSuccess(currPostIdNumber, newCommentText) {
 		
 			a_post_single_comment_author = document.createElement('div');
 			a_post_single_comment_author.className = "body-post-single-comment-username";
-			a_post_single_comment_author.innerHTML = document.getElementById(USER_ABOUT_USERNAME_LINK_ID).innerHTML;
+			a_post_single_comment_author.innerHTML =
+				document.getElementById(USER_ABOUT_USERNAME_LINK_ID).innerHTML;
+//!!!!				//comments author name(coments userProfileNAme)
 			
 		p_post_single_comment_author.insertAdjacentElement('beforeend', a_post_single_comment_author);
 		
