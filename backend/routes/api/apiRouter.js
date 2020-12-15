@@ -33,5 +33,7 @@ var groupRout = require('./groupsRout');
 router.use('/group', groupRout);
 var albumRout = require('./albumsRout');
 router.use('/album', albumRout);
+var singleRout = require('./singlesRout');
+router.use('/single', singleRout);
 
 module.exports = router;

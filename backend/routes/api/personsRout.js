@@ -14,6 +14,8 @@ personRouter.get('/groups/:id', personController.getPersonGroups);
 
 personRouter.get('/albums/:id', personController.getPersonAlbums);
 
+personRouter.get('/singles/:id', personController.getPersonSingles);
+
 personRouter.post('/', authHelper.checkAuth, authHelper.checkAdmin,  personController.addPerson);
 
 personRouter.put('/', authHelper.checkAuth, authHelper.checkAdmin, personController.updatePerson);

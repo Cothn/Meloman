@@ -284,7 +284,7 @@ exports.addAlbum= function(request, response){
 
     if(!request.body) return response.sendStatus(400);
     const title = request.body.title;
-    const  release_date = request.body. release_date;
+    const release_date = request.body.release_date;
     const description= request.body.description;
     var label_id= request.body.label_id;
     if(!label_id){
@@ -307,7 +307,7 @@ exports.addAlbum= function(request, response){
     }
     const connection = mysql.createConnection(mySqlConfig.config);
     connection.query( Album.ADD_ALBUM,
-        [title,  release_date, description, label_id], function(err, data) {
+        [title, release_date, description, label_id], function(err, data) {
             if(err) {
                 connection.end();
                 return response.status(400).send({message: err.message});

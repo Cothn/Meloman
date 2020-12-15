@@ -3,6 +3,7 @@ const Persons_roles = require("../models/persons_roles.js");
 const Persons_groups = require("../models/groups_persons.js");
 const Persons_languages = require("../models/persons_languages.js");
 const Persons_albums = require("../models/albums_persons.js");
+const Persons_singles = require("../models/singles_persons.js");
 const logger = require('../configs/logger4jsInit');
 const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
@@ -72,6 +73,21 @@ exports.getPersonRoles = function (request, response){
 
     logger.debug(Persons_roles.GET_ROLES_ID_BY_PERSONS_ID );
     connection.query(Persons_roles.GET_ROLES_ID_BY_PERSONS_ID , [id], function (err, data) {
+        if(err) {
+            return response.status(400).send({message: err.message});
+        };
+        return response.status(200).send(data);
+    });
+    connection.end();
+};
+
+exports.getPersonSingles = function (request, response){
+    var id= request.params.id;
+
+    const connection = mysql.createConnection(mySqlConfig.config);
+
+    logger.debug(Persons_singles.GET_SINGLES_ID_BY_PERSONS_ID );
+    connection.query(Persons_singles.GET_SINGLES_ID_BY_PERSONS_ID , [id], function (err, data) {
         if(err) {
             return response.status(400).send({message: err.message});
         };
