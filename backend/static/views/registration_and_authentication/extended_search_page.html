@@ -128,6 +128,8 @@
 					<option value="user">Find user</option>
 					<option value="playlist">Find playlist</option>
 					<option value="track">Find track</option>
+					<option value="person">Find person</option>
+					<option value="group">Find group</option>
 				</select>
 			</div>
 
@@ -227,6 +229,26 @@
 
 	</div>
 
+	<div id="persons-main-block" class="limiter body-main" hidden>
+		<div class="body-added-playlists-header-block">
+			<p class="finded-header"><b>Finded persons:</b></p>
+		</div>
+		<div id="persons-block" class="body-post-block">
+
+		</div>
+
+	</div>
+
+	<div id="groups-main-block" class="limiter body-main" hidden>
+		<div class="body-added-playlists-header-block">
+			<p class="finded-header"><b>Finded groups:</b></p>
+		</div>
+		<div id="groups-block" class="body-post-block">
+
+		</div>
+
+	</div>
+
 	<div class="footer-block">
 		<div class="footer-main-player-block">
 			<audio controls id="main-player" class="main-player">
@@ -286,6 +308,12 @@
 
 			let users_list = document.getElementById("users-main-block");
 			users_list.hidden = true;
+
+			let persons_list = document.getElementById("persons-main-block");
+			persons_list.hidden = true;
+
+			let groups_list = document.getElementById("groups-main-block");
+			groups_list.hidden = true;
 			switch (this.value) {
 				case "user":
 					search_input.setAttribute('placeholder', 'Search by nick name');
@@ -300,6 +328,16 @@
 					search_label.innerHTML="Input title:";
 					genre_selector.hidden = false;
 					genre_checkbox.hidden = false;
+
+					break;
+				case "person":
+					search_input.setAttribute('placeholder', 'Search by name');
+					search_label.innerHTML="Input name:";
+
+					break;
+				case "group":
+					search_input.setAttribute('placeholder', 'Search by title');
+					search_label.innerHTML="Input title:";
 
 					break;
 			}
@@ -318,6 +356,8 @@
 			let track_list = document.getElementById('find-track-list');
 			let play_list = document.getElementById("palylists-main-block");
 			let users_list = document.getElementById("users-main-block");
+			let persons_list = document.getElementById("persons-main-block");
+			let groups_list = document.getElementById("groups-main-block");
 			switch (searchType.value) {
 				case "user":
 					param = {
@@ -344,6 +384,20 @@
 					onTracksSearch("body-playlist-block", param)
 					track_list.hidden = false;
 					audio.hidden = false;
+					break;
+				case "person":
+					param = {
+						name: search_text
+					};
+					onPersonsSearch("persons-main-block", param)
+					persons_list.hidden = false;
+					break;
+				case "group":
+					param = {
+						title: search_text
+					};
+					onGroupsSearch("groups-main-block", param)
+					groups_list.hidden = false;
 					break;
 			}
 		}, false);
