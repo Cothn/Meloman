@@ -26,5 +26,7 @@ var personsRout = require('./personsRout');
 router.use('/person', personsRout);
 var groupsRout = require('./groupsRout');
 router.use('/group', groupsRout);
+var albumRout = require('./albumRout');
+router.use('/album', albumRout);
 
 module.exports = router;

@@ -68,7 +68,10 @@ function onGroupPageLoad(afterWhichDivId, userQuickButtonsBlockId) {
 	var urlParams = new URLSearchParams(window.location.search);
 	var groupId = urlParams.get('group_id');
 
-	var currUserToken = getCookie("userToken");	
+	var currUserToken = getCookie("userToken");
+	if (groupId === undefined || groupId == null || groupId == "") {
+		window.location.href = '/view/user';
+	}
 
 	var requestOptions = {
 		method: 'GET',

@@ -30,6 +30,9 @@
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/added_playlists_page.css">
 <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/extended_search_page.css">
+<!--===============================================================================================-->
+
 	<style>
 		body {
 			background: url(/views/registration_and_authentication/images/background/main_background.jpeg) repeat;
@@ -44,14 +47,14 @@
 		}
 		.hr-body-start {
 			margin-top: 1%;
-		}		
+		}
 		.hr-body-end {
 			margin-bottom: 3%;
 		}
 	</style>
 
 </head>
-<body onload="onPlaylistInfoPageLoad('main-block')">
+<body onload="onAlbumPageLoad('main-block')">
 	<header class="header-main">
 		<div class="header-content">
 			<div class="header-content-main">
@@ -112,13 +115,33 @@
 			window.location.href= "/view/authenticate";
 		});
 	</script>
-
-
+	
 	<div id="main-block" class="limiter body-main first">
-		<div class="body-added-playlists-header-block">
-			<p><b>Playlist info</b></p>
+		<div class="body-user-info-block">
+			<div class="body-user-about-block" style="flex-grow:3;">
+				<div>
+
+					<a id="body-user-about-username" class="body-user-about-username">COVID-19</a>
+
+					<a id="body-user-edit-link" href="/view/user/edit_profile">
+						<img class="body-user-edit-btn" src="/views/registration_and_authentication/images/icons/baseline_edit_black_18dp.png" title="Edit account...">
+					</a>
+				</div>
+				<div>
+					<p id="body-user-about-date" class="body-user-about-name-surname"></p>
+					<p id="body-user-about-genres" class="body-user-about-name-surname">Genres: </p>
+					<p id="body-user-about-languages" class="body-user-about-name-surname">Performing languages: </p>
+					<p id="body-user-about-labels" class="body-user-about-name-surname">Label: </p>
+				</div>
+				<br>
+				<div>
+					<p id="body-user-about-description" class="body-user-about-biography"></p>
+				</div>
+
+			</div>
+
 		</div>
-		
+		<br>
 		
 	</div>
 
@@ -170,7 +193,7 @@
 <!--===============================================================================================-->
 	<script src="/views/registration_and_authentication/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="/views/registration_and_authentication/js/playlist_info_page_main.js"></script>
+	<script src="/views/registration_and_authentication/js/album_page_main.js"></script>
 	<script src="/views/registration_and_authentication/js/changeVisibility.js"></script>
 	<script src="/views/registration_and_authentication/js/playMusic.js"></script>
 	<script src="/views/registration_and_authentication/js/onMusicEnded.js"></script>

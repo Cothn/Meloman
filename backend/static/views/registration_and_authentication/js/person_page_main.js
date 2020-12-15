@@ -67,7 +67,10 @@ function onPersonPageLoad(afterWhichDivId, userQuickButtonsBlockId) {
 	var urlParams = new URLSearchParams(window.location.search);
 	var personId = urlParams.get('person_id');
 
-	var currUserToken = getCookie("userToken");	
+	var currUserToken = getCookie("userToken");
+	if (personId === undefined || personId == null || personId == "") {
+		window.location.href = '/view/user';
+	}
 
 	var requestOptions = {
 		method: 'GET',
