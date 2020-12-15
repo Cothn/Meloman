@@ -678,26 +678,18 @@ INSERT INTO person_roles (title) VALUES ("drummer");
 INSERT INTO person_roles (title) VALUES ("producer");
 
 INSERT INTO languages (title) VALUES ("Earth");
-INSERT INTO languages (title) VALUES ("Russia");
-INSERT INTO languages (title) VALUES ("United Kingdom");
-INSERT INTO languages (title) VALUES ("United States");
-INSERT INTO languages (title) VALUES ("Germany");
-INSERT INTO languages (title) VALUES ("France");
-INSERT INTO languages (title) VALUES ("Italy");
-INSERT INTO languages (title) VALUES ("Mexico");
-INSERT INTO languages (title) VALUES ("Belarus");
-INSERT INTO languages (title) VALUES ("Romania");
+INSERT INTO languages (title) VALUES ("Russian");
+INSERT INTO languages (title) VALUES ("English");
+INSERT INTO languages (title) VALUES ("Italian");
+INSERT INTO languages (title) VALUES ("German");
+INSERT INTO languages (title) VALUES ("French");
+INSERT INTO languages (title) VALUES ("Belarusian");
 
-INSERT INTO labels (title) VALUES ("Hard rock");
-INSERT INTO labels (title) VALUES ("Alternativ rock");
-INSERT INTO labels (title) VALUES ("Fulk rock");
-INSERT INTO labels (title) VALUES ("Rock'n roll");
-INSERT INTO labels (title) VALUES ("Punk rock");
-INSERT INTO labels (title) VALUES ("Classic");
-INSERT INTO labels (title) VALUES ("Disko");
-INSERT INTO labels (title) VALUES ("Dark electro");
-INSERT INTO labels (title) VALUES ("Electro");
-INSERT INTO labels (title) VALUES ("War");
-INSERT INTO labels (title) VALUES ("Fulk music");
+INSERT INTO labels (title) VALUES ("СОЮЗ");
+INSERT INTO labels (title) VALUES ("Moroz Records");
+INSERT INTO labels (title) VALUES ("Atlantic Records");
+INSERT INTO labels (title) VALUES ("Reprise Records");
+INSERT INTO labels (title) VALUES ("Maverick Records");
+
 
 
