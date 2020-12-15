@@ -88,6 +88,7 @@ function onPersonPageLoad(afterWhichDivId, userQuickButtonsBlockId) {
 				var userIdForPosts = resultUser.id;
 
 				onPersonGroups('group-main-block');
+				onPersonAlbums('album-main-block');
 				//loadAllUserPosts(userIdForPosts, afterWhichDivId);
 			}				
 			else
@@ -250,6 +251,122 @@ function fillPersonAboutBlock(personId) {
 		.catch(error => console.log('error', error));
 }
 
+function onPersonAlbums(postDivId) {
+	var urlParams = new URLSearchParams(window.location.search);
+	var personId = urlParams.get('person_id');
+
+	let afterWhichDivId = "albums-block";
+	document.getElementById(afterWhichDivId).remove();
+	let trackBlock = document.createElement("div");
+	trackBlock.id = afterWhichDivId ;
+	trackBlock.class = afterWhichDivId ;
+	document.getElementById(postDivId).insertAdjacentElement('beforeend', trackBlock);
+
+	var currUserToken = getCookie("userToken");
+
+
+	var requestOptions = {
+		method: 'GET',
+		headers: {
+			'Authorization':`Bearer ${currUserToken}`
+		},
+		redirect: 'follow'
+	};
+
+	fetch("http://localhost:3000/api/person/albums/"+personId, requestOptions)
+		.then(async response => {
+			var result = await response.json();
+			if (response.ok)
+			{
+
+				result.forEach(personGroupe =>{
+
+					//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML =personGroupe.albums_id;
+					fetch("http://localhost:3000/api/album" + `?album_id=${personGroupe.albums_id}`, requestOptions)
+						.then(async response => {
+							var result = await response.json();
+							if (response.ok)
+							{
+								//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML =result[0];
+								//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML +=
+								//	" "+resultRole[0].title+" |";
+
+
+								var currGroupId = result[0].id;
+								var currGroupTitle = result[0].title;
+								var currGroupBirth = new Date(result[0].release_date);
+								var currGroupDie = new Date(result[0].die_date);
+								if (!currGroupDie) {
+									currGroupDie="";
+								}
+
+								var currDivGroupBlockId = "album" + (currGroupId).toString() + "-" + "block";
+
+								var div_user_block = document.createElement('div');
+								div_user_block.id = currDivGroupBlockId;
+								div_user_block.className = "body-post-block";
+
+								var a_album_title = document.createElement('a');
+								a_album_title.className = "body-users-search-username-link";
+								a_album_title.href = "/view/album?album_id=" + currGroupId;
+								a_album_title.innerHTML = `<b>${currGroupTitle}</b>`;
+								a_album_title.setAttribute("style", "padding-left: 2%;");
+
+								var hr_body_first = document.createElement('hr');
+								hr_body_first.className = "hr-body";
+
+								var p_album_birth = document.createElement('pre');
+								p_album_birth.innerHTML = "Creations date: " + `${currGroupBirth.getDay()}`
+									+`.${currGroupBirth.getMonth()}`+`.${currGroupBirth.getFullYear()}`;
+								p_album_birth.setAttribute("style", "margin-top: 1%; margin-left: 1%");
+
+								var p_album_die = document.createElement('pre');
+								p_album_die.innerHTML = "Death date: " + `${currGroupDie.getDay()}`
+									+`.${currGroupDie.getMonth()}`+`.${currGroupDie.getFullYear()}`;
+								p_album_die.setAttribute("style", "margin-left: 1%");
+
+								var hr_post_block_end = document.createElement('hr');
+								hr_post_block_end.className = "hr-body-end";
+
+								var hr_post_block_start = document.createElement('hr');
+								hr_post_block_start.className = "hr-body-start";
+
+								div_user_block.insertAdjacentElement('beforeend', hr_post_block_start);
+								div_user_block.insertAdjacentElement('beforeend', a_album_title);
+								div_user_block.insertAdjacentElement('beforeend', hr_body_first);
+								div_user_block.insertAdjacentElement('beforeend', p_album_birth);
+
+								if (result[0].die_date) {
+									div_user_block.insertAdjacentElement('beforeend', p_album_die);
+								}
+
+								//div_user_block.insertAdjacentElement('beforeend', hr_post_block_end);
+
+
+								document.getElementById(afterWhichDivId).insertAdjacentElement('beforeend', div_user_block);
+
+
+
+							}
+							else
+							{
+								alert(resultPerson.message);
+							}
+						})
+						.catch(error => console.log('error', error));
+
+				});
+
+
+
+			}
+			else
+			{
+				alert(result.message);
+			}
+		})
+		.catch(error => console.log('error', error));
+}
 
 function onPersonGroups(postDivId) {
 	var urlParams = new URLSearchParams(window.location.search);
@@ -294,8 +411,8 @@ function onPersonGroups(postDivId) {
 
 								var currGroupId = result[0].id;
 								var currGroupTitle = result[0].title;
-								var currGroupBirth = result[0].birth_date;
-								var currGroupDie = result[0].die_date;
+								var currGroupBirth = new Date(result[0].birth_date);
+								var currGroupDie = new Date(result[0].die_date);
 								if (!currGroupDie) {
 									currGroupDie="";
 								}
@@ -316,11 +433,13 @@ function onPersonGroups(postDivId) {
 								hr_body_first.className = "hr-body";
 
 								var p_group_birth = document.createElement('pre');
-								p_group_birth.innerHTML = "Birth date: " + `${currGroupBirth}`;
+								p_group_birth.innerHTML = "Creations date: " + `${currGroupBirth.getDay()}`
+									+`.${currGroupBirth.getMonth()}`+`.${currGroupBirth.getFullYear()}`;
 								p_group_birth.setAttribute("style", "margin-top: 1%; margin-left: 1%");
 
 								var p_group_die = document.createElement('pre');
-								p_group_die.innerHTML = "Death date: " + `${currGroupDie}`;
+								p_group_die.innerHTML = "Death date: " + `${currGroupDie.getDay()}`
+									+`.${currGroupDie.getMonth()}`+`.${currGroupDie.getFullYear()}`;
 								p_group_die.setAttribute("style", "margin-left: 1%");
 								
 								var hr_post_block_end = document.createElement('hr');
@@ -334,7 +453,7 @@ function onPersonGroups(postDivId) {
 								div_user_block.insertAdjacentElement('beforeend', hr_body_first);
 								div_user_block.insertAdjacentElement('beforeend', p_group_birth);
 
-								if (currGroupDie) {
+								if (result[0].die_date) {
 									div_user_block.insertAdjacentElement('beforeend', p_group_die);
 								}
 

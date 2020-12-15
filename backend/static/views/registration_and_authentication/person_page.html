@@ -133,33 +133,60 @@
 
 		</div>
 		<br>
-		<div id="body-user-quick-buttons-block" class="body-user-quick-buttons-block" style="display: none;">
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/favorites')">
-				Person albums
-			</button>
-			
-			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/added')">
-				Person singles
-			</button>
 
+		<div id="body-user-quick-buttons-block" class="body-user-quick-buttons-block" style="display: none;">
 			<button class="login100-form-btn body-user-quick-btn" onclick="
-			document.getElementById('group-main-block').hidden = !(document.getElementById('group-main-block').hidden);
-">
+			document.getElementById('group-main-block').hidden =
+			!(document.getElementById('group-main-block').hidden);">
 				Person groups
 			</button>
+			<div id="group-main-block" class="limiter body-main" style="width: 100%" hidden>
+				<div class="body-added-playlists-header-block">
+				</div>
+				<div id="groups-block" class="body-post-block">
+
+				</div>
+			</div>
+			<div  class="limiter body-main" hidden>
+			</div>
+
+			<button class="login100-form-btn body-user-quick-btn" onclick="
+			document.getElementById('album-main-block').hidden =
+			!(document.getElementById('album-main-block').hidden);">
+				Person albums
+			</button>
+			<div id="album-main-block" class="limiter body-main"style="width: 100%" hidden>
+				<div class="body-added-playlists-header-block">
+				</div>
+				<div id="albums-block" class="body-post-block">
+
+				</div>
+			</div>
+			<div  class="limiter body-main" hidden>
+			</div>
+			
+			<button class="login100-form-btn body-user-quick-btn" onclick="
+			document.getElementById('single-main-block').hidden =
+			!(document.getElementById('single-main-block').hidden);">
+				Person singles
+			</button>
+			<div id="single-main-block" class="limiter body-main"style="width: 100%" hidden>
+				<div class="body-added-playlists-header-block">
+				</div>
+				<div id="singles-block" class="body-post-block">
+
+				</div>
+			</div>
+			<div  class="limiter body-main" hidden>
+			</div>
+
 		</div>		
 	</div>
 	
 	<!--<div hidden id="element-for-post-order"></div> -->
-	<div id="group-main-block" class="limiter body-main" hidden>
-		<div class="body-added-playlists-header-block">
-			<p class="body-user-about-name-surname"><b>Person groups:</b></p>
-		</div>
-		<div id="groups-block" class="body-post-block">
 
-		</div>
 
-	</div>
+
 
 	<div class="footer-block">
 		<div class="footer-main-player-block">

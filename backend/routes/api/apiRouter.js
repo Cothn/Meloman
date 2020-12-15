@@ -31,5 +31,7 @@ var languageRout = require('./languageRout');
 router.use('/language', languageRout);
 var groupRout = require('./groupsRout');
 router.use('/group', groupRout);
+var albumRout = require('./albumsRout');
+router.use('/album', albumRout);
 
 module.exports = router;

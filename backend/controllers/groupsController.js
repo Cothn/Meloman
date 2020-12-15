@@ -12,10 +12,10 @@ const mySqlConfig= require("../configs/mysqlconfig");
 exports.getGroupsByQuery = function (request, response){
     var id= request.query.group_id;
 
-    const nickname = request.query.nickname;
-    const name = request.query.name;
-    const surname = request.query.surname;
-    const countrie_id = request.query.countrie_id;
+    const title = request.query.title;
+    const birth_date = request.query.birth_date;
+    const die_date = request.query.die_date;
+    const description = request.query.description;
     const connection = mysql.createConnection(mySqlConfig.config);
 
     if (id){
@@ -30,21 +30,17 @@ exports.getGroupsByQuery = function (request, response){
     }
     else {
         var sqlRequest = '';
-        if (countrie_id) {
-            sqlRequest += ' countrie_id = '+countrie_id+'';
+        if (title) {
+            sqlRequest += ' title LIKE \'%'+title+'%\'';
             sqlRequest += ' AND';
         }
-        if (nickname) {
-            sqlRequest += ' nickname LIKE \'%'+nickname+'%\'';
-            sqlRequest += ' AND';
-        }
-        if (name) {
+        if (birth_date) {
 
-            sqlRequest += ' name LIKE \'%'+name+'%\'';
+            sqlRequest += ' birth_date LIKE \'%'+birth_date+'%\'';
             sqlRequest += ' AND';
         }
-        if (surname) {
-            sqlRequest += ' surname LIKE \'%'+surname+'%\'';
+        if (die_date) {
+            sqlRequest += ' die_date LIKE \'%'+die_date+'%\'';
         }
         if (sqlRequest.substr(sqlRequest.length-3, 3) == 'AND')
         {
