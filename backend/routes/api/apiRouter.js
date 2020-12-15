@@ -35,5 +35,7 @@ var albumRout = require('./albumsRout');
 router.use('/album', albumRout);
 var singleRout = require('./singlesRout');
 router.use('/single', singleRout);
+var labelRout = require('./labelRout');
+router.use('/label', labelRout);
 
 module.exports = router;

@@ -1464,7 +1464,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/group/genres/8",
+							"raw": "http://localhost:3000/api/group/genres/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1474,7 +1474,7 @@
 								"api",
 								"group",
 								"genres",
-								"8"
+								"5"
 							]
 						}
 					},
@@ -1538,7 +1538,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/group/persons/8",
+							"raw": "http://localhost:3000/api/group/persons/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1548,7 +1548,7 @@
 								"api",
 								"group",
 								"persons",
-								"8"
+								"1"
 							]
 						}
 					},
@@ -1556,6 +1556,80 @@
 				},
 				{
 					"name": "GetRoles Copy 3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/labels/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"labels",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/albums/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"albums",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},

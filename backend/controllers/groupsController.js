@@ -3,6 +3,8 @@ const Groups_persons = require("../models/groups_persons.js");
 const Groups_languages = require("../models/groups_languages.js");
 const Groups_genres = require("../models/groups_genres.js");
 const Groups_labels = require("../models/groups_labels.js");
+const Groups_albums = require("../models/albums_groups.js");
+const Groups_singles = require("../models/single.js");
 const logger = require('../configs/logger4jsInit');
 const mysql = require("mysql2");
 const mySqlConfig= require("../configs/mysqlconfig");
@@ -15,7 +17,6 @@ exports.getGroupsByQuery = function (request, response){
     const title = request.query.title;
     const birth_date = request.query.birth_date;
     const die_date = request.query.die_date;
-    const description = request.query.description;
     const connection = mysql.createConnection(mySqlConfig.config);
 
     if (id){
@@ -59,6 +60,34 @@ exports.getGroupsByQuery = function (request, response){
         connection.end();
     }
 
+};
+exports.getGroupAlbums = function (request, response){
+    var id= request.params.id;
+
+    const connection = mysql.createConnection(mySqlConfig.config);
+
+    logger.debug(Groups_albums.GET_ALBUMS_ID_BY_GROUPS_ID );
+    connection.query(Groups_albums.GET_ALBUMS_ID_BY_GROUPS_ID , [id], function (err, data) {
+        if(err) {
+            return response.status(400).send({message: err.message});
+        };
+        return response.status(200).send(data);
+    });
+    connection.end();
+};
+exports.getGroupSingles = function (request, response){
+    var id= request.params.id;
+
+    const connection = mysql.createConnection(mySqlConfig.config);
+
+    logger.debug(Groups_singles.GET_SINGLES_ID_BY_GROUP_ID );
+    connection.query(Groups_singles.GET_SINGLES_ID_BY_GROUP_ID , [id], function (err, data) {
+        if(err) {
+            return response.status(400).send({message: err.message});
+        };
+        return response.status(200).send(data);
+    });
+    connection.end();
 };
 
 exports.getGroupPersons = function (request, response){

@@ -24,5 +24,7 @@ router.get('/guest', userController.getGuest);
 
 var personsRout = require('./personsRout');
 router.use('/person', personsRout);
+var groupsRout = require('./groupsRout');
+router.use('/group', groupsRout);
 
 module.exports = router;
