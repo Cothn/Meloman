@@ -28,5 +28,7 @@ var groupsRout = require('./groupsRout');
 router.use('/group', groupsRout);
 var albumRout = require('./albumRout');
 router.use('/album', albumRout);
+var singleRout = require('./singleRout');
+router.use('/single', singleRout);
 
 module.exports = router;
