@@ -28,6 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/guest_page.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/main_page.css">
 	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/user_page.css">
+	<link rel="stylesheet" type="text/css" href="/views/registration_and_authentication/css/extended_search_page.css">
 <!--===============================================================================================-->
 	<style>
 		body {
@@ -140,10 +141,25 @@
 			<button class="login100-form-btn body-user-quick-btn" onclick="onUserHotBtnClick('/view/playlist/added')">
 				Person singles
 			</button>
+
+			<button class="login100-form-btn body-user-quick-btn" onclick="
+			document.getElementById('group-main-block').hidden = !(document.getElementById('group-main-block').hidden);
+">
+				Person groups
+			</button>
 		</div>		
 	</div>
 	
-	<div hidden id="element-for-post-order"></div>
+	<!--<div hidden id="element-for-post-order"></div> -->
+	<div id="group-main-block" class="limiter body-main" hidden>
+		<div class="body-added-playlists-header-block">
+			<p class="body-user-about-name-surname"><b>Person groups:</b></p>
+		</div>
+		<div id="groups-block" class="body-post-block">
+
+		</div>
+
+	</div>
 
 	<div class="footer-block">
 		<div class="footer-main-player-block">
