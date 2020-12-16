@@ -1,7 +1,7 @@
 config  = {
     host: "localhost",
     user: "Meloman",
-    database: "meloman_db2",
+    database: "meloman_db3",
     password: "Melomane"
 };
 

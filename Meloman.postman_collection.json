@@ -249,7 +249,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/user/me?id=12",
+							"raw": "http://localhost:3000/api/user/me?id=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -263,7 +263,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "12"
+									"value": "1"
 								}
 							]
 						}
@@ -303,7 +303,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/user/me?id=1",
+							"raw": "http://localhost:3000/api/user/me",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -317,7 +317,8 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -524,6 +525,2095 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "Person",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b0739cc-608f-440b-8463-d1b3c3dca430",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"name\": \"Андре́й\",\n        \"surname\": \"Кня́зев\",        \n        \"nickname\": \"Князь\",   \n        \"birth_date\": \"19730206\",\n        \"biography\": \"Родился 6 февраля 1973 года в Ленинграде. После окончания школы поступил в реставрационное училище, где осенью 1988 года познакомился с Михаилом Горшенёвым, который был участником группы «Контора». Вскоре Князев показал Горшенёву черновики с историями и иллюстрациям, которые он создавал ранее. Горшенёв заинтересовался и пригласил Князева в свою группу. С его появлением у группы «Контора» сменился стиль и концепция написания текстов. В песнях стали преобладать сказочные истории, после чего название группы поменялось на «Король шутов», позже изменённое на «Король и Шут». На ранней стадии творчества Князев играл на акустической гитаре и бас-гитаре. В ранних записях группы «Контора» пел на бэк-вокале. С 1993 по 1995 служил в армии в железнодорожных войсках под Вологдой, писал песни, которые отправлял Горшенёву.\",\n        \"countrie_id\":2,\n        \"person_roles\": [1, 3, 10, 11],\n        \"languages\": [2, 3]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9597c6eb-eed5-458e-8dcc-3ec1b34706c0",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"name\": \"Виталий\",\n        \"surname\": \"Демиденко\",        \n        \"nickname\": \"Вит\",   \n        \"birth_date\": \"19780726\",\n        \"biography\": \"Виталий Демиденко родился в Москве, куда его отец Александр Иванович Демиденко приехал из Ялты (ранее проживал в Запорожье) для обучения в Московском авиационном институте .Вит - старший ребёнок в семье, его брат Артём младше на пять лет. Мать музыканта - Алла Юрьевна Демиденко.В 1995 году будущий бас-гитарист известных рок-групп закончил одиннадцатый класс московской школы №93 и, как и его отец, поступил в МАИ, где проучился до 2002 г.Вместе с вокалисткой «Tracktor Bowling», Лусинэ Геворкян, Виталий организует группу Louna, куда вошли ещё трое участников. По словам самих музыкантов, группа создавалась «чтобы воплотить свои творческие идеи, выходящие за музыкальные рамки их основных коллективов».В настоящее время является автором всех текстов песен группы.\",\n        \"countrie_id\":2,\n        \"person_roles\": [4, 6, 10, 11],\n        \"languages\": [2, 3]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "05bb0bd0-6052-4c0d-b59b-6f198c5ef513",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"name\": \"Виталий\",\n        \"surname\": \"Демиденко\",        \n        \"nickname\": \"Вит\",   \n        \"birth_date\": \"19780726\",\n        \"biography\": \"Виталий Демиденко родился в Москве, куда его отец Александр Иванович Демиденко приехал из Ялты (ранее проживал в Запорожье) для обучения в Московском авиационном институте .Вит - старший ребёнок в семье, его брат Артём младше на пять лет. Мать музыканта - Алла Юрьевна Демиденко.В 1995 году будущий бас-гитарист известных рок-групп закончил одиннадцатый класс московской школы №93 и, как и его отец, поступил в МАИ, где проучился до 2002 г.Вместе с вокалисткой «Tracktor Bowling», Лусинэ Геворкян, Виталий организует группу Louna, куда вошли ещё трое участников. По словам самих музыкантов, группа создавалась «чтобы воплотить свои творческие идеи, выходящие за музыкальные рамки их основных коллективов».В настоящее время является автором всех текстов песен группы.\",\n        \"countrie_id\":2,\n        \"person_roles\": [4, 6, 10, 11],\n        \"languages\": [2, 3]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7bfb12c2-c4a4-44cb-9e5d-1885e00a6c8b",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"name\": \"Лусинэ\",\n        \"surname\": \"Геворкян\",        \n        \"nickname\": \"Лу\",   \n        \"birth_date\": \"19830221\",\n        \"biography\": \"Родилась в 1983 году в городе Капан (Армения), позднее переехала с родителями в Серпухов. В детстве училась в музыкальной школе по классу фортепиано. В 2001 году окончила МГТУ «МАМИ» (экономический факультет), в 2006 — МГУКИ (факультет менеджмента и социально-информационных технологий). Музыкальная карьера Геворкян началась в 2003 году, когда она стала участницей рок-группы «Сфера Влияния». В 2004 году перешла в состав группы «Tracktor Bowling» (на смену ушедшей вокалистки Людмилы «Милы» Дёминой). В 2008 году, вместе с басистом группы Виталием «Витом» Демиденко, основывает рок-группу «Louna», которой они впоследствии уделили основное внимание в связи с творческими разногласиями с другими участниками «Tracktor Bowling».В конце 2012 года группа «Louna» была выдвинута на Премию «Чартова Дюжина» в шести номинациях и впоследствии вышла во второй этап голосования в двух из них — «Альбом» и «Солистка». 24 февраля 2013 года, на основе народного голосования, Лусинэ Геворкян была признана лучшей рок-вокалисткой страны и во время церемонии награждения победителей Премии «Чартова Дюжина» в клубе Stadium Live получила Премию «Лучшая солистка» из рук актёра Никиты Высоцкого.Вела мастер-классы по рок-вокалу в музыкальном клубе-школе «МузКласс»\",\n        \"countrie_id\":10,\n        \"person_roles\": [1, 2, 5, 10],\n        \"languages\": [2, 3]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 1,\n        \"name\": \"Лусинэ\",\n        \"surname\": \"Геворкян\",        \n        \"nickname\": \"Лу\",   \n        \"birth_date\": \"19830221\",\n        \"biography\": \"Родилась в 1983 году в городе Капан (Армения), позднее переехала с родителями в Серпухов. В детстве училась в музыкальной школе по классу фортепиано. В 2001 году окончила МГТУ «МАМИ» (экономический факультет), в 2006 — МГУКИ (факультет менеджмента и социально-информационных технологий). Музыкальная карьера Геворкян началась в 2003 году, когда она стала участницей рок-группы «Сфера Влияния»[1]. В 2004 году перешла в состав группы «Tracktor Bowling»[1] (на смену ушедшей вокалистки Людмилы «Милы» Дёминой). В 2008 году, вместе с басистом группы Виталием «Витом» Демиденко, основывает рок-группу «Louna»[2], которой они впоследствии уделили основное внимание в связи с творческими разногласиями с другими участниками «Tracktor Bowling».В конце 2012 года группа «Louna» была выдвинута на Премию «Чартова Дюжина» в шести номинациях и впоследствии вышла во второй этап голосования в двух из них — «Альбом» и «Солистка». 24 февраля 2013 года, на основе народного голосования, Лусинэ Геворкян была признана лучшей рок-вокалисткой страны и во время церемонии награждения победителей Премии «Чартова Дюжина» в клубе Stadium Live получила Премию «Лучшая солистка» из рук актёра Никиты Высоцкого[3].Вела мастер-классы по рок-вокалу в музыкальном клубе-школе «МузКласс»\",\n        \"countrie_id\":10,\n        \"person_roles\": [1, 2],\n        \"languages\": [1, 2]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODQyODQwMywiZXhwIjoxNTg4NDMyMDAzfQ.CJdPed9eRIe_mOph55hyuCnEqZQShmtisdEM5wQ9PMk",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person"
+							],
+							"query": [
+								{
+									"key": "person_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "nickname",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "countrie_id",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/roles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/languages/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"languages",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Copy Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/view/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"view",
+								"person"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Single",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3b29827-b54c-4127-9535-698c930b6955",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Всё и ничто\",\n        \"release_date\": \"20100702\",\n        \"description\": \"\",\n        \"track_id\":17,\n        \"label_id\":1,\n        \"language_id\":2,\n        \"groups_id\":4,\n        \"single_persons\": [1, 2, 6, 7, 8]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/single/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"single",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 1,\n        \"name\": \"Лусинэ\",\n        \"surname\": \"Геворкян\",        \n        \"nickname\": \"Лу\",   \n        \"birth_date\": \"19830221\",\n        \"biography\": \"Родилась в 1983 году в городе Капан (Армения), позднее переехала с родителями в Серпухов. В детстве училась в музыкальной школе по классу фортепиано. В 2001 году окончила МГТУ «МАМИ» (экономический факультет), в 2006 — МГУКИ (факультет менеджмента и социально-информационных технологий). Музыкальная карьера Геворкян началась в 2003 году, когда она стала участницей рок-группы «Сфера Влияния»[1]. В 2004 году перешла в состав группы «Tracktor Bowling»[1] (на смену ушедшей вокалистки Людмилы «Милы» Дёминой). В 2008 году, вместе с басистом группы Виталием «Витом» Демиденко, основывает рок-группу «Louna»[2], которой они впоследствии уделили основное внимание в связи с творческими разногласиями с другими участниками «Tracktor Bowling».В конце 2012 года группа «Louna» была выдвинута на Премию «Чартова Дюжина» в шести номинациях и впоследствии вышла во второй этап голосования в двух из них — «Альбом» и «Солистка». 24 февраля 2013 года, на основе народного голосования, Лусинэ Геворкян была признана лучшей рок-вокалисткой страны и во время церемонии награждения победителей Премии «Чартова Дюжина» в клубе Stadium Live получила Премию «Лучшая солистка» из рук актёра Никиты Высоцкого[3].Вела мастер-классы по рок-вокалу в музыкальном клубе-школе «МузКласс»\",\n        \"countrie_id\":10,\n        \"person_roles\": [1, 2],\n        \"languages\": [1, 2]\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODQyODQwMywiZXhwIjoxNTg4NDMyMDAzfQ.CJdPed9eRIe_mOph55hyuCnEqZQShmtisdEM5wQ9PMk",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/single",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"single"
+							],
+							"query": [
+								{
+									"key": "person_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "nickname",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "countrie_id",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/roles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7c593e52-d7f6-4754-a042-c576fd5fc2fe",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "95b114b3-acb7-4548-80e8-fdaab4cd358c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Group",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff327092-9dee-4283-8c12-bb53b7892640",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Киш\",\n        \"birth_date\": \"19880921\",\n        \"description\": \"Российская хоррор-панк-группа из Санкт-Петербурга.\",\n        \"countrie_id\":10,\n        \"group_persons\": [9, 10],\n        \"languages\": [1, 2],\n        \"genres\": [1, 8],\n        \"labels\": [1]      \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1983692d-5e15-401e-b090-91155aa1d926",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Tracktor Bowling\",\n        \"birth_date\": \"20080921\",\n        \"description\": \"Российская рок-группа, играющая в стиле альтернативный метал. Образовалась в 2008 году. Начиная с 2010 года, с выходом дебютного альбома «Сделай громче!», песни коллектива получили широкую известность, возглавляя известные «тематические» хит-парады[6]. Тексты песен группы имеют ярко выраженный остросоциальный контекст[1][7]. За время своего существования группа выпустила шесть номерных альбомов, два англоязычных, два концертных альбома, два сборника лучших песен и несколько синглов.\",\n        \"countrie_id\":10,\n        \"group_persons\": [1, 2, 6, 7, 8],\n        \"languages\": [1, 2],\n        \"genres\": [1, 4, 5, 6, 9, 11],\n        \"labels\": [1]      \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "565df5e6-16b4-41b8-a28e-6f7e10d43086",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Louna\",\n        \"birth_date\": \"20080921\",\n        \"description\": \"Российская рок-группа, играющая в стиле альтернативный метал. Образовалась в 2008 году. Начиная с 2010 года, с выходом дебютного альбома «Сделай громче!», песни коллектива получили широкую известность, возглавляя известные «тематические» хит-парады. Тексты песен группы имеют ярко выраженный остросоциальный контекст. За время своего существования группа выпустила шесть номерных альбомов, два англоязычных, два концертных альбома, два сборника лучших песен и несколько синглов.\",\n        \"countrie_id\":10,\n        \"group_persons\": [1, 2, 6, 7, 8],\n        \"languages\": [1, 2],\n        \"genres\": [1, 4, 5, 6, 9, 11],\n        \"labels\": [1]      \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70c733a3-6c06-487c-8851-cd58b0781104",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin@meloman.mel",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:3000/api/authenticate",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"Tracktor Bowling\",\n        \"birth_date\": \"19961021\",\n        \"description\": \"Российская рок-группа, играющая в стиле альтернативный метал. Образовалась в 1996 году, однако первый полноценный альбом вышел только через шесть лет — в 2002 году. С тех пор группа выпустила шесть номерных альбомов, один Live-альбом, а также несколько синглов.\",\n        \"countrie_id\":10,\n        \"group_persons\": [1, 2, 3, 4, 5],\n        \"languages\": [1, 2],\n        \"genres\": [1, 4, 5, 6, 8, 9, 11],\n        \"labels\": [1, 2]      \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 1,\n        \"title\": \"Tracktor Bowling\",\n        \"birth_date\": \"19830221\",\n        \"description\": \"российская рок-группа, играющая в стиле альтернативный метал. Образовалась в 1996 году, однако первый полноценный альбом вышел только через шесть лет — в 2002 году. С тех пор группа выпустила шесть номерных альбомов, один Live-альбом, а также несколько синглов.\",\n        \"countrie_id\":10,\n        \"group_persons\": [1, 10],\n        \"languages\": [1, 2],\n        \"genres\": [1, 2],\n        \"labels\": [1, 2]     \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODQyODQwMywiZXhwIjoxNTg4NDMyMDAzfQ.CJdPed9eRIe_mOph55hyuCnEqZQShmtisdEM5wQ9PMk",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							],
+							"query": [
+								{
+									"key": "nickname",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "countrie_id",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "group_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/genres/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"genres",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/languages/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"languages",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/persons/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"persons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/labels/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"labels",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/albums/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"albums",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/labels/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"labels",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Album",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3a88688-b538-4448-a0ad-ec11b3fef4e2",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"title\": \"КишТест3\",\n        \"release_date\": \"20061205\",\n        \"description\": \"восьмой студийный альбом российской панк-рок-группы «Король и Шут»\",\n        \"album_persons\": [9],\n        \"languages\": [3],\n        \"genres\": [1, 8],\n        \"label_id\": 1,\n        \"tracks\": [31, 32,  36, 43, 44, 45],\n        \"groups\":   [5]         \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/album",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"album"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n    \t\"id\": 1,\n        \"title\": \"Tracktor Bowling\",\n        \"birth_date\": \"19830221\",\n        \"description\": \"российская рок-группа, играющая в стиле альтернативный метал. Образовалась в 1996 году, однако первый полноценный альбом вышел только через шесть лет — в 2002 году. С тех пор группа выпустила шесть номерных альбомов, один Live-альбом, а также несколько синглов.\",\n        \"countrie_id\":10,\n        \"group_persons\": [1, 10],\n        \"languages\": [1, 2],\n        \"genres\": [1, 2],\n        \"labels\": [1, 2]     \n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTQ1OCwiZXhwIjoxNTg5MDE5NDU4fQ.nu2bqFi1e9vyL0aRhy4xbNdlgX8MKkFp9GtY3Qwt_4w",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODQyODQwMywiZXhwIjoxNTg4NDMyMDAzfQ.CJdPed9eRIe_mOph55hyuCnEqZQShmtisdEM5wQ9PMk",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/album",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"album"
+							],
+							"query": [
+								{
+									"key": "nickname",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Л",
+									"disabled": true
+								},
+								{
+									"key": "countrie_id",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/album/groups/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"album",
+								"groups",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/languages/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"languages",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/persons/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"persons",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoles Copy 3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/group/labels/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"group",
+								"labels",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Music",
 			"item": [
 				{
@@ -608,8 +2698,13 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
 									"type": "string"
 								},
 								{
@@ -623,7 +2718,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"asdassdfsdd\",\n        \"duration\":\"600\"\n    }",
+							"raw": "    {\n        \"title\": \"Прыгну со скалы\",\n        \"genre_id\": 2,\n        \"music_url\": \"asdassdfsxdd\",\n        \"duration\":\"600\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1738,8 +3833,13 @@
 							"type": "oauth2",
 							"oauth2": [
 								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
 									"key": "accessToken",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTU4ODY1OTg3MywiZXhwIjoxNTg5MDE5ODczfQ.zr7LN1D11BnCoQx5FTcwwm0vBT7DSZ88Y9HUEUKCDvM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX3JvbGUiOjEsImlhdCI6MTYwNzkxODkxMCwiZXhwIjoxNjA3OTU0OTEwfQ.q1c_EynGpGcnCj5RkNCuwVhu034v-eljTflzVW-UVbc",
 									"type": "string"
 								},
 								{
@@ -1753,7 +3853,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"title\": \"Jamp\",\n        \"tracks\":[11, 14]\n    }",
+							"raw": "    {\n        \"title\": \"Jamp\",\n        \"tracks\":[2, 4]\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2036,7 +4136,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/playlist/tracks/1",
+							"raw": "http://localhost:3000/api/playlist/tracks/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2046,7 +4146,7 @@
 								"api",
 								"playlist",
 								"tracks",
-								"1"
+								"5"
 							]
 						}
 					},

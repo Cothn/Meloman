@@ -314,23 +314,18 @@ function onGroupSingles(postDivId) {
 			if (response.ok)
 			{
 
-				result.forEach(groupPersone =>{
+				result.forEach(result =>{
 
-					//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML =groupPersone.singles_id;
-					fetch("http://localhost:3000/api/single" + `?single_id=${groupPersone.singles_id}`, requestOptions)
-						.then(async response => {
-							var result = await response.json();
-							if (response.ok)
-							{
+
 								//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML =result[0];
 								//document.getElementById(USER_ABOUT_NAME_SURNAME_LINK_ID).innerHTML +=
 								//	" "+resultLabel[0].title+" |";
 
 
-								var currPersonId = result[0].id;
-								var currPersonTitle = result[0].title;
-								var currPersonBirth = new Date(result[0].release_date);
-								var currPersonDie = new Date(result[0].die_date);
+								var currPersonId = result.id;
+								var currPersonTitle = result.title;
+								var currPersonBirth = new Date(result.release_date);
+								var currPersonDie = new Date(result.die_date);
 								if (!currPersonDie) {
 									currPersonDie="";
 								}
@@ -371,7 +366,7 @@ function onGroupSingles(postDivId) {
 								div_user_block.insertAdjacentElement('beforeend', hr_body_first);
 								div_user_block.insertAdjacentElement('beforeend', p_single_birth);
 
-								if (result[0].die_date) {
+								if (result.die_date) {
 									div_user_block.insertAdjacentElement('beforeend', p_single_die);
 								}
 
@@ -382,13 +377,6 @@ function onGroupSingles(postDivId) {
 
 
 
-							}
-							else
-							{
-								alert(resultGroup.message);
-							}
-						})
-						.catch(error => console.log('error', error));
 
 				});
 
